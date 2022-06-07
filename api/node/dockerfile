@@ -1,0 +1,7 @@
+FROM node
+
+ADD src src
+
+EXPOSE 8080
+
+CMD [ "node","src/server.js"]

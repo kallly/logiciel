@@ -1,0 +1,45 @@
+version: "3.9"
+    
+services:
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: Groupe1
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - db
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: alexis.baudry@viacesi.fr
+      PGADMIN_DEFAULT_PASSWORD: Groupe1
+    ports:
+      - "8081:80"
+    networks:
+      - db
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: Groupe1
+    ports:
+     - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - db
+
+volumes:
+  postgres_data:
+  mongo_data:
+
+networks:
+  db:
+    driver: bridge
