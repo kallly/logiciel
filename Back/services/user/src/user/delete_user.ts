@@ -1,4 +1,4 @@
-import { query as postgreQuery } from "../postgres";
+import { query as postgreQuery } from "../tools/postgres";
 
 export async function delete_user(id:number){
     

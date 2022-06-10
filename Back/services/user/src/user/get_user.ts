@@ -1,4 +1,4 @@
-import { query as postgreQuery } from "../postgres";
+import { query as postgreQuery } from "../tools/postgres";
 
 export async function get_user(id:number): Promise<any> | never{
     let query = 'SELECT id, last_name, first_name, type FROM schema.user WHERE id=$1 LIMIT 1;';

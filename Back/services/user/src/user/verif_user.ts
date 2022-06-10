@@ -1,4 +1,4 @@
-import { query as postgreQuery } from "../postgres";
+import { query as postgreQuery } from "../tools/postgres";
 
 export async function verif_user(jwt:string): Promise<boolean> | never{
     let query = 'SELECT id FROM schema.user WHERE jwt=$1 LIMIT 1;';

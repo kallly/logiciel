@@ -1,5 +1,5 @@
 let fetch = require('node-fetch');
-import IResponse from './IResponse';
+import IResponse from '../tools/IResponse';
 const https = require('https');
 
 const httpsAgent = new https.Agent({
@@ -8,7 +8,7 @@ const httpsAgent = new https.Agent({
   
 export default class UserController {
     public getUser(jwt:string): Promise<IResponse> | never {
-        return fetch('http://mag_user:8092/user', {
+        return fetch('https://mag_user:8092/user', {
             method: 'GET',
             credentials: 'same-origin',
             headers: {'Content-Type': 'application/json','cookie': `jwt=${jwt}`},
@@ -23,7 +23,7 @@ export default class UserController {
     }
 
     public createUser(jwt:string, body:string): Promise<IResponse> | never {
-        return fetch('http://mag_user:8092/user/create', {
+        return fetch('https://mag_user:8092/user/create', {
             method: 'PUT',
             credentials: 'same-origin',
             headers: {'Content-Type': 'application/json','cookie': `jwt=${jwt}`},

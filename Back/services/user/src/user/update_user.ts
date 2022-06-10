@@ -1,6 +1,6 @@
 const argon2 = require('argon2');
 import { User } from "./user";
-import { query as postgreQuery } from "../postgres";
+import { query as postgreQuery } from "../tools/postgres";
 
 export async function update_user(user:User){
     

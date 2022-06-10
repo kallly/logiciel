@@ -6,12 +6,12 @@ const httpsAgent = new https.Agent({
     rejectUnauthorized: false,
 });
   
-export default class LoginController {
-    public login(body:string): Promise<IResponse> | never {
-        return fetch('https://mag_auth:8091/login', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(body),
+export default class MenuController {
+    public getMenu(jwt:string): Promise<IResponse> | never {
+        return fetch('https://mag_menu:8093/menu', {
+            method: 'GET',
+            credentials: 'same-origin',
+            headers: {'Content-Type': 'application/json','cookie': `jwt=${jwt}`},
             agent: httpsAgent
         }).then((response:any): IResponse => {
             return response.json().then((json:any): IResponse => {

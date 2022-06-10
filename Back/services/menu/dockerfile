@@ -15,6 +15,6 @@ ADD src src
 WORKDIR /home/node/src
 RUN npm i
 
-EXPOSE 8091
+EXPOSE 8093
 
-CMD [ "nodemon","app.ts"]
+CMD [ "nodemon","menu.ts"]
