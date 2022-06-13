@@ -8,14 +8,14 @@ const httpsAgent = new https.Agent({
   
 export default class LoginController {
     public login(body:string): Promise<IResponse> | never {
-        return fetch('https://mag_auth:8091/login', {
+        return fetch('https://mag_auth:8091/user/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(body),
             agent: httpsAgent
         }).then((response:any): IResponse => {
             return response.json().then((json:any): IResponse => {
-                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify(json)};
+                return {code:200,header:{'Content-Type': 'application/json'},message:json};
             })
             .catch((e:any) => {throw e;});
         })

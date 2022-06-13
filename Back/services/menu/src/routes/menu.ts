@@ -6,7 +6,7 @@ import verif_user from '../tools/verif_user';
 
 export const router = express.Router();
 
-router.get('/', auth,verif_user,(req:any, res:any) => {
+router.get('/', (req:any, res:any) => {
     const controller = new MenuController();
     controller.getMenu().then((response) => {
         //res.writeHead(response.code, response.header);

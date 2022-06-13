@@ -1,4 +1,5 @@
-import { router as loginRouter } from "./routes/login";
+import { router as apiRouter } from "./routes/api";
+import { router as userRouter } from "./routes/user";
 import morgan from 'morgan';
 import express from 'express';
 import fs from 'fs';
@@ -27,4 +28,5 @@ httpsServer.listen(port, () => {
 });
 
 
-app.use('/login', loginRouter);
+app.use('/api', apiRouter);
+app.use('/user', userRouter);

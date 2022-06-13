@@ -1,6 +1,4 @@
 import express from 'express';
-import jwt_verif from './tools/jwt_verif';
-import { User } from "./user/user";
 import { router as userRouter } from "./routes/user";
 
 const fs = require('fs');

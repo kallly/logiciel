@@ -17,4 +17,4 @@ RUN npm i
 
 EXPOSE 443
 
-CMD [ "nodemon","middleware.ts"]
+CMD [ "nodemon","app.ts"]

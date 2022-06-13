@@ -8,14 +8,14 @@ export default class MenuController {
     public getMenu(): Promise<IResponse> | never {
         return mongoConnect().then(async() => {
             return get_menu().then((result) => {
-                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify(result)};
+                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify({status:'success',message:result})};
             }).catch((e) => {throw e;})
         }).catch((e) => {throw e;})
     }
     public createMenu(): Promise<IResponse> | never {
         return mongoConnect().then(async() => {
             return create_menu().then((result) => {
-                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify(result)};
+                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify({status:'success'})};
             }).catch((e) => {throw e;})
         }).catch((e) => {throw e;})
     }

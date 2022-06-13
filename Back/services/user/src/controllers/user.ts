@@ -1,4 +1,3 @@
-let fetch = require('node-fetch');
 import IResponse from '../tools/IResponse';
 import { User } from "../user/user";
 
@@ -13,10 +12,10 @@ export default class UserController {
     public verifUser(jwt:string): Promise<IResponse> | never {
         return User.verif_user(jwt).then((result) => {
             if(result){
-                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify("Allow")}; 
+                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify({status:"success",allow:true})}; 
             }
             else{
-                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify("Not Allow")};
+                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify({status:"success",allow:false})};
             }
         }).catch((e) => {
             throw e;
@@ -28,7 +27,7 @@ export default class UserController {
             throw new Error('Missing param');
 
         return user.create_user().then(()=>{
-            return {code:200,header:{'Content-Type': 'text/plain'},message:JSON.stringify('done')};
+            return {code:200,header:{'Content-Type': 'text/plain'},message:JSON.stringify({status:'success'})};
         }).catch((e)=>{
             throw e;
         });
@@ -36,14 +35,14 @@ export default class UserController {
     public updateUser(id: number,last_name: string, first_name: string, password: string, address: string, email: string, phone_number: string): Promise<IResponse> | never {
         let user = new User(id,last_name, first_name, password, address, email, phone_number);
         return user.update_user().then(()=>{
-            return {code:200,header:{'Content-Type': 'text/plain'},message:JSON.stringify('done')};
+            return {code:200,header:{'Content-Type': 'text/plain'},message:JSON.stringify({status:'success'})};
         }).catch((e)=>{
             throw e;
         });
     }
     public deleteUser(id: number): Promise<IResponse> | never {
         return User.delete_user(id).then(()=>{
-            return {code:200,header:{'Content-Type': 'text/plain'},message:JSON.stringify('done')};
+            return {code:200,header:{'Content-Type': 'text/plain'},message:JSON.stringify({status:'success'})};
         }).catch((e)=>{
             throw e;
         })

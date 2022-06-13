@@ -1,15 +1,15 @@
 import parseCookies from './parseCookies'
 import jwt_verif from './jwt_verif'
-import { default_error } from '../tools/IResponse';
 
-export default  function auth(req:any, res:any, next:any) {
+export default function auth(req:any, res:any, next:any) {
     let cookies = parseCookies(req);
     try{
         let data = jwt_verif(cookies['jwt']);
         if(data === false){
+            //res.writeHead(403, {'Content-Type': 'text/plain'});  
             res.end('Not allow\n');
         }
         req.jwt = data;
-    }catch(e:any){ default_error(res,e);return;}
+    }catch(e){ console.log('auth',e);res.end(JSON.stringify({satuts:'error'}));return;}
     next();
 };
