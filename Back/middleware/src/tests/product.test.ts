@@ -15,36 +15,60 @@ describe("Test user", () => {
         done();
       });
   });
-  /*test("Create menu", done => {
+  test("Create product", done => {
     request(app)
-      .put("/menu/create")
+      .put("/product/create")
       .set('Content-type', 'application/json')
       .set('Cookie', [`jwt=${jwt}`])
-      .send({ last_name: 'test2' })
-      .then((response:any) => {
-        expect(JSON.parse(response.text).status).toBe("success");
-        expect(response.statusCode).toBe(200);
-        jwt = JSON.parse(response.text).jwt;
-        done();
-      });
-  });*/
-  test("Get menu", done => {
-    request(app)
-      .get("/menu")
+      .send({restaurant:'CESI_R',name:"1",text:"2",price:1})
       .then((response:any) => {
         expect(JSON.parse(response.text).status).toBe("success");
         expect(response.statusCode).toBe(200);
         done();
       });
   });
-  /*test("Delete menu", done => {
+  test("Get product", done => {
     request(app)
-      .delete("/user")
+      .get("/product")
+      .then((response:any) => {
+        expect(JSON.parse(response.text).status).toBe("success");
+        expect(response.statusCode).toBe(200);
+        done();
+      });
+  });
+  let id:any;
+  test("Get product by params", done => {
+    request(app)
+      .post("/product")
+      .set('Content-type', 'application/json')
+      .send({restaurant:'CESI_R',name:"1",text:"2",price:1})
+      .then((response:any) => {
+        expect(JSON.parse(response.text).status).toBe("success");
+        expect(response.statusCode).toBe(200);
+        id = JSON.parse(response.text).message._id;
+        done();
+      });
+  });
+  test("Update product", done => {
+    request(app)
+      .put(`/product/update/${id}`)
+      .set('Cookie', [`jwt=${jwt}`])
+      .set('Content-type', 'application/json')
+      .send({restaurant:'CESI_R',name:"flag",text:"2"})
+      .then((response:any) => {
+        expect(JSON.parse(response.text).status).toBe("success");
+        expect(response.statusCode).toBe(200);
+        done();
+      });
+  });
+  test("Delete product", done => {
+    request(app)
+      .delete(`/product/delete/${id}`)
       .set('Cookie', [`jwt=${jwt}`])
       .then((response:any) => {
         expect(response.statusCode).toBe(200);
         expect(JSON.parse(response.text).status).toBe('success');
         done();
       });
-  });*/
+  });
 });

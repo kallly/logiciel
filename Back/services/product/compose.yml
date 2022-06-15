@@ -2,8 +2,8 @@ version: "3.9"
     
 services:
 
-  mag_menu:
-    image: mag_menu
+  mag_product:
+    image: mag_product
     build: .
     networks:
       - net_services

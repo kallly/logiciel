@@ -1,7 +1,7 @@
 import parseCookies from './parseCookies'
 import jwt_verif from './jwt_verif'
 
-export default  function auth(req:any, res:any, next:any) {
+export default function auth(req:any, res:any, next:any) {
     let cookies = parseCookies(req);
     try{
         let data = jwt_verif(cookies['jwt']);
@@ -10,6 +10,6 @@ export default  function auth(req:any, res:any, next:any) {
             res.end('Not allow\n');
         }
         req.jwt = data;
-    }catch(e){ console.log(e);res.end('Error');;}
+    }catch(e){ console.log('auth',e);res.end(JSON.stringify({satuts:'error'}));return;}
     next();
 };

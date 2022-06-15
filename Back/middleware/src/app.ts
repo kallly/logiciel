@@ -1,7 +1,8 @@
 import express from 'express';
 import { router as loginRouter } from "./routes/login";
 import { router as userRouter } from "./routes/user";
-import { router as menuRouter } from "./routes/menu";
+import { router as productRouter } from "./routes/product";
+import { router as orderRouter } from "./routes/order";
 
 export const app = express();
 
@@ -26,4 +27,5 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
 app.use('/login', loginRouter);
 app.use('/user', userRouter);
-app.use('/menu', menuRouter);
+app.use('/product', productRouter);
+app.use('/order', orderRouter);

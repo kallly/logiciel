@@ -1,14 +1,16 @@
 import { mongoConnect } from '../tools/mongo';
-import { Order } from './order';
+import { Order, IOrder } from '../models/order';
 
-export function create_order(): Promise<any> | never{
+export function create_order(data:IOrder): Promise<any> | never{
     return mongoConnect().then(() => {
 
         const order = new Order({
-            id: 1,
             date: Date(),
-            restaurant: "test",
-            menu: "test"
+            user: data.user,
+            restaurant: data.restaurant,
+            product: data.products,
+            price: data.price,
+            status: 'Order created'
         });
         return order.save().catch((e) => {throw e;});
     }).catch((e) => {throw e;});

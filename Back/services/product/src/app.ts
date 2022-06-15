@@ -1,4 +1,4 @@
-import { router as menuRouter } from "./routes/menu";
+import { router as productRouter } from "./routes/product";
 const express = require('express');
 
 var fs = require('fs');
@@ -24,4 +24,4 @@ httpsServer.listen(port, () => {
     console.log(`Application écoute sur le port ${port}!`);
 });
 
-app.use('/menu',menuRouter);
+app.use('/product',productRouter);
