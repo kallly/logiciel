@@ -8,7 +8,8 @@ router.post('/login', (req:any, res:any) => {
     const controller = new LoginController();
     console.log(req.body);
     controller.login(req.body.email,req.body.password).then((response) => {
-        default_response(res,response);
+        res.status(response.code);
+        res.end(response.message); 
     }).catch((e) => {
         default_error(res,e);
     });

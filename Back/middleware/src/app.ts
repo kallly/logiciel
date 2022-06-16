@@ -10,12 +10,25 @@ app.use(express.json());
 
 const swaggerOptions = {
     swaggerDefinition: {
+        openapi: '3.0.3',
         info: {
             title: 'Library API',
             version: '1.0.0'
-        }
+        },
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                type: 'http',      
+                scheme: 'bearer',
+                bearerFormat: 'JWT'
+              }
+            }
+          },
+          security: [{
+            bearerAuth: []
+          }]
     },
-    apis: ['middleware.ts']
+    apis: ['routes/*.ts']
 };
 
 const swaggerJsDoc = require('swagger-jsdoc');

@@ -9,9 +9,22 @@ import verif_user from '../tools/verif_user';
 
 export const router = Router();
 
+/**
+ * @swagger
+ * /user:
+ *  get:
+ *      tags: 
+ *          - user
+ *      summary: Get user          
+ *      security:
+ *          - bearerAuth: []
+ *      responses:
+ *          '200':
+ *              description: Great Password      
+ */
 router.get('/', auth, (req:any, res:any) => {
     const controller = new UserController();
-    controller.getUser(parseCookies(req)['jwt']).then((response) => {
+    controller.getUser(req.headers.authorization.split(' ')[1]).then((response) => {
         //res.writeHead(response.code, response.header);
         res.send(response.message);
     }).catch((e) => {
@@ -21,7 +34,7 @@ router.get('/', auth, (req:any, res:any) => {
 
 router.put('/create', (req:any, res:any) => {
     const controller = new UserController();
-    controller.createUser(parseCookies(req)['jwt'],req.body).then((response) => {
+    controller.createUser(req.headers.authorization.split(' ')[1],req.body).then((response) => {
         //res.writeHead(response.code, response.header);
         res.send(response.message);
     }).catch((e) => {
@@ -31,7 +44,7 @@ router.put('/create', (req:any, res:any) => {
 
 router.put('/update', auth, verif_user, (req:any, res:any) => {
     const controller = new UserController();
-    controller.updateUser(parseCookies(req)['jwt'],req.body).then((response) => {
+    controller.updateUser(req.headers.authorization.split(' ')[1],req.body).then((response) => {
         //res.writeHead(response.code, response.header);
         res.send(response.message);
     }).catch((e) => {
@@ -41,7 +54,7 @@ router.put('/update', auth, verif_user, (req:any, res:any) => {
 
 router.delete('/', auth, verif_user, (req:any, res:any) => {
     const controller = new UserController();
-    controller.deleteUser(parseCookies(req)['jwt']).then((response) => {
+    controller.deleteUser(req.headers.authorization.split(' ')[1]).then((response) => {
         //res.writeHead(response.code, response.header);
         res.send(response.message);
     }).catch((e) => {

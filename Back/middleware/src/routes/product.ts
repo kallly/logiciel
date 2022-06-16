@@ -29,7 +29,7 @@ router.post('/', (req:any, res:any) => {
 
 router.put('/create', auth, verif_user, (req:any, res:any) => {
     const controller = new ProductController();
-    controller.createProduct(parseCookies(req)['jwt'],req.body).then((response) => {
+    controller.createProduct(req.headers.authorization.split(' ')[1],req.body).then((response) => {
         //res.writeHead(response.code, response.header);
         res.send(response.message);
     }).catch((e) => {
@@ -39,7 +39,7 @@ router.put('/create', auth, verif_user, (req:any, res:any) => {
 
 router.put('/update/:id', auth, verif_user, (req:any, res:any) => {
     const controller = new ProductController();
-    controller.updateProduct(parseCookies(req)['jwt'],req.params.id,req.body).then((response) => {
+    controller.updateProduct(req.headers.authorization.split(' ')[1],req.params.id,req.body).then((response) => {
         //res.writeHead(response.code, response.header);
         res.send(response.message);
     }).catch((e) => {
@@ -49,7 +49,7 @@ router.put('/update/:id', auth, verif_user, (req:any, res:any) => {
 
 router.delete('/delete/:id', (req:any, res:any) => {
     const controller = new ProductController();
-    controller.deleteProduct(parseCookies(req)['jwt'],req.params.id).then((response) => {
+    controller.deleteProduct(req.headers.authorization.split(' ')[1],req.params.id).then((response) => {
         //res.writeHead(response.code, response.header);
         res.send(response.message);
     }).catch((e) => {

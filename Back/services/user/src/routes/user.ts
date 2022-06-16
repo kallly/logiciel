@@ -28,7 +28,7 @@ router.get('/:id', auth, (req:any, res:any, next:any) => {
 
 router.get('/verif', auth, (req:any, res:any) => {
     const controller = new UserController();
-    controller.verifUser(parseCookies(req)['jwt']).then((response) => {
+    controller.verifUser(req.headers.authorization.split(' ')[1]).then((response) => {
         res.send(response.message);
     }).catch((e) => {
         console.log('get /verif',e);

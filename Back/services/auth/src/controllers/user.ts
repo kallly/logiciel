@@ -12,7 +12,7 @@ export default class LoginController {
 
         return auth(email,password).then(data => {
             if(!data)
-                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify({status:'failed','message':'email or password is wrong'})};
+                return {code:403,header:{'Content-Type': 'application/json'},message:JSON.stringify({status:'failed','message':'email or password is wrong'})};
 
             let jwt = jwt_gen(data);
 

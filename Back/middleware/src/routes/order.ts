@@ -9,7 +9,7 @@ export const router = Router();
 
 router.get('/', auth, verif_user,(req:any, res:any) => {
     const controller = new OrderController();
-    controller.getOrder(parseCookies(req)['jwt']).then((response) => {
+    controller.getOrder(req.headers.authorization.split(' ')[1]).then((response) => {
         //res.writeHead(response.code, response.header);
         res.send(response.message);
     }).catch((e) => {
@@ -29,7 +29,7 @@ router.post('/', (req:any, res:any) => {
 
 router.put('/create', auth, verif_user, (req:any, res:any) => {
     const controller = new OrderController();
-    controller.createOrder(parseCookies(req)['jwt'],req.body).then((response) => {
+    controller.createOrder(req.headers.authorization.split(' ')[1],req.body).then((response) => {
         //res.writeHead(response.code, response.header);
         res.send(response.message);
     }).catch((e) => {
@@ -39,7 +39,7 @@ router.put('/create', auth, verif_user, (req:any, res:any) => {
 /*
 router.put('/update/:id', auth, verif_user, (req:any, res:any) => {
     const controller = new OrderController();
-    controller.updateOrder(parseCookies(req)['jwt'],req.params.id,req.body).then((response) => {
+    controller.updateOrder(req.headers.authorization.split(' ')[1],req.params.id,req.body).then((response) => {
         //res.writeHead(response.code, response.header);
         res.send(response.message);
     }).catch((e) => {
@@ -49,7 +49,7 @@ router.put('/update/:id', auth, verif_user, (req:any, res:any) => {
 
 router.delete('/delete/:id', (req:any, res:any) => {
     const controller = new OrderController();
-    controller.deleteOrder(parseCookies(req)['jwt'],req.params.id).then((response) => {
+    controller.deleteOrder(req.headers.authorization.split(' ')[1],req.params.id).then((response) => {
         //res.writeHead(response.code, response.header);
         res.send(response.message);
     }).catch((e) => {

@@ -39,7 +39,7 @@ export default class ProductController {
         return fetch('https://mag_product:8093/product/create', {
             method: 'PUT',
             credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json','cookie': `jwt=${jwt}`},
+            headers: {'Content-Type': 'application/json','Authorization': `Bearer ${jwt}`},
             body : JSON.stringify(body),
             agent: httpsAgent
         }).then((response:any): IResponse => {
@@ -54,7 +54,7 @@ export default class ProductController {
         return fetch(`https://mag_product:8093/product/update/${id}`, {
             method: 'PUT',
             credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json','cookie': `jwt=${jwt}`},
+            headers: {'Content-Type': 'application/json','Authorization': `Bearer ${jwt}`},
             body : JSON.stringify(body),
             agent: httpsAgent
         }).then((response:any): IResponse => {
@@ -69,7 +69,7 @@ export default class ProductController {
         return fetch(`https://mag_product:8093/product/delete/${id}`, {
             method: 'DELETE',
             credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json','cookie': `jwt=${jwt}`},
+            headers: {'Content-Type': 'application/json','Authorization': `Bearer ${jwt}`},
             agent: httpsAgent
         }).then((response:any): IResponse => {
             return response.json().then((json:any): IResponse => {

@@ -15,7 +15,7 @@ export default class LoginController {
             agent: httpsAgent
         }).then((response:any): IResponse => {
             return response.json().then((json:any): IResponse => {
-                return {code:200,header:{'Content-Type': 'application/json'},message:json};
+                return {code:response.status,header:{'Content-Type': 'application/json'},message:json};
             })
             .catch((e:any) => {throw e;});
         })

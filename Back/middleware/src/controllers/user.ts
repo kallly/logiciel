@@ -11,7 +11,7 @@ export default class UserController {
         return fetch('https://mag_user:8092/user', {
             method: 'GET',
             credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json','cookie': `jwt=${jwt}`},
+            headers: {'Content-Type': 'application/json','Authorization': `Bearer ${jwt}`},
             agent: httpsAgent
         }).then((response:any): IResponse => {
             return response.json().then((json:any): IResponse => {
@@ -26,7 +26,7 @@ export default class UserController {
         return fetch('https://mag_user:8092/user/create', {
             method: 'PUT',
             credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json','cookie': `jwt=${jwt}`},
+            headers: {'Content-Type': 'application/json','Authorization': `Bearer ${jwt}`},
             body : JSON.stringify(body),
             agent: httpsAgent
         }).then((response:any): IResponse => {
@@ -42,7 +42,7 @@ export default class UserController {
         return fetch('https://mag_user:8092/user/update', {
             method: 'PUT',
             credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json','cookie': `jwt=${jwt}`},
+            headers: {'Content-Type': 'application/json','Authorization': `Bearer ${jwt}`},
             body : JSON.stringify(body),
             agent: httpsAgent
         }).then((response:any): IResponse => {
@@ -58,7 +58,7 @@ export default class UserController {
         return fetch('https://mag_user:8092/user', {
             method: 'DELETE',
             credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json','cookie': `jwt=${jwt}`},
+            headers: {'Content-Type': 'application/json','Authorization': `Bearer ${jwt}`},
             agent: httpsAgent
         }).then((response:any): IResponse => {
             return response.json().then((json:any): IResponse => {
