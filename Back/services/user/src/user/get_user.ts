@@ -10,5 +10,5 @@ export async function get_user(id:number): Promise<any> | never{
     if(query_res.rowCount !== 1){
         throw new Error('User not find');
     }
-    return query_res.rows;
+    return query_res.rows[0];
 }

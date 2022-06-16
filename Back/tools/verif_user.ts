@@ -1,16 +1,18 @@
 import https from 'https'
 const fetch = require('node-fetch');
 import parseCookies from './parseCookies'
+import { default_error } from '../tools/IResponse';
 
 const httpsAgent = new https.Agent({
     rejectUnauthorized: false,
 });
 
+
 export default async function verif_user(req:any, res:any, next:any) {
-    let cookies = parseCookies(req);
+    let jwt = req.headers.authorization.split(' ')[1];
     const opts = {
     headers: {
-            cookie: `jwt=${cookies['jwt']}`
+        authorization: `Bearer ${jwt}`
         },
         agent: httpsAgent
     };
@@ -23,8 +25,7 @@ export default async function verif_user(req:any, res:any, next:any) {
     if(response.status === 'success'){
         if(!response.allow){
             console.log(response);
-            res.send(JSON.stringify({status:'success',message:'Not Allow'}));
-            return;
+            res.send(JSON.stringify({status:'success',message:'Not Allow'}));return;
         }
     }
     next();

@@ -19,7 +19,7 @@ describe("Test the root path", () => {
       .set('Content-type', 'application/json')
       .send({ email: 'test', password: 'BAD_PASSWORD' })
       .then((response:any) => {
-        expect(response.statusCode).toBe(200);
+        expect(response.statusCode).toBe(403);
         expect(JSON.parse(response.text).status).toBe('failed');
         done();
       });

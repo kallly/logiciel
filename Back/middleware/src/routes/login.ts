@@ -71,7 +71,6 @@ export const router = Router();
  *                      schema:
  *                        $ref: '#/components/schemas/response_badpass'
  */
-
 router.post('/', (req:any, res:any) => {
     const controller = new LoginController();
     controller.login(req.body).then((response) => {

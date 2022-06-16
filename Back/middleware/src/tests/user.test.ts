@@ -31,7 +31,7 @@ describe("Test user", () => {
       .send({ email: 'test_livreur', password: 'BAD_PASSWORD' })
       .then((response:any) => {
         expect(JSON.parse(response.text).status).toBe("failed");
-        expect(response.statusCode).toBe(200);
+        expect(response.statusCode).toBe(403);
         jwt = JSON.parse(response.text).jwt;
         done();
       });
@@ -53,7 +53,7 @@ describe("Test user", () => {
     request(app)
       .put("/user/update")
       .set('Content-type', 'application/json')
-      .set('Cookie', [`jwt=${jwt}`])
+      .set('Authorization', `Bearer ${jwt}`)
       .send({ last_name: 'test2' })
       .then((response:any) => {
         expect(JSON.parse(response.text).status).toBe("success");
@@ -66,7 +66,7 @@ describe("Test user", () => {
     request(app)
       .put("/user/update")
       .set('Content-type', 'application/json')
-      .set('Cookie', [`jwt=${jwt}`])
+      .set('Authorization', `Bearer ${jwt}`)
       .send({ last_name: 'test' })
       .then((response:any) => {
         //expect(JSON.parse(response.text).status).toBe("failed");
@@ -90,7 +90,7 @@ describe("Test user", () => {
   test("Delete user", done => {
     request(app)
       .delete("/user")
-      .set('Cookie', [`jwt=${jwt}`])
+      .set('Authorization', `Bearer ${jwt}`)
       .then((response:any) => {
         expect(response.statusCode).toBe(200);
         expect(JSON.parse(response.text).status).toBe('success');

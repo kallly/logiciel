@@ -9,10 +9,10 @@ const httpsAgent = new https.Agent({
 
 
 export default async function verif_user(req:any, res:any, next:any) {
-    let cookies = parseCookies(req);
+    let jwt = req.headers.authorization.split(' ')[1];
     const opts = {
     headers: {
-            cookie: `jwt=${cookies['jwt']}`
+        authorization: `Bearer ${jwt}`
         },
         agent: httpsAgent
     };

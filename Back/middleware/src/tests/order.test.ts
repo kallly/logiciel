@@ -1,7 +1,7 @@
 const request = require("supertest");
 import { app } from "../app";
 
-describe("Test user", () => {
+describe("Test order", () => {
   let jwt:string;
   test("Great pass", done => {
     request(app)
@@ -19,7 +19,7 @@ describe("Test user", () => {
     request(app)
       .put("/order/create")
       .set('Content-type', 'application/json')
-      .set('Cookie', [`jwt=${jwt}`])
+      .set('Authorization', `Bearer ${jwt}`)
       .send({user:'1', restaurant:'629e33b5ce218b10d2d7a257',products:['62a8a369cd940332e4529d4e']})
       .then((response:any) => {
         expect(JSON.parse(response.text).status).toBe("success");
@@ -30,7 +30,7 @@ describe("Test user", () => {
   test("Get order", done => {
     request(app)
       .get("/order")
-      .set('Cookie', [`jwt=${jwt}`])
+      .set('Authorization', `Bearer ${jwt}`)
       .then((response:any) => {
         expect(JSON.parse(response.text).status).toBe("success");
         expect(response.statusCode).toBe(200);
@@ -53,7 +53,7 @@ describe("Test user", () => {
   test("Update order", done => {
     request(app)
       .put(`/order/update/${id}`)
-      .set('Cookie', [`jwt=${jwt}`])
+      .set('Authorization', `Bearer ${jwt}`)
       .set('Content-type', 'application/json')
       .send({restaurant:'CESI_R',name:"flag",text:"2"})
       .then((response:any) => {
@@ -65,7 +65,7 @@ describe("Test user", () => {
   test("Delete order", done => {
     request(app)
       .delete(`/order/delete/${id}`)
-      .set('Cookie', [`jwt=${jwt}`])
+      .set('Authorization', `Bearer ${jwt}`)
       .then((response:any) => {
         expect(response.statusCode).toBe(200);
         expect(JSON.parse(response.text).status).toBe('success');

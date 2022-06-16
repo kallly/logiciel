@@ -19,7 +19,7 @@ describe("Test user", () => {
     request(app)
       .put("/product/create")
       .set('Content-type', 'application/json')
-      .set('Cookie', [`jwt=${jwt}`])
+      .set('Authorization', `Bearer ${jwt}`)
       .send({restaurant:'CESI_R',name:"1",text:"2",price:1})
       .then((response:any) => {
         expect(JSON.parse(response.text).status).toBe("success");
@@ -52,7 +52,7 @@ describe("Test user", () => {
   test("Update product", done => {
     request(app)
       .put(`/product/update/${id}`)
-      .set('Cookie', [`jwt=${jwt}`])
+      .set('Authorization', `Bearer ${jwt}`)
       .set('Content-type', 'application/json')
       .send({restaurant:'CESI_R',name:"flag",text:"2"})
       .then((response:any) => {
@@ -64,7 +64,7 @@ describe("Test user", () => {
   test("Delete product", done => {
     request(app)
       .delete(`/product/delete/${id}`)
-      .set('Cookie', [`jwt=${jwt}`])
+      .set('Authorization', `Bearer ${jwt}`)
       .then((response:any) => {
         expect(response.statusCode).toBe(200);
         expect(JSON.parse(response.text).status).toBe('success');

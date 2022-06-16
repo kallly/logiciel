@@ -22,11 +22,11 @@ export default class UserController {
         .catch((e:any) => {throw e;});
     }
 
-    public createUser(jwt:string, body:string): Promise<IResponse> | never {
+    public createUser(body:string): Promise<IResponse> | never {
         return fetch('https://mag_user:8092/user/create', {
             method: 'PUT',
             credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json','Authorization': `Bearer ${jwt}`},
+            headers: {'Content-Type': 'application/json'},
             body : JSON.stringify(body),
             agent: httpsAgent
         }).then((response:any): IResponse => {
