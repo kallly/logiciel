@@ -1,15 +1,17 @@
-import parseCookies from './parseCookies'
 import jwt_verif from './jwt_verif'
+import { Logger } from "tslog";
 
-export default  function auth(req:any, res:any, next:any) {
-    let cookies = parseCookies(req);
+export default function auth(req:any, res:any, next:any) {
+    const log: Logger = new Logger({ name: "auth", requestId:req.headers['x-request-id'] });
     try{
-        let data = jwt_verif(cookies['jwt']);
+        let jwt = req.headers.authorization.split(' ')[1];
+        let data = jwt_verif(jwt);
         if(data === false){
-            res.send(JSON.stringify({status:'error',message:'jwt empty'}));
+            log.warn('jwt not valid');
+            res.send({satuts:'error'});
             return;
         }
         req.jwt = data;
-    }catch(e){ console.log(e);res.send(JSON.stringify({status:'error',message:'jwt error'}));return;}
+    }catch(e){ log.warn(e);res.send({satuts:'error'});return;}
     next();
 };

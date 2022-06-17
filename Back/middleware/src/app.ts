@@ -3,10 +3,12 @@ import { router as loginRouter } from "./routes/login";
 import { router as userRouter } from "./routes/user";
 import { router as productRouter } from "./routes/product";
 import { router as orderRouter } from "./routes/order";
+import { Logger } from "tslog";
+import { randomUUID } from 'crypto';
 
 export const app = express();
 
-app.use(express.json());
+app.use(express.json(),(req:any, res:any, next:any) => {req.headers['x-request-id'] = randomUUID();next();});
 
 const swaggerOptions = {
     swaggerDefinition: {
@@ -35,8 +37,7 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUI = require('swagger-ui-express');
 const swaggerDocs = swaggerJsDoc(swaggerOptions)
 
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
-
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 app.use('/login', loginRouter);
 app.use('/user', userRouter);

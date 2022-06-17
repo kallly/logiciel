@@ -7,11 +7,6 @@ const https = require('https');
 const app = express();
 const port = 8092;
 
-app.use(
-    express.urlencoded({
-      extended: true,
-    })
-  );
 app.use(express.json());
 
 const httpsServer = https.createServer({

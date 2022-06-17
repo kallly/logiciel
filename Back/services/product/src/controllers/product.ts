@@ -36,7 +36,7 @@ export default class ProductController {
     }
     public updateProduct(id:string, product:IProduct): Promise<IResponse> | never {
         return mongoConnect().then(() => {
-            return update_product(id,product).then((result) => {console.log(result);
+            return update_product(id,product).then((result) => {
                 if(result != null){
                     return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify({status:'success'})};
                 }else{

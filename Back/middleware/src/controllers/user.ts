@@ -1,72 +1,32 @@
 let fetch = require('node-fetch');
+import fetcher from '../tools/fetcher';
 import IResponse from '../tools/IResponse';
 const https = require('https');
-
-const httpsAgent = new https.Agent({
-    rejectUnauthorized: false,
-});
   
 export default class UserController {
-    public getUser(jwt:string): Promise<IResponse> | never {
-        return fetch('https://mag_user:8092/user', {
-            method: 'GET',
-            credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json','Authorization': `Bearer ${jwt}`},
-            agent: httpsAgent
-        }).then((response:any): IResponse => {
-            return response.json().then((json:any): IResponse => {
-                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify(json)};
-            })
-            .catch((e:any) => {throw e;});
-        })
-        .catch((e:any) => {throw e;});
+    public getUser(requestId:string, jwt:string): Promise<IResponse> | never {
+            let fetch = new fetcher('https://mag_user:8092/user', 'GET', requestId);
+            fetch.jwt = jwt;
+            return fetch.call();
     }
 
-    public createUser(body:string): Promise<IResponse> | never {
-        return fetch('https://mag_user:8092/user/create', {
-            method: 'PUT',
-            credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json'},
-            body : JSON.stringify(body),
-            agent: httpsAgent
-        }).then((response:any): IResponse => {
-            return response.json().then((json:any): IResponse => {
-                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify(json)};
-            })
-            .catch((e:any) => {throw e;});
-        })
-        .catch((e:any) => {throw e;});
+    public createUser(requestId:string, body:string): Promise<IResponse> | never {
+        let fetch = new fetcher('https://mag_user:8092/user/create', 'PUT', requestId);
+        fetch.body = body;
+        return fetch.call();
     }
 
-    public updateUser(jwt:string, body:string): Promise<IResponse> | never {
-        return fetch('https://mag_user:8092/user/update', {
-            method: 'PUT',
-            credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json','Authorization': `Bearer ${jwt}`},
-            body : JSON.stringify(body),
-            agent: httpsAgent
-        }).then((response:any): IResponse => {
-            return response.json().then((json:any): IResponse => {
-                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify(json)};
-            })
-            .catch((e:any) => {throw e;});
-        })
-        .catch((e:any) => {throw e;});
+    public updateUser(requestId:string, jwt:string, body:string): Promise<IResponse> | never {
+        let fetch = new fetcher('https://mag_user:8092/user/update', 'PUT', requestId);
+        fetch.body = body;
+        fetch.jwt = jwt;
+        return fetch.call();
     }
 
-    public deleteUser(jwt:string): Promise<IResponse> | never {
-        return fetch('https://mag_user:8092/user', {
-            method: 'DELETE',
-            credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json','Authorization': `Bearer ${jwt}`},
-            agent: httpsAgent
-        }).then((response:any): IResponse => {
-            return response.json().then((json:any): IResponse => {
-                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify(json)};
-            })
-            .catch((e:any) => {throw e;});
-        })
-        .catch((e:any) => {throw e;});
+    public deleteUser(requestId:string, jwt:string): Promise<IResponse> | never {
+        let fetch = new fetcher('https://mag_user:8092/user', 'DELETE', requestId);
+        fetch.jwt = jwt;
+        return fetch.call();
     }
 }
   

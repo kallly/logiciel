@@ -1,4 +1,5 @@
 let fetch = require('node-fetch');
+import fetcher from '../tools/fetcher';
 import IResponse from '../tools/IResponse';
 const https = require('https');
 
@@ -7,77 +8,31 @@ const httpsAgent = new https.Agent({
 });
   
 export default class ProductController {
-    public getProduct(): Promise<IResponse> | never {
-        return fetch('https://mag_product:8093/product', {
-            method: 'GET',
-            credentials: 'same-origin',
-            agent: httpsAgent
-        }).then((response:any): IResponse => {
-            return response.json().then((json:any): IResponse => {
-                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify(json)};
-            })
-            .catch((e:any) => {throw e;});
-        })
-        .catch((e:any) => {throw e;});
+    public getProduct(requestId:string): Promise<IResponse> | never {
+        let fetch = new fetcher('https://mag_product:8093/product', 'GET', requestId);
+        return fetch.call();
     }
-    public getProductBy(body:string): Promise<IResponse> | never {
-        return fetch('https://mag_product:8093/product', {
-            method: 'POST',
-            credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json'},
-            body : JSON.stringify(body),
-            agent: httpsAgent
-        }).then((response:any): IResponse => {
-            return response.json().then((json:any): IResponse => {
-                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify(json)};
-            })
-            .catch((e:any) => {throw e;});
-        })
-        .catch((e:any) => {throw e;});
+    public getProductBy(requestId:string, body:string): Promise<IResponse> | never {
+        let fetch = new fetcher('https://mag_product:8093/product', 'POST', requestId);
+        fetch.body = body;
+        return fetch.call();
     }
-    public createProduct(jwt:string,body:string): Promise<IResponse> | never {
-        return fetch('https://mag_product:8093/product/create', {
-            method: 'PUT',
-            credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json','Authorization': `Bearer ${jwt}`},
-            body : JSON.stringify(body),
-            agent: httpsAgent
-        }).then((response:any): IResponse => {
-            return response.json().then((json:any): IResponse => {
-                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify(json)};
-            })
-            .catch((e:any) => {throw e;});
-        })
-        .catch((e:any) => {throw e;});
+    public createProduct(requestId:string, jwt:string,body:string): Promise<IResponse> | never {
+        let fetch = new fetcher('https://mag_product:8093/product/create', 'PUT', requestId);
+        fetch.jwt = jwt;
+        fetch.body = body;
+        return fetch.call();
     }
-    public updateProduct(jwt:string,id:string,body:string): Promise<IResponse> | never {
-        return fetch(`https://mag_product:8093/product/update/${id}`, {
-            method: 'PUT',
-            credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json','Authorization': `Bearer ${jwt}`},
-            body : JSON.stringify(body),
-            agent: httpsAgent
-        }).then((response:any): IResponse => {
-            return response.json().then((json:any): IResponse => {
-                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify(json)};
-            })
-            .catch((e:any) => {throw e;});
-        })
-        .catch((e:any) => {throw e;});
+    public updateProduct(requestId:string, jwt:string,id:string,body:string): Promise<IResponse> | never {
+        let fetch = new fetcher(`https://mag_product:8093/product/update/${id}`, 'PUT', requestId);
+        fetch.jwt = jwt;
+        fetch.body = body;
+        return fetch.call();
     }
-    public deleteProduct(jwt:string,id:string): Promise<IResponse> | never {
-        return fetch(`https://mag_product:8093/product/delete/${id}`, {
-            method: 'DELETE',
-            credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json','Authorization': `Bearer ${jwt}`},
-            agent: httpsAgent
-        }).then((response:any): IResponse => {
-            return response.json().then((json:any): IResponse => {
-                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify(json)};
-            })
-            .catch((e:any) => {throw e;});
-        })
-        .catch((e:any) => {throw e;});
+    public deleteProduct(requestId:string, jwt:string,id:string): Promise<IResponse> | never {
+        let fetch = new fetcher(`https://mag_product:8093/product/delete/${id}`, 'DELETE', requestId);
+        fetch.jwt = jwt;
+        return fetch.call();
     }
 }
   

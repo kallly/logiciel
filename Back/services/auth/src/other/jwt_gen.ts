@@ -29,7 +29,7 @@ function jwt_gen(payload: {}) {
        };
     try{
         var legit = jwt.verify(token, publicKEY, verifyOptions);
-        //console.log("\nJWT verification result: " + JSON.stringify(legit));
+        //log.error("\nJWT verification result: " + JSON.stringify(legit));
     }catch(error){
         console.log(error);
         return false;

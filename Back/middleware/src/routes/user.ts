@@ -1,11 +1,10 @@
 
 
 import { Router } from 'express';
-import { default_response, default_error } from '../tools/IResponse';
 import UserController from '../controllers/user';
-import parseCookies from '../tools/parseCookies';
 import auth from '../tools/auth';
 import verif_user from '../tools/verif_user';
+import { Logger } from 'tslog';
 
 export const router = Router();
 
@@ -44,12 +43,15 @@ export const router = Router();
  *                        $ref: '#/components/schemas/response_user'
  */
 router.get('/', auth, (req:any, res:any) => {
+    const log: Logger = new Logger({ name: "get:user", requestId:req.headers['x-request-id'] });
+    log.info("start");
     const controller = new UserController();
-    controller.getUser(req.headers.authorization.split(' ')[1]).then((response) => {
-        //res.writeHead(response.code, response.header);
+    controller.getUser(req.headers['x-request-id'], req.headers.authorization.split(' ')[1]).then((response) => {
+        log.info('Send response');
         res.send(response.message);
     }).catch((e) => {
-        default_error(res, e);
+        log.error(e);
+        res.send({status:'error'});
     });
 });
 
@@ -111,12 +113,15 @@ router.get('/', auth, (req:any, res:any) => {
  *                                  type: string
  */
 router.put('/create', (req:any, res:any) => {
+    const log: Logger = new Logger({ name: "put:user/create", requestId:req.headers['x-request-id'] });
+    log.info("start");
     const controller = new UserController();
-    controller.createUser(req.body).then((response) => {
-        //res.writeHead(response.code, response.header);
+    controller.createUser(req.headers['x-request-id'], req.body).then((response) => {
+        log.info('Send response');
         res.send(response.message);
     }).catch((e) => {
-        default_error(res, e);
+        log.error(e);
+        res.send({status:'error'});
     });
 });
 
@@ -160,21 +165,27 @@ router.put('/create', (req:any, res:any) => {
  *                                  type: string
  */
 router.put('/update', auth, verif_user, (req:any, res:any) => {
+    const log: Logger = new Logger({ name: "put:user/update", requestId:req.headers['x-request-id'] });
+    log.info("start");
     const controller = new UserController();
-    controller.updateUser(req.headers.authorization.split(' ')[1],req.body).then((response) => {
-        //res.writeHead(response.code, response.header);
+    controller.updateUser(req.headers['x-request-id'], req.headers.authorization.split(' ')[1],req.body).then((response) => {
+        log.info('Send response');
         res.send(response.message);
     }).catch((e) => {
-        default_error(res, e);
+        log.error(e);
+        res.send({status:'error'});
     });
 });
 
 router.delete('/', auth, verif_user, (req:any, res:any) => {
+    const log: Logger = new Logger({ name: "delete:user", requestId:req.headers['x-request-id'] });
+    log.info("start");
     const controller = new UserController();
-    controller.deleteUser(req.headers.authorization.split(' ')[1]).then((response) => {
-        //res.writeHead(response.code, response.header);
+    controller.deleteUser(req.headers['x-request-id'], req.headers.authorization.split(' ')[1]).then((response) => {
+        log.info('Send response');
         res.send(response.message);
     }).catch((e) => {
-        default_error(res, e);
+        log.error(e);
+        res.send({status:'error'});
     });
 });

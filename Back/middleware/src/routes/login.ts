@@ -1,8 +1,8 @@
 
 
 import { Router } from 'express';
-import { default_response, default_error } from '../tools/IResponse';
 import LoginController from '../controllers/login';
+import { Logger } from 'tslog';
 
 export const router = Router();
 
@@ -72,11 +72,15 @@ export const router = Router();
  *                        $ref: '#/components/schemas/response_badpass'
  */
 router.post('/', (req:any, res:any) => {
+    const log: Logger = new Logger({ name: "post:login", requestId:req.headers['x-request-id'] });
+    log.info("start");
     const controller = new LoginController();
-    controller.login(req.body).then((response) => {
+    controller.login(req.headers['x-request-id'], req.body).then((response) => {
         res.status(response.code);
+        log.info('Send response');
         res.send(response.message);
     }).catch((e) => {
-        default_error(res, e);
+        log.error(e);
+        res.send({status:'error'});
     })
 });
