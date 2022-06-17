@@ -6,6 +6,59 @@ import { Logger } from 'tslog';
 
 export const router = Router();
 
+/**
+ * @swagger
+ * components:  
+ *  schemas:
+ *      response_order:
+ *          properties:
+ *              status:
+ *                  type: string
+ *              message: 
+ *                  type: object
+ *                  properties:
+ *                      _id:
+ *                          type: integer
+ *                      date:
+ *                          type: date
+ *                      user:
+ *                          type: integer
+ *                      restaurant:
+ *                          type: string
+ *                      status:
+ *                          type: string
+ *                      price:
+ *                          type: integer
+ *                      products:
+ *                          type: array
+ *                          items:
+ *                              type: string
+ *                              
+ *          example:
+ *              status: success
+ *              order:
+ *                  _id: 42
+ *                  date: 2022-06-14T14:46:44.000Z
+ *                  user: 1
+ *                  restaurant: 629e33b5ce218b10d2d7a257
+ *                  status: Order created
+ *                  price: 42
+ *                  products: [629e33b5ce218b10d2d7a257,629e33b5ce218b10d2d7a257]
+ * /order:
+ *  get:
+ *      tags: 
+ *          - order
+ *      summary: Get order
+ *      security:
+ *          - bearerAuth: []
+ *      responses:
+ *          '200':
+ *              description: Order
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                        $ref: '#/components/schemas/response_order'
+ */
 router.get('/', auth, verif_user,(req:any, res:any) => {
     const log: Logger = new Logger({ name: "get:order", requestId:req.headers['x-request-id'] });
     log.info("start");
@@ -30,6 +83,53 @@ router.post('/', (req:any, res:any) => {
     })
 });*/
 
+/**
+ * @swagger
+ * components:  
+ *  schemas:
+ *      create_order:
+ *          properties:
+ *              user:
+ *                  type: string
+ *              restaurant:
+ *                  type: string
+ *              products:
+ *                  type: array
+ *                  items:
+ *                      type: string
+ *          require:
+ *              - user
+ *              - restaurant
+ *              - products
+ *          example:
+ *              user: 1
+ *              restaurant: 629e33b5ce218b10d2d7a257
+ *              products: [629e33b5ce218b10d2d7a257,629e33b5ce218b10d2d7a257]
+ * /order/create:
+ *  put:
+ *      tags: 
+ *          - order
+ *      summary: Create order
+ *      security:
+ *          - bearerAuth: []
+ *      requestBody:  
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                    $ref: '#/components/schemas/create_order'
+ *      responses:
+ *          '200':
+ *              description: Done
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          status: 
+ *                              type: string
+ *                          example:
+ *                              status: success
+ *          
+ */
 router.put('/create', auth, verif_user, (req:any, res:any) => {
     const log: Logger = new Logger({ name: "put:order/create", requestId:req.headers['x-request-id'] });
     log.info("start");

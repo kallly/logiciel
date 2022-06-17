@@ -14,19 +14,26 @@ export const router = Router();
  *  schemas:
  *      response_user:
  *          properties:
- *              id:
- *                  type: integer
- *              last_name:
+ *              status:
  *                  type: string
- *              first_name:
- *                  type: string
- *              type:
- *                  type: string
+ *              user: 
+ *                  type: object
+ *                  properties:
+ *                      id:
+ *                          type: integer
+ *                      last_name:
+ *                          type: string
+ *                      first_name:
+ *                          type: string
+ *                      type:
+ *                          type: string
  *          example:
- *              id: 42
- *              last_name: test
- *              first_name: test
- *              type: livreur
+ *              status: success
+ *              user:
+ *                  id: 42
+ *                  last_name: test
+ *                  first_name: test
+ *                  type: livreur
  * /user:
  *  get:
  *      tags: 
@@ -40,7 +47,11 @@ export const router = Router();
  *              content:
  *                  application/json:
  *                      schema:
- *                        $ref: '#/components/schemas/response_user'
+ *                          properties:
+ *                              status:
+ *                                  type: string
+ *                              user:
+ *                                  $ref: '#/components/schemas/response_user'
  */
 router.get('/', auth, (req:any, res:any) => {
     const log: Logger = new Logger({ name: "get:user", requestId:req.headers['x-request-id'] });
@@ -147,7 +158,9 @@ router.put('/create', (req:any, res:any) => {
  *  put:
  *      tags: 
  *          - user
- *      summary: To login
+ *      summary: To login     
+ *      security:
+ *          - bearerAuth: []
  *      requestBody:  
  *          required: true
  *          content:
@@ -177,6 +190,25 @@ router.put('/update', auth, verif_user, (req:any, res:any) => {
     });
 });
 
+/**
+ * @swagger
+ * /user:
+ *  delete:
+ *      tags: 
+ *          - user
+ *      summary: To login     
+ *      security:
+ *          - bearerAuth: []
+ *      responses:
+ *          '200':
+ *              description: Created
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          properties:
+ *                              status:
+ *                                  type: string
+ */
 router.delete('/', auth, verif_user, (req:any, res:any) => {
     const log: Logger = new Logger({ name: "delete:user", requestId:req.headers['x-request-id'] });
     log.info("start");

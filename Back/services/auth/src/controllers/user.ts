@@ -17,7 +17,6 @@ export default class LoginController {
             let jwt = jwt_gen(data);
 
             return update_jwt(data.id,jwt).then(() => {
-                console.log(jwt);
                 return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify({status:'success',jwt:jwt})};
             }).catch((e) => {
                 throw e;
