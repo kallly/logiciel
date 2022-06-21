@@ -1,4 +1,20 @@
+
+<!-- Vue Template HTML Markup -->
+
+<!-- Rendered `v-btn` HTML Output -->
+<!-- Vue Template HTML Markup -->
+
+
 <template>
+  <v-select
+    :items="['Foo', 'Bar']"
+    label="Items"
+  ></v-select>
+</template>
+
+
+
+<!--<template>
     <div class="logIn">
       <img alt="CeseatLogo" src="../assets/IconPlateWhite.png">
       <div>
@@ -19,11 +35,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-
+/*
 @Component({
   components: {
     HelloWorld,
   },
 })
-export default class HomeView extends Vue {}
+export default class HomeView extends Vue {}*/
 </script>
+-->
