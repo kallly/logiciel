@@ -1,4 +1,20 @@
+
+<!-- Vue Template HTML Markup -->
+
+<!-- Rendered `v-btn` HTML Output -->
+<!-- Vue Template HTML Markup -->
+
+
 <template>
+  <v-select
+    :items="['Foo', 'Bar']"
+    label="Items"
+  ></v-select>
+</template>
+
+
+
+<!--<template>
     <div class="logIn">
       <img alt="CeseatLogo" src="../assets/IconPlateWhite.png">
       <div>
@@ -27,3 +43,4 @@ import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 })
 export default class HomeView extends Vue {}*/
 </script>
+-->
