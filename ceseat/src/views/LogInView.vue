@@ -1,9 +1,19 @@
 <template>
-  <div class="logIn">
-      <img alt="CeseatLogo" src="../assets/logo.png">
-      <HelloWorld msg="Ceci est la page de connexion de ceseat"/>
-    <h1>Ceci est la page de connexion de ceseat</h1>
-  </div>
+    <div class="logIn">
+      <img alt="CeseatLogo" src="../assets/IconPlateWhite.png">
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+    </div>
+
+    <div>
+        <label for="pass">Password:</label>
+        <input type="password" id="pass" name="password">
+    </div>
+<input type="submit" value="Sign in">
+    </div>
+    
+
 </template>
 
 <script lang="ts">

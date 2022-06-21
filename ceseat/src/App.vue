@@ -1,12 +1,20 @@
 <template>
   <div id="app">
+      <v-toolbar color="purple" elevation="24"></v-toolbar>
     <nav>
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link> |
+      <router-link to="/login">logIn</router-link>
     </nav>
-    <router-view/>
+    
+    <router-view />
+    
+
   </div>
+
 </template>
+
+
 
 <style>
 #app {
