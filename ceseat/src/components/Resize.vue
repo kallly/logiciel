@@ -1,0 +1,6 @@
+<template>
+  <v-dialog :fullscreen="$vuetify.breakpoint.mobile">
+    
+  </v-dialog>
+</template>
+
