@@ -1,14 +1,6 @@
 <template>
   
-  <v-app><!--
-    <v-app-bar>
-     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/login">logIn</router-link>
-    </nav>
-    </v-app-bar>-->
-
+  <v-app>
     <v-main>
       <router-view/>
     </v-main>

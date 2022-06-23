@@ -1,21 +1,21 @@
 <template>
 <div class="Home">
-  <Topbar/>
+  <TopbarComponent/>
   <HelloWorld/>
 </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue'
-  import Resizer from '../components/Responsive/Resizer.vue'
-  import Topbar from '../components/Navigation/Topbar.vue'
+  import ResizerComponent from '../components/Responsive/ResizerComponent.vue'
+  import TopbarComponent from '../components/Navigation/TopbarComponent.vue'
   import HelloWorld from '../components/HelloWorld.vue'
 
   export default Vue.extend({
     name: 'Home',
 
     components: {
-      HelloWorld, Topbar, Resizer
+      HelloWorld, TopbarComponent, ResizerComponent
     },
   })
 </script>

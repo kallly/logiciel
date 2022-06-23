@@ -1,20 +1,21 @@
 <template>
   <div class="LogIn">
-  <Topbar/>
-    <h1>This is a logIn page</h1>
+  <TopbarComponent/>
+  <LogInComponent/>
   </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue'
-  import Resizer from '../components/Responsive/Resizer.vue'
-  import Topbar from '../components/Navigation/Topbar.vue'
+  import ResizerComponent from '../components/Responsive/ResizerComponent.vue'
+  import TopbarComponent from '../components/Navigation/TopbarComponent.vue'
+  import LogInComponent from '../components/Formulaire/LogInComponent.vue'
 
   export default Vue.extend({
     name: 'LogIn',
 
     components: {
-      Topbar, Resizer
+      TopbarComponent, ResizerComponent
     },
   })
 </script>
