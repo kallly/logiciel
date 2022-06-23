@@ -1,8 +1,11 @@
 <template>
-  <div class="LogIn">
-  <TopbarComponent/>
-  <LogInComponent/>
-  </div>
+
+    <div class="LogIn">
+      <TopbarComponent/>
+      <LogInComponent/>
+      <label>wow</label>
+    </div>
+  
 </template>
 
 <script lang="ts">
@@ -15,7 +18,7 @@
     name: 'LogIn',
 
     components: {
-      TopbarComponent, ResizerComponent
+      TopbarComponent, ResizerComponent,LogInComponent
     },
   })
 </script>
