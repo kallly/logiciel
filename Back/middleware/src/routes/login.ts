@@ -3,6 +3,7 @@
 import { Router } from 'express';
 import LoginController from '../controllers/login';
 import { Logger } from 'tslog';
+import auth from '../tools/auth';
 
 export const router = Router();
 
@@ -76,6 +77,35 @@ router.post('/', (req:any, res:any) => {
     log.info("start");
     const controller = new LoginController();
     controller.login(req.headers['x-request-id'], req.body).then((response) => {
+        res.status(response.code);
+        log.info('Send response');
+        res.send(response.message);
+    }).catch((e) => {
+        log.error(e);
+        res.send({status:'error'});
+    })
+});
+
+/**
+ * @swagger
+ * /login/refresh:
+ *  get:
+ *      tags: 
+ *          - auth
+ *      summary: To login
+ *      responses:
+ *          '200':
+ *              description: Great Password
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                        $ref: '#/components/schemas/response_jwt'
+ */
+ router.get('/refresh', auth, (req:any, res:any) => {
+    const log: Logger = new Logger({ name: "post:refresh", requestId:req.headers['x-request-id'] });
+    log.info("start");
+    const controller = new LoginController();
+    controller.refresh(req.headers['x-request-id'], req.headers.authorization.split(' ')[1]).then((response) => {
         res.status(response.code);
         log.info('Send response');
         res.send(response.message);

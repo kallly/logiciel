@@ -1,7 +1,8 @@
+const { Client } = require('pg');
+const argon2 = require('argon2');
 
-async function verify_pass(email: string,pass: string): Promise<false | { id: number; last_name:string; fisrt_name:string; address:string; phone_number:string; email: string; role: any; } | undefined>{
-    const { Client } = require('pg');
-    const argon2 = require('argon2');
+export default async function verify_pass(email: string,pass: string): Promise<false | { id: number; last_name:string; first_name:string; address:string; phone_number:string; email: string; role: any; } | undefined>{
+
 
     const connectionString = 'postgresql://user:Groupe1@postgres:5432/db'
 
@@ -17,7 +18,7 @@ async function verify_pass(email: string,pass: string): Promise<false | { id: nu
     let hash = res.rows[0].password;
     let id = res.rows[0].id;
     let last_name = res.rows[0].last_name;
-    let fisrt_name = res.rows[0].fisrt_name;
+    let first_name = res.rows[0].first_name;
     let address = res.rows[0].address;
     let phone_number = res.rows[0].phone_number;
     let type = res.rows[0].type;
@@ -26,7 +27,7 @@ async function verify_pass(email: string,pass: string): Promise<false | { id: nu
     try {
         res = await argon2.verify(hash, pass, options);
         if (res === true) {
-            return {id: id, last_name: last_name, fisrt_name: fisrt_name, address: address, phone_number: phone_number, email: email, role:type}
+            return {id: id, last_name: last_name, first_name: first_name, address: address, phone_number: phone_number, email: email, role:type}
         } else {
             return false;
         }
@@ -36,5 +37,3 @@ async function verify_pass(email: string,pass: string): Promise<false | { id: nu
     }
 
 }
-
-export default verify_pass;

@@ -34,7 +34,7 @@ router.get('/verif', auth, (req:any, res:any) => {
     const log: Logger = new Logger({ name: "get:user", requestId:req.headers['x-request-id'] });
     log.info("start");
     const controller = new UserController();
-    controller.verifUser(req.headers.authorization.split(' ')[1]).then((response) => {
+    controller.verifUser(req.jwt.access_token).then((response) => {
         log.info('Send response');
         res.send(response.message);
     }).catch((e) => {

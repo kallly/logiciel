@@ -1,7 +1,7 @@
 import { query as postgreQuery } from "../tools/postgres";
 
 export async function verif_user(jwt:string): Promise<boolean> | never{
-    let query = 'SELECT id FROM schema.user WHERE jwt=$1 LIMIT 1;';
+    let query = 'SELECT id FROM schema.user WHERE access_token=$1 LIMIT 1;';
     let params = [jwt];
     
     let query_res = await postgreQuery(query,params)

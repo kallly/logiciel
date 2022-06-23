@@ -27,6 +27,6 @@ export default async function verif_user(req:any, res:any, next:any) {
             log.error(response);
             res.send(JSON.stringify({status:'success',message:'Not Allow'}));return;
         }
+        next();
     }
-    next();
 };

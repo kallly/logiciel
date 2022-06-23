@@ -9,8 +9,12 @@ export default class UserController {
             throw e;
         });
     }
-    public verifUser(jwt:string): Promise<IResponse> | never {
-        return User.verif_user(jwt).then((result) => {
+    public verifUser(access_token:string): Promise<IResponse> | never {
+        let diff = new Date(Date.now() - parseInt(access_token.split(':')[0]));
+        if(diff.getUTCHours() > 0){
+            Promise.reject('access_token expired');
+        }
+        return User.verif_user(access_token).then((result) => {
             if(result){
                 return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify({status:"success",allow:true})}; 
             }
