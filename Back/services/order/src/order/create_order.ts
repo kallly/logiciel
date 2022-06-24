@@ -8,7 +8,7 @@ export function create_order(data:IOrder): Promise<any> | never{
             date: Date(),
             user: data.user,
             restaurant: data.restaurant,
-            product: data.products,
+            products: data.products,
             price: data.price,
             status: 'Order created'
         });

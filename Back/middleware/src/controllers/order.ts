@@ -32,7 +32,7 @@ export default class OrderController {
         return fetch.call();
     }
     public deleteOrder(requestId:string, jwt:string,id:string): Promise<IResponse> | never {
-        let fetch = new fetcher(`https://mag_order:8094/order/delete/${id}`, 'DELETE', requestId);
+        let fetch = new fetcher(`https://mag_order:8094/order/${id}`, 'DELETE', requestId);
         fetch.jwt = jwt;
         return fetch.call();
     }

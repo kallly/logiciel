@@ -58,6 +58,19 @@ router.get('/:id', auth,verif_user,(req:any, res:any) => {
     });
 });
 
+router.delete('/:id', auth,verif_user,(req:any, res:any) => {
+    const log: Logger = new Logger({ name: "delete:order/:id", requestId:req.headers['x-request-id'] });
+    log.info("start");
+    const controller = new OrderController();
+    controller.deleteOrderById(req.params.id).then((response) => {
+        log.info('Send response');
+        res.send(response.message);
+    }).catch((e) => {
+        log.error(e);
+        res.send({status:'error'});
+    });
+});
+
 
 router.get('/restaurant/:restaurant_id',(req:any, res:any) => {
     const log: Logger = new Logger({ name: "get:order/restaurant/:id", requestId:req.headers['x-request-id'] });
