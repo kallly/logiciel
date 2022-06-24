@@ -1,4 +1,4 @@
-<Template>
+<!-- <Template>
     </v-container>
     <Div class="LogInComponent">
         <H1>Login</H1>
@@ -52,4 +52,4 @@ export default Vue.extend({
         Margin-Top: 200px;
         Padding: 20px;
     }
-</Style>
+</Style> -->
