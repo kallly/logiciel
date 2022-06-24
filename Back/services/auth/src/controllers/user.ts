@@ -35,7 +35,7 @@ export default class LoginController {
 
     public refresh(email:string,refresh_token:string): Promise<IResponse> | never {
         let diff = new Date(Date.now() - parseInt(refresh_token.split(':')[0]));
-        if(diff.getUTCHours() > 0){
+        if(diff.getUTCHours() > 1){
             Promise.reject('refresh_token expired');
         }
 

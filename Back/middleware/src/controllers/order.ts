@@ -13,8 +13,9 @@ export default class OrderController {
         fetch.jwt = jwt;
         return fetch.call();
     }
-    public getOrderBy(requestId:string, body:string): Promise<IResponse> | never {
+    public getOrderBy(requestId:string, jwt:string, body:string): Promise<IResponse> | never {
         let fetch = new fetcher('https://mag_order:8094/order', 'POST', requestId);
+        fetch.jwt = jwt;
         fetch.body = body;
         return fetch.call();
     }

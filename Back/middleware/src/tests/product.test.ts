@@ -1,13 +1,24 @@
 const request = require("supertest");
 import { app } from "../app";
 
-describe("Test user", () => {
+describe("Test product", () => {
+  test("Create user", done => {
+    request(app)
+      .put("/user/create")
+      .set('Content-type', 'application/json')
+      .send({last_name:"test",first_name:"test",password:"test",address:"test",email:"test_product",phone_number:"0666666666",type:"livreur"})
+      .then((response:any) => {
+        expect(JSON.parse(response.text).status).toBe("success");
+        expect(response.statusCode).toBe(200);
+        done();
+      });
+  });
   let jwt:string;
   test("Great pass", done => {
     request(app)
       .post("/login")
       .set('Content-type', 'application/json')
-      .send({ email: 'test', password: 'test' })
+      .send({ email: 'test_product', password: 'test' })
       .then((response:any) => {
         expect(JSON.parse(response.text).status).toBe("success");
         expect(response.statusCode).toBe(200);
@@ -64,6 +75,16 @@ describe("Test user", () => {
   test("Delete product", done => {
     request(app)
       .delete(`/product/delete/${id}`)
+      .set('Authorization', `Bearer ${jwt}`)
+      .then((response:any) => {
+        expect(response.statusCode).toBe(200);
+        expect(JSON.parse(response.text).status).toBe('success');
+        done();
+      });
+  });
+  test("Delete user", done => {
+    request(app)
+      .delete("/user")
       .set('Authorization', `Bearer ${jwt}`)
       .then((response:any) => {
         expect(response.statusCode).toBe(200);

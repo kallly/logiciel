@@ -71,17 +71,54 @@ router.get('/', auth, verif_user,(req:any, res:any) => {
         res.send({status:'error'});
     })
 });
-/*
+
+/**
+ * @swagger
+ * components:  
+ *  schemas:
+ *      request_get_order:
+ *          properties:
+ *              user:
+ *                  type: integer
+ *              restaurant:
+ *                  type: string
+ *              price:
+ *                  type: integer
+ *          example:
+ *              user: 1
+ *              restaurant: 629e33b5ce218b10d2d7a257
+ *              price: 42
+ * /order:
+ *  post:
+ *      tags: 
+ *          - order
+ *      summary: Get order
+ *      requestBody:  
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                    $ref: '#/components/schemas/request_get_order'
+ *      responses:
+ *          '200':
+ *              description: Order
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                        $ref: '#/components/schemas/response_order'
+ */
 router.post('/', (req:any, res:any) => {
+    const log: Logger = new Logger({ name: "get:order", requestId:req.headers['x-request-id'] });
+    log.info("start");
     const controller = new OrderController();
-    controller.getOrderBy(req.headers['x-request-id'], req.body).then((response) => {
+    controller.getOrderBy(req.headers['x-request-id'], req.headers.authorization.split(' ')[1], req.body).then((response) => {
         log.info('Send response');
         res.send(response.message);
     }).catch((e) => {
         log.error(e);
         res.send({status:'error'});
     })
-});*/
+});
 
 /**
  * @swagger

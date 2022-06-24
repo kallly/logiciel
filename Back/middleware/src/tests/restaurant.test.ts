@@ -1,47 +1,49 @@
 const request = require("supertest");
 import { app } from "../app";
 
-describe("Test order", () => {
+describe("Test restaurant", () => {
   test("Create user", done => {
     request(app)
       .put("/user/create")
       .set('Content-type', 'application/json')
-      .send({last_name:"test",first_name:"test",password:"test",address:"test",email:"test_order",phone_number:"0666666666",type:"livreur"})
+      .send({last_name:"test",first_name:"test",password:"test",address:"test",email:"test_restaurant",phone_number:"0666666666",type:"livreur"})
       .then((response:any) => {
         expect(JSON.parse(response.text).status).toBe("success");
         expect(response.statusCode).toBe(200);
         done();
       });
   });
-  let jwt:string;
+  let jwt:string = 'flag';
+  let user_id:number;
   test("Great pass", done => {
     request(app)
       .post("/login")
       .set('Content-type', 'application/json')
-      .send({ email: 'test_order', password: 'test' })
+      .send({ email: 'test_restaurant', password: 'test' })
       .then((response:any) => {
         expect(JSON.parse(response.text).status).toBe("success");
         expect(response.statusCode).toBe(200);
         jwt = JSON.parse(response.text).jwt;
+        user_id = JSON.parse(Buffer.from(jwt.split('.')[1], 'base64').toString()).id;
         done();
       });
   });
-  test("Create order", done => {
+  
+   test("Create restaurant", done => {
     request(app)
-      .put("/order/create")
+      .put("/restaurant/create")
       .set('Content-type', 'application/json')
       .set('Authorization', `Bearer ${jwt}`)
-      .send({user:'1', restaurant:'629e33b5ce218b10d2d7a257',products:['62a8a369cd940332e4529d4e']})
-      .then((response:any) => {
+      .send({name:'CESI_R',img:"http://img",price:1,description:"description_test",location:"location_test", type:"fastfood_test"})
+      .then((response:any) => {console.log(response.text);
         expect(JSON.parse(response.text).status).toBe("success");
         expect(response.statusCode).toBe(200);
         done();
       });
   });
-  test("Get order", done => {
+  test("Get restaurant", done => {
     request(app)
-      .get("/order")
-      .set('Authorization', `Bearer ${jwt}`)
+      .get("/restaurant")
       .then((response:any) => {
         expect(JSON.parse(response.text).status).toBe("success");
         expect(response.statusCode).toBe(200);
@@ -49,40 +51,40 @@ describe("Test order", () => {
       });
   });
   let id:any;
-  test("Get order by params", done => {
+  test("Get restaurant by params", done => {
     request(app)
-      .post("/order")
+      .post("/restaurant")
       .set('Content-type', 'application/json')
-      .send({user:1,restaurant:'629e33b5ce218b10d2d7a257'})
+      .send({name:'CESI_R',user:user_id})
       .then((response:any) => {
         expect(JSON.parse(response.text).status).toBe("success");
         expect(response.statusCode).toBe(200);
         id = JSON.parse(response.text).message._id;
         done();
       });
-  });/*
-  test("Update order", done => {
+  });
+  test("Update restaurant", done => {
     request(app)
-      .put(`/order/update/${id}`)
+      .put(`/restaurant/update`)
       .set('Authorization', `Bearer ${jwt}`)
       .set('Content-type', 'application/json')
-      .send({restaurant:'CESI_R',name:"flag",text:"2"})
+      .send({img:"http://img"})
       .then((response:any) => {
         expect(JSON.parse(response.text).status).toBe("success");
         expect(response.statusCode).toBe(200);
         done();
       });
   });
-  test("Delete order", done => {
+  test("Delete restaurant", done => {
     request(app)
-      .delete(`/order/delete/${id}`)
+      .delete(`/restaurant/delete`)
       .set('Authorization', `Bearer ${jwt}`)
       .then((response:any) => {
         expect(response.statusCode).toBe(200);
         expect(JSON.parse(response.text).status).toBe('success');
         done();
       });
-  });*/
+  });
   test("Delete user", done => {
     request(app)
       .delete("/user")

@@ -1,7 +1,6 @@
 let fetch = require('node-fetch');
 import fetcher from '../tools/fetcher';
 import IResponse from '../tools/IResponse';
-const https = require('https');
   
 export default class UserController {
     public getUser(requestId:string, jwt:string): Promise<IResponse> | never {
