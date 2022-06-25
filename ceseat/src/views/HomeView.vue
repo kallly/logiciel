@@ -1,26 +1,39 @@
 <template>
-<div class="Home">
+  <div class="HomeView">
   <v-container>
-    <TopbarComponent/>
-  </v-container>
-  <v-container>
-    <RestaurantCardComponent/>
-  </v-container>
-</div>
+    <RestaurantListComponent :restaurants="restaurants"></RestaurantListComponent>
+    </v-container>
+  </div>
+  
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
-  import ResizerComponent from '../components/Responsive/ResizerComponent.vue'
-  import TopbarComponent from '../components/Navigation/TopbarComponent.vue'
-  import RestaurantCardComponent from '../components/Navigation/RestaurantCardComponent.vue'
-  import HelloWorld from '../components/HelloWorld.vue'
+  import { Component, Vue } from "vue-property-decorator";
+  //import ResizerComponent from '../components/Responsive/ResizerComponent.vue'
+  
+  import RestaurantModel from "@/models/RestaurantModel";
+  import RestaurantListComponent from "../components/Navigation/RestaurantListComponent.vue";
+  import RestaurantService from "../services/RestaurantService";
 
-  export default Vue.extend({
-    name: 'Home',
+@Component({
+  components: { RestaurantListComponent },
+})
+export default class HomeView extends Vue {
+  public restaurants: Array<RestaurantModel> = [];
 
-    components: {
-      HelloWorld, TopbarComponent, ResizerComponent, RestaurantCardComponent
-    },
-  })
+  private restaurantService!: RestaurantService;
+
+  // Cycle de vie d'un composant vue
+  async created(): Promise<void> {
+    this.restaurantService = new RestaurantService();
+    this.restaurants = await this.restaurantService.getAllRestaurants();
+  }
+  mounted(): void {
+    // TODO
+  }
+
+  destroyed(): void {
+    // TODO
+  }
+}
 </script>

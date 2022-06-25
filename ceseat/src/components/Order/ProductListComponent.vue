@@ -1,5 +1,40 @@
 <template>
   <div>
+    <v-container class="grey lighten-5">
+      <v-row no-gutters>
+        <v-col v-for="product in products" :key="product.id" cols="12" sm="4">
+          <ProductCardComponent
+            :productModel="product"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
+</template>
+
+<script lang="ts">
+import { Component, Prop, Vue } from "vue-property-decorator";
+import ProductCardComponent from '../Order/ProductCardComponent.vue'
+import ProductModel from '../../models/ProductModel'
+  
+@Component({ components: { ProductCardComponent } })
+export default class ProductListComponent extends Vue {
+  @Prop() products!: Array<ProductModel>;
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!--<template>
+  <div>
     <div class="panier">
       <v-icon>mdi-cart-arrow-down</v-icon>
       <span class="mr-2">{{ panierTextFormated }}</span>
@@ -20,12 +55,12 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import Product from "../../models/Product";
-import ProductCard from "./ProductCard.vue";
+import ProductModelComponent from "../../models/ProductModel.ts";
+import ProductCardComponent from "./ProductCardComponent.vue";
 
 @Component({ components: { ProductCard } })
-export default class ProductList extends Vue {
-  @Prop() products!: Array<Product>;
+export default class ProductListComponent extends Vue {
+  @Prop() products!: Array<ProductModel>;
 
   public count = 0;
 
@@ -53,4 +88,4 @@ export default class ProductList extends Vue {
   justify-content: center;
   position: shrink;
 }
-</style>
+</style>-->

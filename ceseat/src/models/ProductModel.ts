@@ -1,8 +1,9 @@
 export default interface ProductModel {
-    id: number;
+    ID: number;
+    Restaurant : string;
     name: string;
     img: string;
     description: string;
-    price : string;
+    price : number;
     Vegan : boolean;
 }

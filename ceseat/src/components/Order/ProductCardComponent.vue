@@ -1,63 +1,44 @@
 <template>
-  <v-container>
-    <div class = "RestaurantCardComponent"> 
-    <h>this is a RestaurantCardComponent </h>
-    </div>
-  </v-container>
-</template>
-
-<script lang="ts">
-import Vue from 'vue';
-
-export default Vue.extend({
-  name: 'RestaurantCardComponent'
-});
-</script>
-
-<template>
   <v-card class="mt-4" max-width="344">
-    <v-img :src="product.img" height="200px"></v-img>
-
-    <v-card-title> {{ product.name }} </v-card-title>
-
-    <v-card-subtitle> {{ `${product.amount} €` }} </v-card-subtitle>
-
-    <v-card-actions>
-      <v-btn color="orange lighten-2" text @click="addProduct()">
-        Ajouter
-      </v-btn>
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon @click="show = !show">
-        <v-icon>{{ show ? "mdi-chevron-up" : "mdi-chevron-down" }}</v-icon>
-      </v-btn>
-    </v-card-actions>
-
-    <v-expand-transition>
-      <div v-show="show">
-        <v-divider></v-divider>
-
+    <v-card-title> {{ productModel.name }} </v-card-title>
         <v-card-text>
-          {{ product.description }}
+          {{ productModel.description }}
         </v-card-text>
-      </div>
-    </v-expand-transition>
   </v-card>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import Product from "../../models/Product";
-
+import useRoute from "vue-router"
+import { Component, Prop, Vue } from "vue-property-decorator"
+import ProductModel from "../../models/ProductModel.vue"
 @Component
-export default class ProductCard extends Vue {
-  @Prop() product!: Product;
-
-  show = false;
-
+export default class RestaurantCardComponent extends Vue {
+  @Prop() productModel!: ProductModel;
+  
+  //show = false;
+/*
   public addProduct(): void {
     this.$emit("productAdded", true);
-  }
+  }*/
 }
 </script>
+
+
+
+<!--<template>
+   <v-container>
+     <div class = "RestaurantCardComponent">
+     composant RestaurantCardComponent
+     </div>
+   </v-container>
+</template>
+
+<script lang="ts">
+// import { Component, Prop, Vue } from "vue-property-decorator";
+// import RestaurantModel from "../../models/RestaurantModel.vue"
+// @Component
+// export default class RestaurantCardComponent extends Vue {
+  
+// }
+
+// </script>-->

@@ -1,8 +1,11 @@
 export default interface RestaurantModel {
-    id: number;
-    name: string;
-    Location : string;
+    ID: number;
+    Restaurant : string;
     img: string;
+    name: string;
     description: string;
+    Location : Array<string>;
     Type : string; //type de restaurant ( français /fast food ...)
+    typeOfProduct : Array<string>; // pour permettre plusieurs compatiments
 }
+
