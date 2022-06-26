@@ -6,9 +6,9 @@ services:
     image: mag_order
     build: .
     networks:
-      - net_services
+      - netservices
 
 networks:
-  net_services:
+  netservices:
     external:
-      name: net_services
+      name: netservices

@@ -8,9 +8,9 @@ services:
     ports:
       - "443:443"
     networks:
-      - net_services
+      - netservices
 
 networks:
-  net_services:
+  netservices:
     external:
-      name: net_services
+      name: netservices
