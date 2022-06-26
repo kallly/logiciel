@@ -13,8 +13,7 @@ spec:
   selector:
     matchLabels:
       io.kompose.service: postgres
-  strategy:
-    type: Recreate
+  strategy: {}
   template:
     metadata:
       annotations:
@@ -22,7 +21,6 @@ spec:
         kompose.version: 1.26.1 (a9d05d509)
       creationTimestamp: null
       labels:
-        io.kompose.network/netservices: "true"
         io.kompose.service: postgres
     spec:
       containers:
@@ -36,12 +34,5 @@ spec:
           ports:
             - containerPort: 5432
           resources: {}
-          volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: postgres-data
       restartPolicy: Always
-      volumes:
-        - name: postgres-data
-          persistentVolumeClaim:
-            claimName: postgres-data
 status: {}

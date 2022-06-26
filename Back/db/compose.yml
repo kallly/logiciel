@@ -9,10 +9,6 @@ services:
       POSTGRES_PASSWORD: Groupe1
     ports:
       - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - netservices
 
   pgadmin:
     image: dpage/pgadmin4
@@ -21,8 +17,6 @@ services:
       PGADMIN_DEFAULT_PASSWORD: Groupe1
     ports:
       - "8081:80"
-    networks:
-      - netservices
 
   mongo:
     image: mongo
@@ -31,16 +25,3 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: Groupe1
     ports:
      - "27017:27017"
-    volumes:
-      - mongo_data:/data/db
-    networks:
-      - netservices
-
-volumes:
-  postgres_data:
-  mongo_data:
-
-networks:
-  netservices:
-    external:
-      name: netservices
