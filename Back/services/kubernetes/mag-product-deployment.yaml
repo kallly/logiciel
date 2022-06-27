@@ -24,6 +24,8 @@ spec:
       containers:
       - image: kallly/mag-product
         name: mag-product
+        ports:
+        - containerPort: 8093
         resources: {}
       restartPolicy: Always
 status: {}

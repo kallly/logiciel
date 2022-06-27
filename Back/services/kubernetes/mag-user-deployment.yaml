@@ -24,6 +24,8 @@ spec:
       containers:
       - image: kallly/mag-user
         name: mag-user
+        ports:
+        - containerPort: 8092
         resources: {}
       restartPolicy: Always
 status: {}

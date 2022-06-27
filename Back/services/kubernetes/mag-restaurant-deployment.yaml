@@ -24,6 +24,8 @@ spec:
       containers:
       - image: kallly/mag-restaurant
         name: mag-restaurant
+        ports:
+        - containerPort: 8095
         resources: {}
       restartPolicy: Always
 status: {}
