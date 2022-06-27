@@ -2,7 +2,7 @@ const Client = require('pg');
 
 export default function verify_pass(name: string,password: string): Promise<boolean> | never{
 
-    const connectionString = 'postgresql://user:Groupe1@postgres:5432/db';
+    const connectionString = 'postgresql://user:Groupe1?!GG@postgres:5432/db';
 
     const client = new Client({connectionString});
     return client.connect().then(() => {
