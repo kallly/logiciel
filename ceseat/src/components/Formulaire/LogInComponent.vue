@@ -11,7 +11,7 @@
 <script lang="ts">
 
 export default Vue.extend({
-  name: 'navbar'
+  name: 'LogInComponent'
 });
 </script>
 <Script lang="ts">   
