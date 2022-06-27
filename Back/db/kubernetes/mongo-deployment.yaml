@@ -27,7 +27,7 @@ spec:
       containers:
         - env:
             - name: MONGO_INITDB_ROOT_PASSWORD
-              value: Groupe1?!GG
+              value: Groupe1!GG
             - name: MONGO_INITDB_ROOT_USERNAME
               value: user
           image: kallly/mongo

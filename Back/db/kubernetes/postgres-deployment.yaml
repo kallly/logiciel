@@ -29,7 +29,7 @@ spec:
       containers:
         - env:
             - name: POSTGRES_PASSWORD
-              value: Groupe1?!GG
+              value: Groupe1!GG
             - name: POSTGRES_USER
               value: user
           image: kallly/postgres

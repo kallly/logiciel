@@ -29,7 +29,7 @@ spec:
             - name: PGADMIN_DEFAULT_EMAIL
               value: alexis.baudry@viacesi.fr
             - name: PGADMIN_DEFAULT_PASSWORD
-              value: Groupe1?!GG
+              value: Groupe1!GG
           image: dpage/pgadmin4
           name: pgadmin
           ports:
