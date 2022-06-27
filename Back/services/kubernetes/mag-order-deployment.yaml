@@ -18,10 +18,11 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
+        io.kompose.network/netservices: "true"
         io.kompose.service: mag-order
     spec:
       containers:
-      - image: mag_order
+      - image: kallly/mag-order
         name: mag-order
         resources: {}
       restartPolicy: Always

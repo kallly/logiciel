@@ -21,6 +21,7 @@ spec:
         kompose.version: 1.26.1 (a9d05d509)
       creationTimestamp: null
       labels:
+        io.kompose.network/netservices: "true"
         io.kompose.service: mongo
     spec:
       containers:
@@ -29,7 +30,7 @@ spec:
               value: Groupe1?!GG
             - name: MONGO_INITDB_ROOT_USERNAME
               value: user
-          image: mongo
+          image: kallly/mongo
           name: mongo
           ports:
             - containerPort: 27017

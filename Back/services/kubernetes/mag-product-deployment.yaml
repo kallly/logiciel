@@ -18,10 +18,11 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
+        io.kompose.network/netservices: "true"
         io.kompose.service: mag-product
     spec:
       containers:
-      - image: mag_product
+      - image: kallly/mag-product
         name: mag-product
         resources: {}
       restartPolicy: Always
