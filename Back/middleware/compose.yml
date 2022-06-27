@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3"
     
 services:
 
@@ -7,10 +7,3 @@ services:
     build: .
     ports:
       - "443:443"
-    networks:
-      - net_services
-
-networks:
-  net_services:
-    external:
-      name: net_services

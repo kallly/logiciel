@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f ../compose.yml
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mag-restaurant
+  name: mag-restaurant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mag-restaurant
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.network/netservices: "true"
+        io.kompose.service: mag-restaurant
+    spec:
+      containers:
+      - image: kallly/mag-restaurant
+        name: mag-restaurant
+        ports:
+        - containerPort: 8095
+        resources: {}
+      restartPolicy: Always
+status: {}

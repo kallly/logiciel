@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f ../compose.yml
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mag-order
+  name: mag-order
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mag-order
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.network/netservices: "true"
+        io.kompose.service: mag-order
+    spec:
+      containers:
+      - image: kallly/mag-order
+        name: mag-order
+        ports:
+        - containerPort: 8094
+        resources: {}
+      restartPolicy: Always
+status: {}
