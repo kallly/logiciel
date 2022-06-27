@@ -108,7 +108,7 @@ router.get('/', auth, verif_user,(req:any, res:any) => {
  *                        $ref: '#/components/schemas/response_order'
  */
 router.post('/', (req:any, res:any) => {
-    const log: Logger = new Logger({ name: "get:order", requestId:req.headers['x-request-id'] });
+    const log: Logger = new Logger({ name: "post:order", requestId:req.headers['x-request-id'] });
     log.info("start");
     const controller = new OrderController();
     controller.getOrderBy(req.headers['x-request-id'], req.headers.authorization.split(' ')[1], req.body).then((response) => {
@@ -190,8 +190,10 @@ router.put('/update/:id', auth, verif_user, (req:any, res:any) => {
         res.send({status:'error'});
     })
 });
-
-router.delete('/delete/:id', (req:any, res:any) => {
+*/
+router.delete('/:id', (req:any, res:any) => {
+    const log: Logger = new Logger({ name: "delete:order", requestId:req.headers['x-request-id'] });
+    log.info("start");
     const controller = new OrderController();
     controller.deleteOrder(req.headers['x-request-id'], req.headers.authorization.split(' ')[1],req.params.id).then((response) => {
         log.info('Send response');
@@ -200,4 +202,4 @@ router.delete('/delete/:id', (req:any, res:any) => {
         log.error(e);
         res.send({status:'error'});
     })
-});*/
+});

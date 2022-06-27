@@ -26,12 +26,13 @@ describe("Test order", () => {
         done();
       });
   });
+  
   test("Create order", done => {
     request(app)
       .put("/order/create")
       .set('Content-type', 'application/json')
       .set('Authorization', `Bearer ${jwt}`)
-      .send({user:'1', restaurant:'629e33b5ce218b10d2d7a257',products:['62a8a369cd940332e4529d4e']})
+      .send({user:'1', restaurant:'629e33b5ce218b10d2d7a257',products:['62a8a369cd940332e4529d4e','62a8a369cd940332e4529d4e']})
       .then((response:any) => {
         expect(JSON.parse(response.text).status).toBe("success");
         expect(response.statusCode).toBe(200);
@@ -42,7 +43,7 @@ describe("Test order", () => {
     request(app)
       .get("/order")
       .set('Authorization', `Bearer ${jwt}`)
-      .then((response:any) => {
+      .then((response:any) => {console.log(JSON.parse(response.text).message);
         expect(JSON.parse(response.text).status).toBe("success");
         expect(response.statusCode).toBe(200);
         done();
@@ -53,6 +54,7 @@ describe("Test order", () => {
     request(app)
       .post("/order")
       .set('Content-type', 'application/json')
+      .set('Authorization', `Bearer ${jwt}`)
       .send({user:1,restaurant:'629e33b5ce218b10d2d7a257'})
       .then((response:any) => {
         expect(JSON.parse(response.text).status).toBe("success");
@@ -72,17 +74,17 @@ describe("Test order", () => {
         expect(response.statusCode).toBe(200);
         done();
       });
-  });
+  });*/
   test("Delete order", done => {
     request(app)
-      .delete(`/order/delete/${id}`)
+      .delete(`/order/${id}`)
       .set('Authorization', `Bearer ${jwt}`)
       .then((response:any) => {
         expect(response.statusCode).toBe(200);
         expect(JSON.parse(response.text).status).toBe('success');
         done();
       });
-  });*/
+  });
   test("Delete user", done => {
     request(app)
       .delete("/user")

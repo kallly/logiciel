@@ -7,12 +7,8 @@ var https = require('https');
 const app = express();
 const port = 8094;
 
-app.use(
-    express.urlencoded({
-      extended: true,
-    })
-  );
-app.use(express.json());
+app.use(express.json(),(req:any,res:any,next:any)=>{res.setHeader('Access-Control-Allow-Origin', '*');res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, PATCH, POST, DELETE, OPTION');
+res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-auth, secret, Origin');next();});
 
 const httpsServer = https.createServer({
     key: fs.readFileSync("../ssl/key.pem"),

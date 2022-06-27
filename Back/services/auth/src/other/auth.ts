@@ -4,7 +4,7 @@ const argon2 = require('argon2');
 export default async function verify_pass(email: string,pass: string): Promise<false | { id: number; last_name:string; first_name:string; address:string; phone_number:string; email: string; role: any; } | undefined>{
 
 
-    const connectionString = 'postgresql://user:Groupe1@postgres:5432/db'
+    const connectionString = 'postgresql://user:Groupe1?!GG@postgres:5432/db'
 
     const client = new Client({connectionString})
     await client.connect()

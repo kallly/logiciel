@@ -12,19 +12,15 @@
         >
         </v-text-field>
         <v-btn icon outlined @click="active = !active">
-          <font-awesome-icon icon="fa-solid fa-angle-down" />
-          <font-awesome-icon icon="fa-solid fa-angle-up" hide/>
 
         </v-btn>
         <v-spacer></v-spacer>
-       <v-app-bar-nav>
        <v-btn icon>
           <router-link to="/about" tag="button">About</router-link>
         </v-btn>
         <v-btn icon>
           <router-link to="/login" tag="button">logIn</router-link>
         </v-btn>
-      </v-app-bar-nav>
     </v-app-bar>
 </div>
   </v-container>

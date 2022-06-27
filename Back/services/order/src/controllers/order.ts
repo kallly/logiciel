@@ -5,6 +5,7 @@ import { get_order } from '../order/get_order';
 import { get_order_by_id } from '../order/get_order_by_id';
 import { get_order_by } from '../order/get_order_by';
 import { create_order } from '../order/create_order';
+import { delete_order_by_id } from '../order/delete_order_by_id';
 import { get_product } from '../product/get_product';
 import { get_statistics } from '../order/get_statistics';
 import { IOrder } from '../models/order';
@@ -46,13 +47,20 @@ export default class OrderController {
                 });
             }catch(e){throw e;}
             order.price = price;
-
+            console.log(price);
             return mongoConnect().then(() => {
                 return create_order(order).then((result) => {
                     return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify({status:'success',message:result})};
                 }).catch((e) => {throw e;})
             }).catch((e) => {throw e;})
         }).catch((e) => {throw e;});
+    }
+    public deleteOrderById(id:string): Promise<IResponse> | never {
+        return mongoConnect().then(async() => {
+            return delete_order_by_id(id).then((result) => {
+                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify({status:'success',message:result})};
+            }).catch((e) => {throw e;})
+        }).catch((e) => {throw e;})
     }
     public getStatistics(restaurant_id:string): Promise<IResponse> | never {
         return mongoConnect().then(async() => {
