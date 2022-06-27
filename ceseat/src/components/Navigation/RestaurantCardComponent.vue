@@ -1,4 +1,5 @@
 <template>
+
   <v-card class="mt-4" max-width="344">
     <v-card-title> {{ restaurantModel.name }} </v-card-title>
         <v-card-actions>
