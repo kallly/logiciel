@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f ../compose.yml
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mag-auth
+  name: mag-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mag-auth
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: mag-auth
+    spec:
+      containers:
+      - image: mag_auth
+        name: mag-auth
+        resources: {}
+      restartPolicy: Always
+status: {}

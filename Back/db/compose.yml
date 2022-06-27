@@ -6,7 +6,7 @@ services:
     image: postgres
     environment:
       POSTGRES_USER: user
-      POSTGRES_PASSWORD: Groupe1
+      POSTGRES_PASSWORD: Groupe1?!GG
     ports:
       - "5432:5432"
 
@@ -14,7 +14,7 @@ services:
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: alexis.baudry@viacesi.fr
-      PGADMIN_DEFAULT_PASSWORD: Groupe1
+      PGADMIN_DEFAULT_PASSWORD: Groupe1?!GG
     ports:
       - "8081:80"
 
@@ -22,6 +22,6 @@ services:
     image: mongo
     environment:
       MONGO_INITDB_ROOT_USERNAME: user
-      MONGO_INITDB_ROOT_PASSWORD: Groupe1
+      MONGO_INITDB_ROOT_PASSWORD: Groupe1?!GG
     ports:
      - "27017:27017"
