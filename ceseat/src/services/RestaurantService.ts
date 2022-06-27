@@ -10,7 +10,7 @@ export default class RestaurantService {
                 Restaurant : "McDOnald01",
                 name: "McDOnald",
                 img: "test",
-                description: "string",
+                description: "Est un fast-food hmmm c'est bon",
                 Location : ["Aix-en-provence", "13500"],
                 Type : "fast food",
                 typeOfProduct : ["menus", "plats", "boissons", "desserts"]
@@ -20,7 +20,7 @@ export default class RestaurantService {
                 Restaurant : "LaBrochette02",
                 name: "LaBrochette",
                 img: "test",
-                description: "string",
+                description: "Restaurant de brochettes, vous y trouverez toutes sortes de brochettes, cuites au four, au BBQ, au grill... faites vous plaisir",
                 Location : ["Aix-en-provence", "13110"],
                 Type : "viande",
                 typeOfProduct : ["menus", "plats", "boissons"]
@@ -30,7 +30,7 @@ export default class RestaurantService {
                 Restaurant : "ChezMaman03",
                 name: "ChezMaman",
                 img: "test",
-                description: "string",
+                description: "La cuisine nostalgique de maman, les cuisines de mamans ca nous connais, vous voulez retrouver le gout nostalgique de vôtre enfance, vous êtes au bon endroit",
                 Location : ["Aix-en-provence", "13100"],
                 Type : "Vegan",
                 typeOfProduct : ["plats", "boissons"]

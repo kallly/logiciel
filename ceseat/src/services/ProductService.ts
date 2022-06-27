@@ -8,11 +8,11 @@ export default class ProductService {
             {
                 ID : 1,
                 Restaurant : "McDOnald01",
-                name: "Courjette",
+                name: "Salade de courjettes",
                 img: "test",
-                description: "string",
+                description: "ingrédients : courjette, sauce soja, sel, ...",
                 price : 10,
-                Vegan : false
+                Vegan : true
             },
             {
                 ID : 2,

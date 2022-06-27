@@ -1,7 +1,10 @@
 <template>
   <div class="HomeView">
   <v-container>
-    <RestaurantListComponent :restaurants="restaurants"></RestaurantListComponent>
+        <RestaurantListComponent :restaurants="restaurants"></RestaurantListComponent>
+      
+        </v-fade-transition>
+      </v-hover>
     </v-container>
   </div>
   

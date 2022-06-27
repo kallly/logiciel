@@ -7,5 +7,6 @@ export default interface RestaurantModel {
     Location : Array<string>;
     Type : string; //type de restaurant ( français /fast food ...)
     typeOfProduct : Array<string>; // pour permettre plusieurs compatiments
+    //abx : Array<string>;
 }
 
