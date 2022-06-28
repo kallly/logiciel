@@ -47,6 +47,5 @@
     console.log("test");
     this.$emit("addProducts", this.productModel);
   }
-  
 }
 </script>
