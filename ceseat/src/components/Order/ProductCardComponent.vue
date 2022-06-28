@@ -44,6 +44,7 @@
     this.$emit("productAdded", true);
   }
   public addproduct(): void {
+    console.log("test");
     this.$emit("addProducts", this.productModel);
   }
   

@@ -5,14 +5,14 @@
     <div class="panier">
       <v-icon>mdi-cart-arrow-down</v-icon>
       <span class="mr-2">{{ panierTextFormated }}</span> 
-      <span class="mr-2">{{ printProduct }}</span>
+      <span class="mr-2">{{ cartlist }}</span>
     </div>
       <v-row no-gutters>
         <v-col v-for="product in products" :key="product.id" cols="12" sm="4">
           <ProductCardComponent
             :productModel="product"
             @productAdded="onProductAdded($event)"
-            @addproduct="addProducts($event)"
+            @addProducts="addProducts($event)"
           />
         </v-col>
       </v-row>
@@ -29,23 +29,14 @@ import ProductModel from '../../models/ProductModel'
 export default class ProductListComponent extends Vue {
   @Prop() products!: Array<ProductModel>;
   public count = 0;
-  public whichproduct!: Array<string>;
-
+  public whichproduct: Array<string> =[];
+  public cartlist: string = ""
   get panierTextFormated(): string {
     return `${this.count}`;
   }
 
   get printProduct(){
-    var toPrint = "";
-    if (this.whichproduct != undefined){
-    for (var i=0; i<this.whichproduct.length; i++){
-        toPrint = toPrint + " " + this.whichproduct[i];
-        return toPrint;
-      }
-    }
-    else{
-      return toPrint;
-    }
+    return 
   }
 private HowMuch(){
     
@@ -58,6 +49,11 @@ private HowMuch(){
     console.log("productName", productName.name, " was hadded to cart");
   }
   public onProductAdded(param: boolean): void {
+    var toPrint = "";
+    for (var i=0; i<this.whichproduct.length; i++){
+        toPrint = toPrint + " " + this.whichproduct[i];
+        this.cartlist = toPrint
+      }
     console.log("Mon param", param);
     this.count++;
   }
