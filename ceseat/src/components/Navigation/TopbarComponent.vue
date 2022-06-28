@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <div class = "navbar">
-      <v-app-bar absolute color="white" elevate-on-scroll scroll-target="#scrolling-techniques-7" elevation="4">
+    <div class = "TopbarComponent">
+      <v-app-bar absolute color="white" elevate-on-scroll elevation="4">
         <v-toolbar-title><router-link to="/" tag="button">CESEAT</router-link></v-toolbar-title>
         <v-spacer></v-spacer>
 
@@ -11,10 +11,10 @@
          single-line
         >
         </v-text-field>
-        <v-btn icon outlined @click="active = !active">
-          <font-awesome-icon icon="fa-solid fa-angle-down" />
-          <font-awesome-icon icon="fa-solid fa-angle-up" hide/>
-
+        <v-btn icon @click="show = !show" >
+            <v-icon>
+              {{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
+            </v-icon>
         </v-btn>
         <v-spacer></v-spacer>
        <v-app-bar-nav>
@@ -31,9 +31,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { Component, Prop, Vue } from "vue-property-decorator";
+import ProductListComponent from "../Order/ProductListComponent.vue"
 
 export default Vue.extend({
-  name: 'navbar'
+  name: 'TopbarComponent',
+  data: () => ({
+      show: false,
+    }),
 });
 </script>

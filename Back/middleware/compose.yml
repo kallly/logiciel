@@ -1,0 +1,9 @@
+version: "3"
+    
+services:
+
+  mag_middleware:
+    image: mag_middleware
+    build: .
+    ports:
+      - "443:443"

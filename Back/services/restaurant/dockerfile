@@ -1,0 +1,20 @@
+FROM node:latest
+
+WORKDIR /home/node
+
+RUN mkdir ssl
+WORKDIR /home/node/ssl
+RUN openssl genrsa -out key.pem
+RUN openssl req -new -key key.pem -out csr.pem -subj "/C=FR/ST=Marseille/L=Marseille/O=Global Security/OU=IT Department/CN=example.com"
+RUN openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
+WORKDIR /home/node/
+
+RUN npm install -g typescript ts-node nodemon
+
+ADD src src
+WORKDIR /home/node/src
+RUN npm i
+
+EXPOSE 8095
+
+CMD [ "nodemon","app.ts"]
