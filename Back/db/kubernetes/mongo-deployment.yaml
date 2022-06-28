@@ -30,7 +30,7 @@ spec:
               value: Groupe1!GG
             - name: MONGO_INITDB_ROOT_USERNAME
               value: user
-          image: mongo
+          image: kallly/mongo
           name: mongo
           ports:
             - containerPort: 27017

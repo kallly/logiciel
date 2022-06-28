@@ -18,11 +18,14 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
+        io.kompose.network/netservices: "true"
         io.kompose.service: mag-order
     spec:
       containers:
-      - image: mag-order
+      - image: kallly/mag-order
         name: mag-order
+        ports:
+        - containerPort: 8094
         resources: {}
       restartPolicy: Always
 status: {}

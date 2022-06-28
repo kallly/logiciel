@@ -18,11 +18,14 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
+        io.kompose.network/netservices: "true"
         io.kompose.service: mag-auth
     spec:
       containers:
-      - image: mag-auth
+      - image: kallly/mag-auth
         name: mag-auth
+        ports:
+        - containerPort: 8091
         resources: {}
       restartPolicy: Always
 status: {}

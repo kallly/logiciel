@@ -18,10 +18,11 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
+        io.kompose.network/netservices: "true"
         io.kompose.service: mag-middleware
     spec:
       containers:
-      - image: mag-middleware
+      - image: kallly/mag-middleware
         name: mag-middleware
         ports:
         - containerPort: 443

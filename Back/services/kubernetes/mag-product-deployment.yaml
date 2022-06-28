@@ -18,11 +18,14 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
+        io.kompose.network/netservices: "true"
         io.kompose.service: mag-product
     spec:
       containers:
-      - image: mag-product
+      - image: kallly/mag-product
         name: mag-product
+        ports:
+        - containerPort: 8093
         resources: {}
       restartPolicy: Always
 status: {}

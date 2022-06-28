@@ -18,11 +18,14 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
+        io.kompose.network/netservices: "true"
         io.kompose.service: mag-restaurant
     spec:
       containers:
-      - image: mag-restaurant
+      - image: kallly/mag-restaurant
         name: mag-restaurant
+        ports:
+        - containerPort: 8095
         resources: {}
       restartPolicy: Always
 status: {}

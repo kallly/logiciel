@@ -24,13 +24,15 @@ spec:
         io.kompose.network/netservices: "true"
         io.kompose.service: postgres
     spec:
+      hostname: postgres
+      subdomain: postgres
       containers:
         - env:
             - name: POSTGRES_PASSWORD
               value: Groupe1!GG
             - name: POSTGRES_USER
               value: user
-          image: postgres
+          image: kallly/postgres
           name: postgres
           ports:
             - containerPort: 5432
