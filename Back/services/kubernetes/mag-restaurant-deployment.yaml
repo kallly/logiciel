@@ -21,7 +21,7 @@ spec:
         io.kompose.service: mag-restaurant
     spec:
       containers:
-      - image: mag_restaurant
+      - image: mag-restaurant
         name: mag-restaurant
         resources: {}
       restartPolicy: Always

@@ -21,6 +21,7 @@ spec:
         kompose.version: 1.26.1 (a9d05d509)
       creationTimestamp: null
       labels:
+        io.kompose.network/netservices: "true"
         io.kompose.service: pgadmin
     spec:
       containers:
@@ -28,7 +29,7 @@ spec:
             - name: PGADMIN_DEFAULT_EMAIL
               value: alexis.baudry@viacesi.fr
             - name: PGADMIN_DEFAULT_PASSWORD
-              value: Groupe1?!GG
+              value: Groupe1!GG
           image: dpage/pgadmin4
           name: pgadmin
           ports:

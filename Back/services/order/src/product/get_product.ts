@@ -7,7 +7,7 @@ const httpsAgent = new https.Agent({
 });
 
 export function get_product(): Promise<IResponse> | never {
-    return fetch('https://mag_product:8093/product', {
+    return fetch('https://mag-product:8093/product', {
         method: 'GET',
         credentials: 'same-origin',
         agent: httpsAgent

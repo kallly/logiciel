@@ -21,7 +21,7 @@ spec:
         io.kompose.service: mag-user
     spec:
       containers:
-      - image: mag_user
+      - image: mag-user
         name: mag-user
         resources: {}
       restartPolicy: Always

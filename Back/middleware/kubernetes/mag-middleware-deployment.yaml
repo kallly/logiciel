@@ -21,7 +21,7 @@ spec:
         io.kompose.service: mag-middleware
     spec:
       containers:
-      - image: mag_middleware
+      - image: mag-middleware
         name: mag-middleware
         ports:
         - containerPort: 443

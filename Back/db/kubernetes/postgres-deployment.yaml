@@ -21,12 +21,13 @@ spec:
         kompose.version: 1.26.1 (a9d05d509)
       creationTimestamp: null
       labels:
+        io.kompose.network/netservices: "true"
         io.kompose.service: postgres
     spec:
       containers:
         - env:
             - name: POSTGRES_PASSWORD
-              value: Groupe1?!GG
+              value: Groupe1!GG
             - name: POSTGRES_USER
               value: user
           image: postgres

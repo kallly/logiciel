@@ -21,7 +21,7 @@ spec:
         io.kompose.service: mag-auth
     spec:
       containers:
-      - image: mag_auth
+      - image: mag-auth
         name: mag-auth
         resources: {}
       restartPolicy: Always

@@ -21,12 +21,13 @@ spec:
         kompose.version: 1.26.1 (a9d05d509)
       creationTimestamp: null
       labels:
+        io.kompose.network/netservices: "true"
         io.kompose.service: mongo
     spec:
       containers:
         - env:
             - name: MONGO_INITDB_ROOT_PASSWORD
-              value: Groupe1?!GG
+              value: Groupe1!GG
             - name: MONGO_INITDB_ROOT_USERNAME
               value: user
           image: mongo
