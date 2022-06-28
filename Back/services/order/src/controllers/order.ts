@@ -9,7 +9,7 @@ import { delete_order_by_id } from '../order/delete_order_by_id';
 import { get_product } from '../product/get_product';
 import { get_statistics } from '../order/get_statistics';
 import { IOrder } from '../models/order';
-import { IProduct } from '../../../../models/product';
+import { IProduct } from '../models/product';
   
 export default class OrderController {
     public getOrder(): Promise<IResponse> | never {

@@ -193,7 +193,7 @@ router.put('/create', auth, verif_user, (req:any, res:any) => {
  *              name: test1
  *              text: test1
  *              price: 42
- * /restaurant/update/{id}:
+ * /restaurant/update:
  *  put:
  *      tags: 
  *          - restaurant
@@ -238,7 +238,7 @@ router.put('/update', auth, verif_user, (req:any, res:any) => {
 
 /**
  * @swagger
- * /restaurant/{id}:
+ * /restaurant:
  *  delete:
  *      tags: 
  *          - restaurant

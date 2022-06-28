@@ -6,10 +6,11 @@ import { router as orderRouter } from "./routes/order";
 import { router as restaurantRouter } from "./routes/restaurant";
 import { Logger } from "tslog";
 import { randomUUID } from 'crypto';
+const cors = require('cors');
 
 export const app = express();
 
-app.use(express.json(),(req:any, res:any, next:any) => {req.headers['x-request-id'] = randomUUID();next();});
+app.use(cors(),express.json(),(req:any, res:any, next:any) => {req.headers['x-request-id'] = randomUUID();next();});
 
 const swaggerOptions = {
     swaggerDefinition: {
