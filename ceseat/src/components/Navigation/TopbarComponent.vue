@@ -22,7 +22,7 @@
           <router-link to="/about" tag="button">About</router-link>
         </v-btn>
         <v-btn icon>
-          <router-link to="/login" tag="button">logIn</router-link>
+          <router-link to="/login" tag="button">Déconnexion</router-link>
         </v-btn>
       </v-app-bar-nav>
     </v-app-bar>

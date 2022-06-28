@@ -21,7 +21,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/login',
     name: 'login',
-    component: () => import(/*webpackChunkName: "login" */ '../views/LogInView.vue')
+    component: () => import(/*webpackChunkName: "login" */ '../views/LoginView.vue')
   }
 ]
 
@@ -31,4 +31,39 @@ const router = new VueRouter({
   routes
 })
 
-export default router
+//export default router
+
+
+
+
+import LoginComponent from "../views/LoginView.vue"
+import SecureComponent from "../views/secure.vue"
+import RegisterComponent from "../views/RegisterView.vue"
+
+Vue.use(VueRouter)
+
+export default new VueRouter({
+    routes: [
+        {
+            path: '/',
+            redirect: {
+                name: "login"
+            }
+        },
+        {
+            path: "/login",
+            name: "login",
+            component: LoginComponent
+        },
+        {
+            path: "/secure",
+            name: "secure",
+            component: SecureComponent
+        },
+        {
+          path: "/register",
+          name: "register",
+          component: RegisterComponent
+        }
+    ]
+})
