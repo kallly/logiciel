@@ -31,6 +31,7 @@ const routes: Array<RouteConfig> = [
     component: RestaurantView, 
     props: true 
   },
+
   // pour les routes avec vues nommées, vous devez définir l'option `props` pour chaque vue nommée :
   
   /*

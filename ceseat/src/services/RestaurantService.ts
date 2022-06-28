@@ -1,10 +1,11 @@
+import Message from "@/models/Message";
 import RestaurantModel from "@/models/RestaurantModel";
 //import axios from "axios"
 import axios from "axios"
 
 export default class RestaurantService {
     async getAllRestaurants(): Promise<Array<RestaurantModel>> {
-        const { data } = await axios.get<Array<RestaurantModel>>(
+        const { data } = await axios.get<Message>(
             'https://ceseat.abconsult.ovh:8080/restaurant',
             {
                 headers: {
@@ -12,8 +13,8 @@ export default class RestaurantService {
                 },
             },
         );
-
-        return data;
+        console.log(data);
+        return data.message;
     }
 // }
 // export default class RestaurantService {

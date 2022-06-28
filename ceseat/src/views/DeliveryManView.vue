@@ -1,17 +1,13 @@
+<!--edit command-->
 <template>
-  <div class="HomeView">
-  <v-container>
-        <RestaurantListComponent :restaurants="restaurants"></RestaurantListComponent>
-        </v-fade-transition>
-      </v-hover>
-    </v-container>
+  <div class="DeliveryManView">
+  <label> commandes en cours : </label>
   </div>
   
 </template>
 
 <script lang="ts">
   import { Component, Vue } from "vue-property-decorator";
-  //import ResizerComponent from '../components/Responsive/ResizerComponent.vue'
   
   import RestaurantModel from "@/models/RestaurantModel";
   import RestaurantListComponent from "../components/Navigation/RestaurantListComponent.vue";
@@ -38,4 +34,11 @@ export default class HomeView extends Vue {
     // TODO
   }
 }
+</script>
+
+
+<script>
+//affichage command ID & 
+//affichage avec le prix
+//calcul du prix total
 </script>
