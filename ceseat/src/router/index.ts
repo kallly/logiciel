@@ -6,6 +6,7 @@ import RestaurantView from '../views/RestaurantView.vue'
 import RestaurantModel from '../models/RestaurantModel'
 import SecureComponent from "../views/secure.vue"
 import RegisterComponent from "../views/RegisterView.vue"
+import EditComponent from "../views/EditProfilView.vue"
 
 Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
@@ -43,6 +44,11 @@ const routes: Array<RouteConfig> = [
   path: "/register",
   name: "register",
   component: RegisterComponent
+},
+{
+  path: "/edit",
+  name: "edit",
+  component: EditComponent
 },
 
   // pour les routes avec vues nommées, vous devez définir l'option `props` pour chaque vue nommée :

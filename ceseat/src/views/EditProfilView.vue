@@ -1,7 +1,7 @@
 <template>
     <v-app>
   <v-app-bar app>
-        <h1>Nouveau compte</h1><br><br>
+        <h1>Modification du compte</h1><br><br>
         </v-app-bar>
 
   <v-main>
@@ -35,7 +35,7 @@
               ></v-radio>
             </v-radio-group>
       <v-text-field label = "Mot de passe" name="password" type="password" v-model = "input.password" placeholder="Mot de passe"></v-text-field> </v-form>
-        <br><br><button type="button" v-on:click="register()">S'inscrire</button>
+        <br><br><button type="button" v-on:click="edit()">Modifier</button>
     <br><br></v-card>
   </v-main>
 </v-app>
@@ -43,7 +43,7 @@
 
 <script>
     export default {
-        name: 'Register',
+        name: 'Edit',
         data() {
             return {
                 input: {
@@ -53,7 +53,7 @@
             }
         },
         methods: {
-            register() {
+            edit() {
                 
             }
         }
@@ -61,7 +61,7 @@
 </script>
 
 <style scoped>
-    #register {
+    #edit {
         border: 1px solid #CCCCCC;
         background-color: #FFFFFF;
         margin: auto;
