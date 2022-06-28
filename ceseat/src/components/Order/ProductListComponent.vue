@@ -34,17 +34,8 @@ export default class ProductListComponent extends Vue {
   get panierTextFormated(): string {
     return `${this.count}`;
   }
-
-  get printProduct(){
-    return 
-  }
-private HowMuch(){
-    
-    //this.count + 1;
-    this
-  }
+  
   public addProducts(productName: ProductModel): void {
-    //productName = concat(productName.name);
     this.whichproduct.push(productName.name); //ajout de notre produit (nom/id)
     console.log("productName", productName.name, " was hadded to cart");
   }
