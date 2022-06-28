@@ -79,8 +79,9 @@ export default Vue.extend({
         margin-top: 0;
     }
     #app {
-        width: 90%;
-        margin: 10px;
+        width: 100%;
+        height : 100%;
         padding:10px;
+        margin: 0px;
     }
 </style>

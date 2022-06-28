@@ -36,26 +36,5 @@ export default class ProductListComponent extends Vue {
   public cartlist: string = "";
   NewCommand !: CommandModel;
   
-  get panierTextFormated(): string {
-    return `${this.count}`;
-  }
-  
-  public addProducts(productName: ProductModel): void {
-    if(localStorage.product == undefined || localStorage.product == ''){
-      localStorage.product = '[]';
-    }
-    let temp = JSON.parse(localStorage.product);
-    temp.push(productName)
-    localStorage.product = JSON.stringify(temp); //passer en json
-    this.ProductPannier.push(productName); //ajout de notre produit (nom/id)
-    console.log("productName", productName.name, " was hadded to cart");
-  }
-  public onProductAdded(param: boolean): void {
-    console.log("Mon param", param);
-    this.count++;
-  }
-  public ProductTranspher() : void {
-    this.$emit("GetProductTranspher", this.ProductPannier);
-  }
 }
 </script>

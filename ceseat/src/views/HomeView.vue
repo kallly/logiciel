@@ -1,24 +1,31 @@
 <template>
+
   <div class="HomeView">
+  <v-app>
+  <v-container>
+    <TopbarComponent></TopbarComponent>
+  </v-container>
   <v-container>
         <RestaurantListComponent :restaurants="restaurants"></RestaurantListComponent>
         </v-fade-transition>
       </v-hover>
     </v-container>
+  </v-app>
   </div>
-  
+
 </template>
 
 <script lang="ts">
   import { Component, Vue } from "vue-property-decorator";
   //import ResizerComponent from '../components/Responsive/ResizerComponent.vue'
-  
+    import TopbarComponent from '../components/Navigation/TopbarComponent.vue'
+
   import RestaurantModel from "@/models/RestaurantModel";
   import RestaurantListComponent from "../components/Navigation/RestaurantListComponent.vue";
   import RestaurantService from "../services/RestaurantService";
 
 @Component({
-  components: { RestaurantListComponent },
+  components: { RestaurantListComponent, TopbarComponent},
 })
 export default class HomeView extends Vue {
   public restaurants: Array<RestaurantModel> = [];

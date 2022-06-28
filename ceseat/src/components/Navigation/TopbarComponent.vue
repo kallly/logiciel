@@ -28,6 +28,7 @@
     </v-app-bar>
 </div>
   </v-container>
+  
 </template>
 
 <script lang="ts">
