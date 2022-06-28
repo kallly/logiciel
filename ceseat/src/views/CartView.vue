@@ -21,13 +21,13 @@
 })
 export default class CartView extends Vue {
     //à récupérer //recupération de l'array
-    public ListOfChoosenProduct: Array<Array<void> = [[ananas, 10],[ananas, 10],[ananas, 10],[banane, 5],[pomme, 1]];
+    /*public ListOfChoosenProduct: Array<Array<void> = [["ananas", 10],["ananas", 10],["ananas", 10],["banane", 5],["pomme", 1]];
     private get GetALLPrice (){
         for (var i=0; ListOfChoosenProduct.length; i++){
             TOTALPRICE = ListOfChoosenProduct[i],[2]+ TOTALPRICE;
         }
         return TOTALPRICE;
-    }
+    }*/
 //affichage avec le prix
 //calcul du prix total
 }

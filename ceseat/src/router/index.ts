@@ -4,10 +4,13 @@ import HomeView from '../views/HomeView.vue'
 import RestaurantView from '../views/RestaurantView.vue'
 //test path interactif restaurant
 import RestaurantModel from '../models/RestaurantModel'
+import SecureComponent from "../views/secure.vue"
+import RegisterComponent from "../views/RegisterView.vue"
 
 Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
-  {
+  
+{
     path: '/',
     name: 'home',
     component: HomeView
@@ -31,6 +34,16 @@ const routes: Array<RouteConfig> = [
     component: RestaurantView, 
     props: true 
   },
+  {
+    path: "/secure",
+    name: "secure",
+    component: SecureComponent
+},
+{
+  path: "/register",
+  name: "register",
+  component: RegisterComponent
+},
 
   // pour les routes avec vues nommées, vous devez définir l'option `props` pour chaque vue nommée :
   
@@ -53,39 +66,9 @@ const router = new VueRouter({
   routes
 })
 
-//export default router
+export default router
 
 
 
 
-import LoginComponent from "../views/LoginView.vue"
-import SecureComponent from "../views/secure.vue"
-import RegisterComponent from "../views/RegisterView.vue"
 
-Vue.use(VueRouter)
-
-export default new VueRouter({
-    routes: [
-        {
-            path: '/',
-            redirect: {
-                name: "login"
-            }
-        },
-        {
-            path: "/login",
-            name: "login",
-            component: LoginComponent
-        },
-        {
-            path: "/secure",
-            name: "secure",
-            component: SecureComponent
-        },
-        {
-          path: "/register",
-          name: "register",
-          component: RegisterComponent
-        }
-    ]
-})
