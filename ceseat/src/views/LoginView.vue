@@ -37,7 +37,7 @@ import AuthentificationService from '../services/AuthentificationService';
                     if(await authentificationService.Authentification(this.input.email, this.input.password)) {
                         localStorage.authentificated = true ;
                         this.$emit("authenticated", true);
-                        this.$router.replace({ name: "secure" });
+                        this.$router.replace({ name: "home" });
                         
                     } else {
                         console.log("The username and / or password is incorrect");
