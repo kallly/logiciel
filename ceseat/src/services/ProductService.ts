@@ -48,4 +48,17 @@ export default class ProductService {
         return data.message;
 
     }
+    async getProduct(id:string): Promise<ProductModel> {
+        const { data } = await axios.post<Message>(
+            'https://ceseat.abconsult.ovh:8080/product',
+            { _id: id},
+            {
+                headers: {
+                    Accept: 'application/json',
+                },
+            },
+        );
+        console.log('getProduct',data)
+        return data.message[0];
+    }
 }

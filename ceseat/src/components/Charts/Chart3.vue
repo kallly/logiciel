@@ -27,7 +27,7 @@ import apexchart from 'vue-apexcharts';
 })
 export default class chart3 extends Vue{
   @Prop() dates!:Array<Date>;
-  @Prop() prices!:Array<number>;
+  @Prop() numbers!:Array<number>;
 
   public options = {
         chart: {
@@ -43,18 +43,18 @@ export default class chart3 extends Vue{
       }
   public series:Array<number> = [];
   created(): void {
-    console.log('chart3', this.prices);
+    console.log('chart3', this.numbers);
     console.log('chart3', this.dates.map(date => date.toTimeString()));
-    this.options = {chart: {type: 'area'},series: [{name: 'sales',data: this.prices}],xaxis: {categories: this.dates.map(date => date.toDateString())}};
+    this.options = {chart: {type: 'area'},series: [{name: 'sales',data: this.numbers}],xaxis: {categories: this.dates.map(date => date.toDateString())}};
   }
 
 
-  @Watch('prices')
+  @Watch('numbers')
   @Watch('dates')
   updateChart(): void {
-    console.log('chart3up', this.prices);
+    console.log('chart3up', this.numbers);
     console.log('chart3up', this.dates.map(date => date.toTimeString()));
-    this.options = {chart: {type: 'area'},series: [{name: 'sales',data: this.prices}],xaxis: {categories: this.dates.map(date => date.toDateString())}};
+    this.options = {chart: {type: 'area'},series: [{name: 'sales',data: this.numbers}],xaxis: {categories: this.dates.map(date => date.toDateString())}};
   }
 };
 </script>

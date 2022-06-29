@@ -34,7 +34,7 @@ describe("Test restaurant", () => {
       .put("/restaurant/create")
       .set('Content-type', 'application/json')
       .set('Authorization', `Bearer ${jwt}`)
-      .send({name:'CESI_R',img:"http://img",price:1,description:"description_test",location:"location_test", type:"fastfood_test"})
+      .send({name:'CESI_R',img:"http://img",description:"description_test",location:"location_test", type:"fastfood_test"})
       .then((response:any) => {console.log(response.text);
         expect(JSON.parse(response.text).status).toBe("success");
         expect(response.statusCode).toBe(200);

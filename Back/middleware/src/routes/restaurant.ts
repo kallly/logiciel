@@ -69,17 +69,20 @@ router.get('/', (req:any, res:any) => {
  *          properties:
  *              restaurant:
  *                  type: string
- *              name:
+ *              img:
  *                  type: string
- *              text:
+ *              description:
  *                  type: string
- *              price:
- *                  type: integer
+ *              location:
+ *                  type: string
+ *              type:
+ *                  type: string
  *          example:
  *              restaurant: test
- *              name: test
- *              text: test
- *              price: 42
+ *              img: test
+ *              description: test
+ *              location: test
+ *              type: test
  * /restaurant:
  *  post:
  *      tags: 
@@ -120,22 +123,26 @@ router.post('/', (req:any, res:any) => {
  *          properties:
  *              restaurant:
  *                  type: string
- *              name:
+ *              img:
  *                  type: string
- *              text:
+ *              description:
  *                  type: string
- *              price:
- *                  type: integer
+ *              location:
+ *                  type: string
+ *              type:
+ *                  type: string
  *          require:
  *              - restaurant
- *              - name
- *              - text
- *              - price
+ *              - img
+ *              - description
+ *              - location
+ *              - type
  *          example:
  *              restaurant: test
- *              name: test
- *              text: test
- *              price: 42
+ *              img: test
+ *              description: test
+ *              location: test
+ *              type: test
  * /restaurant/create:
  *  put:
  *      tags: 
@@ -180,19 +187,27 @@ router.put('/create', auth, verif_user, (req:any, res:any) => {
  *  schemas:
  *      update_restaurant:
  *          properties:
+ *              user:
+ *                  type: integer
  *              restaurant:
  *                  type: string
- *              name:
+ *              img:
  *                  type: string
- *              text:
+ *              description:
  *                  type: string
- *              price:
- *                  type: integer
+ *              location:
+ *                  type: string
+ *              type:
+ *                  type: string
+ *          require:
+ *              - user
  *          example:
- *              restaurant: test1
- *              name: test1
- *              text: test1
- *              price: 42
+ *              user: 1
+ *              restaurant: test
+ *              img: test
+ *              description: test
+ *              location: test
+ *              type: test
  * /restaurant/update:
  *  put:
  *      tags: 

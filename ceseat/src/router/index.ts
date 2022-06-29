@@ -40,6 +40,16 @@ const routes: Array<RouteConfig> = [
     props: true 
   },
   {
+    path: "/create/restaurant",
+    name: "createRestaurant",
+    component: () => import('../views/CreateRestaurantView.vue')
+  },
+  {
+    path: "/edit/restaurant",
+    name: "editRestaurant",
+    component: () => import('../views/EditRestaurantView.vue')
+  },
+  {
     path: "/secure",
     name: "secure",
     component: SecureComponent

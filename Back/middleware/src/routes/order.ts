@@ -203,3 +203,16 @@ router.delete('/:id', (req:any, res:any) => {
         res.send({status:'error'});
     })
 });
+
+router.get('/restaurant/:restaurant_id', (req:any, res:any) => {
+    const log: Logger = new Logger({ name: "get:order_restaurant", requestId:req.headers['x-request-id'] });
+    log.info("start");
+    const controller = new OrderController();
+    controller.getStatistics(req.headers['x-request-id'],req.params.restaurant_id).then((response) => {
+        log.info('Send response');
+        res.send(response.message);
+    }).catch((e) => {
+        log.error(e);
+        res.send({status:'error'});
+    })
+});
