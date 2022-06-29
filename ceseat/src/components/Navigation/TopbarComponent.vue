@@ -19,10 +19,10 @@
         <v-spacer></v-spacer>
        <v-app-bar-nav>
        <v-btn icon>
-          <router-link to="/about" tag="button">About</router-link>
+          <router-link to="/edit" tag="button">Modifier mon compte</router-link>
         </v-btn>
         <v-btn icon>
-          <router-link to="/login" tag="button">Déconnexion</router-link>
+          <router-link to="/login" v-on:click.native="logout()" tag="button">Déconnexion</router-link>
         </v-btn>
       </v-app-bar-nav>
     </v-app-bar>
@@ -31,14 +31,26 @@
   
 </template>
 
-<script lang="ts">
+<script>
 import { Component, Prop, Vue } from "vue-property-decorator";
 import ProductListComponent from "../Order/ProductListComponent.vue"
 
-export default Vue.extend({
+export default {
   name: 'TopbarComponent',
   data: () => ({
       show: false,
     }),
-});
+    methods: {
+            logout() {
+                this.authenticated = false;
+                this.localStorage.jwt = "{[]}";
+            }
+        }
+};
+</script>
+<script>
+    export default {
+        name: '',
+        
+    }
 </script>

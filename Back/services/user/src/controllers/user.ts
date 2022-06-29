@@ -4,7 +4,7 @@ import { User } from "../user/user";
 export default class UserController {
     public getUser(id:number): Promise<IResponse> | never {
         return User.get_user(id).then((user) => {
-            return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify({status:"success",user:user})}; 
+            return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify({status:"success",message:user})}; 
         }).catch((e) => {
             throw e;
         });

@@ -17,4 +17,4 @@ RUN npm i
 
 EXPOSE 8092
 
-CMD [ "nodemon","user.ts"]
+CMD [ "nodemon","app.ts"]

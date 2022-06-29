@@ -5,7 +5,7 @@ export default class AuthentificationService {
     async Authentification(email:string, password:string): Promise<boolean> {
         console.log(email, password)
         const json = JSON.stringify({email:email, password:password})
-        const { data } = await axios.post<Message>(
+        const { data } = await axios.post(
             'https://ceseat.abconsult.ovh:8080/login/',
             json,
             {
@@ -18,6 +18,7 @@ export default class AuthentificationService {
         console.log(data);
         
         if (data.status == "success"){
+            localStorage.jwt = data.jwt
             return true
         }else {
             return false

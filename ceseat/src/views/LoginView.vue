@@ -30,11 +30,11 @@ import AuthentificationService from '../services/AuthentificationService';
             }
         },
         methods: {
-            login() {
+            async login() {
                 if(this.input.username != "" && this.input.password != "") {
                     let authentificationService = new AuthentificationService()
                     
-                    if(authentificationService.Authentification(this.input.email, this.input.password)) {
+                    if(await authentificationService.Authentification(this.input.email, this.input.password)) {
                         localStorage.authentificated = true ;
                         this.$emit("authenticated", true);
                         this.$router.replace({ name: "secure" });

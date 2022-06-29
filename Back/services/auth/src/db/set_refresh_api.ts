@@ -2,7 +2,7 @@ const Client = require('pg-ts');
 
 export default function verify_pass(name:string, refresh_token:string): Promise<any> | never{
 
-    const connectionString = 'postgresql://user:Groupe1?!GG@postgres:5432/db';
+    const connectionString = 'postgresql://user:'+encodeURIComponent('Groupe1!GG')+'@postgres:5432/db';
 
     const client = new Client({connectionString});
     return client.connect().then(() => {
