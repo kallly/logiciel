@@ -216,3 +216,16 @@ router.get('/restaurant/:restaurant_id', (req:any, res:any) => {
         res.send({status:'error'});
     })
 });
+
+router.put('/update', auth, verif_user, (req:any, res:any) => {
+    const log: Logger = new Logger({ name: "put:order/update", requestId:req.headers['x-request-id'] });
+    log.info("start");
+    const controller = new OrderController();
+    controller.updateOrder(req.headers['x-request-id'], req.headers.authorization.split(' ')[1],req.body).then((response) => {
+        log.info('Send response');
+        res.send(response.message);
+    }).catch((e) => {
+        log.error(e);
+        res.send({status:'error'});
+    })
+});

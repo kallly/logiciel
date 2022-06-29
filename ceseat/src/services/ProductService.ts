@@ -1,4 +1,5 @@
 import Message from "@/models/Message";
+import Product from "@/models/Product";
 import ProductModel from "@/models/ProductModel";
 import axios from "axios"
 
@@ -60,5 +61,23 @@ export default class ProductService {
         );
         console.log('getProduct',data)
         return data.message[0];
+    }
+    async createProduct(product:Product): Promise<boolean> {
+        const { data } = await axios.put<Message>(
+            'https://ceseat.abconsult.ovh:8080/product/create',
+            product,
+            {
+                headers: {
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${localStorage.jwt}`
+                },
+            },
+        );
+        console.log('createProduct',data)
+        if (data.status == "success"){
+            return true
+        }else {
+            return false
+        }
     }
 }

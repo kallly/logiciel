@@ -29,8 +29,8 @@ export default class OrderController {
         fetch.body = body;
         return fetch.call();
     }
-    public updateOrder(requestId:string, jwt:string,id:string,body:string): Promise<IResponse> | never {
-        let fetch = new fetcher(`https://mag-order:8094/order/update/${id}`, 'PUT', requestId);
+    public updateOrder(requestId:string, jwt:string,body:string): Promise<IResponse> | never {
+        let fetch = new fetcher(`https://mag-order:8094/order/update`, 'PUT', requestId);
         fetch.jwt = jwt;
         fetch.body = body;
         return fetch.call();
