@@ -1,5 +1,6 @@
+import Message from "@/models/Message";
 import ProductModel from "@/models/ProductModel";
-//import axios from "axios"
+import axios from "axios"
 
 export default class ProductService {
     getAllProducts(): Array<ProductModel> {
@@ -34,5 +35,18 @@ export default class ProductService {
         );*/
 
         return data;
+    }
+    async getProduct(id:string): Promise<ProductModel> {
+        const { data } = await axios.post<Message>(
+            'https://ceseat.abconsult.ovh:8080/product',
+            { _id: id},
+            {
+                headers: {
+                    Accept: 'application/json',
+                },
+            },
+        );
+        console.log('getProduct',data)
+        return data.message[0];
     }
 }

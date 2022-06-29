@@ -28,6 +28,10 @@ export default class UserService {
             },
         );
         console.log(data)
-        return true;
+        if (data.status == "success"){
+            return true
+        }else {
+            return false
+        }
     }
 }

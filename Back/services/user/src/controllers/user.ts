@@ -12,7 +12,11 @@ export default class UserController {
     public verifUser(access_token:string): Promise<IResponse> | never {
         let diff = new Date(Date.now() - parseInt(access_token.split(':')[0]));
         if(diff.getUTCHours() > 0){
-            Promise.reject('access_token expired');
+            try{
+                Promise.reject('access_token expired'); 
+            }catch(e){
+                throw e;
+            }
         }
         return User.verif_user(access_token).then((result) => {
             if(result){

@@ -34,7 +34,7 @@ export default class Chart1 extends Vue{
           type: 'area'
         },
         series: [{
-          name: 'sales',
+          name: 'euro',
           data: [0,1,2,3]
         }],
         xaxis: {
@@ -45,7 +45,7 @@ export default class Chart1 extends Vue{
   created(): void {
     console.log('chart1', this.prices);
     console.log('chart1', this.dates.map(date => date.toDateString()));
-    this.options = {chart: {type: 'area'},series: [{name: 'sales',data: this.prices}],xaxis: {categories: this.dates.map(date => date.toDateString())}};
+    this.options = {chart: {type: 'area'},series: [{name: 'euro',data: this.prices}],xaxis: {categories: this.dates.map(date => date.toDateString())}};
   }
 
 
@@ -54,7 +54,7 @@ export default class Chart1 extends Vue{
   updateChart(): void {
     console.log('chart1up', this.prices);
     console.log('chart1up', this.dates.map(date => date.toDateString()));
-    this.options = {chart: {type: 'area'},series: [{name: 'sales',data: this.prices}],xaxis: {categories: this.dates.map(date => date.toDateString())}};
+    this.options = {chart: {type: 'area'},series: [{name: 'euro',data: this.prices}],xaxis: {categories: this.dates.map(date => date.toDateString())}};
   }
 };
 </script>

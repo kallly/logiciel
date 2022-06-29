@@ -19,6 +19,10 @@ export default class OrderController {
         fetch.body = body;
         return fetch.call();
     }
+    public getStatistics(requestId:string, id:string): Promise<IResponse> | never {
+        let fetch = new fetcher(`https://mag-order:8094/order/restaurant/${id}`, 'GET', requestId);
+        return fetch.call();
+    }
     public createOrder(requestId:string, jwt:string,body:string): Promise<IResponse> | never {
         let fetch = new fetcher('https://mag-order:8094/order/create', 'PUT', requestId);
         fetch.jwt = jwt;

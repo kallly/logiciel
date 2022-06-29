@@ -12,7 +12,6 @@ export function update_restaurant(user_id:number,data:IRestaurant): Promise<any>
             const restaurant = new Restaurant({
                 _id:            id,
                 img:            data.img,
-                price:          data.price,
                 description:    data.description,
                 location:       data.location,
                 type:           data.type
