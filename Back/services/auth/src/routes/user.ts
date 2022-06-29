@@ -14,6 +14,7 @@ router.post('/login', (req:any, res:any) => {
         res.status(response.code);
         res.send(response.message);
     }).catch((e) => {
+        log.info(req);
         log.error(e);
         res.send({status:'error'});
     });
