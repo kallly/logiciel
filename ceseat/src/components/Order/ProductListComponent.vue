@@ -1,7 +1,6 @@
 <template>
-  
   <div>
-    <v-container class="grey lighten-5">
+    <v-container class="ProductList">
     <div class="panier"> 
     <v-btn icon @click="show = !show">
        <v-icon>{{ show ? 'mdi-cart-arrow-up':'mdi-cart-arrow-down' }}</v-icon>
