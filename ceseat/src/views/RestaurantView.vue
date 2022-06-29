@@ -1,11 +1,15 @@
 <template>
-<div class="RestaurantView">
-Bienvenu chez {{$route.params.id}}
-  <v-container>
-    <ProductListComponent :products="products"></ProductListComponent>
-    </v-container>
-  </v-container>
-</div>
+  <v-app>
+    <div class="RestaurantView">
+      <v-container>
+        <TopbarComponent></TopbarComponent>
+      </v-container>
+      <v-container>
+        Bienvenu chez {{$route.params.id}}
+        <ProductListComponent :products="products"></ProductListComponent>
+      </v-container>
+    </div>
+  </v-app>
 </template>
 
 <script lang="ts">
@@ -26,7 +30,7 @@ Bienvenu chez {{$route.params.id}}
   }
 
   @Component({
-  components: { ProductListComponent },
+  components: { ProductListComponent,TopbarComponent },
 })
 export default class RestaurantView extends Vue {
   public products: Array<ProductModel> = [];
@@ -36,7 +40,8 @@ export default class RestaurantView extends Vue {
   // Cycle de vie d'un composant vue
   async created(): Promise<void> {
     this.productService = new ProductService();
-    this.products = await this.productService.getAllProducts();
+    this.products = await this.productService.getAllProducts(this.$route.params.id);
+    console.log(this.products);
   }
   mounted(): void {
     // TODO

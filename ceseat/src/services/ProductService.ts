@@ -3,8 +3,8 @@ import ProductModel from "@/models/ProductModel";
 import axios from "axios"
 
 export default class ProductService {
-    getAllProducts(): Array<ProductModel> {
-        let data : Array<ProductModel> = 
+    async getAllProducts(RestaurantName : string): Promise<Array<ProductModel>> {
+        /*let data : Array<ProductModel> = 
         [
             {
                 ID : 1,
@@ -23,18 +23,30 @@ export default class ProductService {
                 description: "burger vegan  : ingrédients : pain, patates",
                 price : 50,
                 Vegan : true}
-        ]
+        ]*/
         
-        /*const { data } = await axios.get<Array<Product>>(
-            'http://localhost:3002/product',
+        const { data } = await axios.post<Message>(
+            'https://ceseat.abconsult.ovh:8080/product',
+            {
+                restaurant: RestaurantName
+                
+            },
+            {
+                headers: {
+                    Accept: 'application/json',
+                },
+            },
+        );/*
+        const { data } = await axios.get<Message>(
+            'https://ceseat.abconsult.ovh:8080/product',
             {
                 headers: {
                     Accept: 'application/json',
                 },
             },
         );*/
+        return data.message;
 
-        return data;
     }
     async getProduct(id:string): Promise<ProductModel> {
         const { data } = await axios.post<Message>(

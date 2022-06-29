@@ -5,13 +5,15 @@
         </v-app-bar>
 
   <v-main>
-    <v-btn icon class="retour">
+    
+      <v-card class="formulaire">
+        <v-btn icon class="retour">
           <router-link to="/login" tag="button">Retour</router-link>
         </v-btn><br><br>
-      <v-card class="formulaire"><v-form> 
-        <v-text-field label = "Nom" name="nom" v-model = "input.lastname" placeholder="Nom"></v-text-field>
-        <v-text-field label = "Prénom" name="prenom" v-model = "input.firstname" placeholder="Prenom"></v-text-field>
-        <v-text-field label = "Téléphone" name="telephone" v-model = "input.phone" placeholder="Telephone"></v-text-field>
+        <v-form> 
+        <v-text-field label = "Nom" name="nom" v-model = "input.last_name" placeholder="Nom"></v-text-field>
+        <v-text-field label = "Prénom" name="prenom" v-model = "input.first_name" placeholder="Prenom"></v-text-field>
+        <v-text-field label = "Téléphone" name="telephone" v-model = "input.phone_number" placeholder="Telephone"></v-text-field>
         <v-text-field label = "E-mail" name="email" v-model = "input.email" placeholder="E-mail"></v-text-field> 
       <v-text-field label = "Adresse" name="adress" v-model = "input.adresse" placeholder="Adresse"></v-text-field>
       <v-radio-group
@@ -20,17 +22,17 @@
             >Je suis : <br> <br>
               <v-radio
                 label="Client"
-                value="Client"
+                value="client"
                 placeholder = "Type"
               ></v-radio>
               <v-radio
                 label="Livreur"
-                value="Livreur"
+                value="livreur"
                 placeholder = "Type"
               ></v-radio>
               <v-radio
                 label="Restaurateur"
-                value="Restaurateur"
+                value="restaurant"
                 placeholder = "Type"
               ></v-radio>
             </v-radio-group>
@@ -42,19 +44,37 @@
 </template>
 
 <script>
+import UserService from "../services/UserService"
+import Utilisateur from "../models/Utilisateur"
     export default {
         name: 'Register',
-        data() {
-            return {
-                input: {
-                    email: "",
-                    password: ""
+       data() {
+        return {
+            input: {
+                    first_name : "",
+                    last_name : "",
+                    phone_number : "",
+                    email : "",
+                    adresse : "",
+                    type : "",
+                    password : ""
                 }
-            }
-        },
+        }
+       },
         methods: {
             register() {
-                
+                let user = {
+                    last_name : this.input.last_name,
+                    first_name : this.input.first_name,
+                    phone_number : this.input.phone_number,
+                    email : this.input.email,
+                    address : this.input.adresse,
+                    type : this.input.type,
+                    password : this.input.password
+                }
+                console.log(user)
+                let userService = new UserService()
+                userService.registerUser(user)
             }
         }
     }

@@ -37,37 +37,12 @@ export default Vue.extend({
     </div>
 </template>
 
-<script>
-    export default {
-        name: 'App',
-        data() {
-            return {
-                authenticated: false,
-                mockAccount: {
-                    email: "nraboy",
-                    password: "password"
-                }
-            }
-        },
-        mounted() {
-            if(!this.authenticated) {
-                //this.$router.replace({ name: "login" });
-            }
-        },
-        methods: {
-            setAuthenticated(status) {
-                this.authenticated = status;
-            },
-            logout() {
-                this.authenticated = false;
-            }
-        }
-    }
-</script>
+
 
 <style>
     body {
-        background-color: #F0F0F0;
+        background-image: url(../src/assets/Images/image_fond.jpg);
+        background-size: 100%;
         margin: auto;
         display: flex;
         flex-wrap: wrap;
@@ -79,8 +54,9 @@ export default Vue.extend({
         margin-top: 0;
     }
     #app {
-        width: 90%;
-        margin: 10px;
+        width: 100%;
+        height : 100%;
         padding:10px;
+        background-color: transparent;
     }
 </style>

@@ -6,10 +6,12 @@
         </v-app-bar>
 
   <v-main>
-    <v-btn icon class="register">
+    
+      <v-card class="formulaire">
+        <v-btn icon class="register">
           <router-link to="/register" tag="button">S'inscrire</router-link>
         </v-btn><br><br>
-      <v-card class="formulaire"><v-form> <v-text-field label = "E-mail" name="username" v-model = "input.email" placeholder="E-mail"></v-text-field> 
+        <v-form> <v-text-field label = "E-mail" name="username" v-model = "input.email" placeholder="E-mail"></v-text-field> 
       <v-text-field label = "Mot de passe" type="password" name="password" v-model = "input.password" placeholder="Mot de passe"></v-text-field> </v-form>
         <br><br><button type="button" v-on:click="login()">Se connecter</button>
     <br><br></v-card>
@@ -30,14 +32,14 @@ import AuthentificationService from '../services/AuthentificationService';
             }
         },
         methods: {
-            login() {
+            async login() {
                 if(this.input.username != "" && this.input.password != "") {
                     let authentificationService = new AuthentificationService()
                     
-                    if(authentificationService.Authentification(this.input.email, this.input.password)) {
+                    if(await authentificationService.Authentification(this.input.email, this.input.password)) {
                         localStorage.authentificated = true ;
                         this.$emit("authenticated", true);
-                        this.$router.replace({ name: "secure" });
+                        this.$router.replace({ name: "home" });
                         
                     } else {
                         console.log("The username and / or password is incorrect");
