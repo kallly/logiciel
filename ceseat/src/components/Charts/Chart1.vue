@@ -1,6 +1,9 @@
 <template>
     <div id="chart1">
+      <v-card>  
         <apexchart width="500" :options="options" :series="options.series"></apexchart>
+        Gain par commande
+      </v-card>
       </div>
 </template>
 
