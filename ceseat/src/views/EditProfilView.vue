@@ -5,10 +5,12 @@
         </v-app-bar>
 
   <v-main>
-    <v-btn icon class="retour">
+    
+      <v-card class="formulaire">
+        <v-btn icon class="retour">
           <router-link to="/login" tag="button">Retour</router-link>
         </v-btn><br><br>
-      <v-card class="formulaire"><v-form> 
+        <v-form> 
         <v-text-field label = "Nom" name="nom" v-model = "input.last_name" placeholder="Nom"></v-text-field>
         <v-text-field label = "Prénom" name="prenom" v-model = "input.first_name" placeholder="Prenom"></v-text-field>
         <v-text-field label = "Téléphone" name="telephone" v-model = "input.phone_number" placeholder="Telephone"></v-text-field>

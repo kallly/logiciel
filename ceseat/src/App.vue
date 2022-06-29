@@ -57,6 +57,6 @@ export default Vue.extend({
         width: 100%;
         height : 100%;
         padding:10px;
-        margin: 0px;
+        background-color: transparent;
     }
 </style>

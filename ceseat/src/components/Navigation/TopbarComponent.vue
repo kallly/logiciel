@@ -21,8 +21,9 @@
        <v-btn icon>
           <router-link to="/edit" tag="button">Modifier mon compte</router-link>
         </v-btn>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         <v-btn icon>
-          <router-link to="/login" v-on:click.native="logout()" tag="button">Déconnexion</router-link>
+          <router-link to="/login" v-on:click.native="logout()" tag="button">Déconnexion</router-link>&nbsp; &nbsp; &nbsp; &nbsp;
         </v-btn>
       </v-app-bar-nav>
     </v-app-bar>
