@@ -1,18 +1,18 @@
 version: "3"
     
 services:
-  mag_restaurant:
-    image: mag_restaurant
-    build: /restaurant/.
-  mag_product:
-    image: mag_product
-    build: /product/.
-  mag_order:
-    image: mag_order
-    build: /order/.
-  mag_auth:
-    image: mag_auth
-    build: /auth/.
-  mag_user:
-    image: mag_user
-    build: /user/.
+  mag-restaurant:
+    image: mag-restaurant
+    build: restaurant/.
+  mag-product:
+    image: mag-product
+    build: product/.
+  mag-order:
+    image: mag-order
+    build: order/.
+  mag-auth:
+    image: mag-auth
+    build: auth/.
+  mag-user:
+    image: mag-user
+    build: user/.

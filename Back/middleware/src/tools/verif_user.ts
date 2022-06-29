@@ -18,7 +18,7 @@ export default async function verif_user(req:any, res:any, next:any) {
     };
     let response;
     try{
-        response = await fetch('https://mag_user:8092/user/verif',opts).then(async (r:any) => {
+        response = await fetch('https://mag-user:8092/user/verif',opts).then(async (r:any) => {
             return await r.json();
         });
     }catch(e){ log.error(e);res.send(JSON.stringify({status:'failed',message:'User Not Verif'}));return; }
