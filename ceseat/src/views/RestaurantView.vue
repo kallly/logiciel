@@ -40,7 +40,8 @@ export default class RestaurantView extends Vue {
   // Cycle de vie d'un composant vue
   async created(): Promise<void> {
     this.productService = new ProductService();
-    this.products = await this.productService.getAllProducts();
+    this.products = await this.productService.getAllProducts(this.$route.params.id);
+    console.log(this.products);
   }
   mounted(): void {
     // TODO

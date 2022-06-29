@@ -1,5 +1,4 @@
 <template>
-
   <div class="HomeView">
   <v-app>
   <v-container>
@@ -18,7 +17,7 @@
 <script lang="ts">
   import { Component, Vue } from "vue-property-decorator";
   //import ResizerComponent from '../components/Responsive/ResizerComponent.vue'
-    import TopbarComponent from '../components/Navigation/TopbarComponent.vue'
+  import TopbarComponent from '../components/Navigation/TopbarComponent.vue'
 
   import RestaurantModel from "@/models/RestaurantModel";
   import RestaurantListComponent from "../components/Navigation/RestaurantListComponent.vue";
