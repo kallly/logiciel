@@ -3,11 +3,10 @@ import VueRouter, { RouteConfig } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import RestaurantView from '../views/RestaurantView.vue'
 //test path interactif restaurant
-import RestaurantModel from '../models/RestaurantModel'
 import SecureComponent from "../views/secure.vue"
 import RegisterComponent from "../views/RegisterView.vue"
 import EditComponent from "../views/EditProfilView.vue"
-
+import OrderView from "../views/OrderView.vue"
 Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
   
@@ -54,6 +53,11 @@ const routes: Array<RouteConfig> = [
   path: "/edit",
   name: "edit",
   component: EditComponent
+},
+{
+  path: "/order",
+  name: "order",
+  component: OrderView
 },
 
   // pour les routes avec vues nommées, vous devez définir l'option `props` pour chaque vue nommée :
