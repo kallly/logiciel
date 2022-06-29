@@ -30,4 +30,30 @@ export default class UserService {
         console.log(data)
         return true;
     }
+    async deleteUser(): Promise<boolean> {
+        const { data } = await axios.delete<Message>(
+            'https://ceseat.abconsult.ovh:8080/user',
+            {
+                headers: {
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${localStorage.jwt}`
+                },
+            },
+        );
+        console.log(data)
+        return true;
+    }
+    async registerUser(User : Utilisateur): Promise<boolean> {
+        const { data } = await axios.put<Message>(
+            'https://ceseat.abconsult.ovh:8080/user/create',User,
+            {
+                headers: {
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${localStorage.jwt}`
+                },
+            },
+        );
+        console.log(data)
+        return true;
+    }
 }
