@@ -8,13 +8,14 @@ import RegisterComponent from "../views/RegisterView.vue"
 import EditComponent from "../views/EditProfilView.vue"
 import OrderView from "../views/OrderView.vue"
 import DeliveryStatusView from "../views/DeliveryStatusView.vue"
+import LivreurView from "../views/LivreurView.vue"
 Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
   
 {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'login',
+    component: () => import(/*webpackChunkName: "login" */ '../views/LoginView.vue')
   },
   {
     path: '/home',
@@ -75,6 +76,12 @@ const routes: Array<RouteConfig> = [
   name: "DeliveryStatusView",
   component: DeliveryStatusView
 },
+{
+  path: "/livreur",
+  name : "livreur",
+  component: LivreurView
+},
+
   // pour les routes avec vues nommées, vous devez définir l'option `props` pour chaque vue nommée :
   
   /*
