@@ -3,7 +3,39 @@ import CommandModel from "@/models/CommandModel";
 import axios from "axios"
 
 export default class CommandService {
-    async getAllOrder(RestaurantName : string): Promise<Array<CommandModel>> {
+    async getClientOrder(userId : number): Promise<Array<CommandModel>> {
+        
+        const { data } = await axios.post<Message>(
+            'https://ceseat.abconsult.ovh:8080/order',
+            {user : userId},
+            {
+                headers: {
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${localStorage.jwt}`
+                },
+            },
+        );
+       console.log(data)
+        return data.message;
+
+    }
+    async getRestaurantOrder(RestaurantID : string): Promise<Array<CommandModel>> {
+        
+        const { data } = await axios.post<Message>(
+            'https://ceseat.abconsult.ovh:8080/order',
+            {restaurant : RestaurantID},
+            {
+                headers: {
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${localStorage.jwt}`
+                },
+            },
+        );
+       console.log(data)
+        return data.message;
+
+    }
+    async getAllOrder(): Promise<Array<CommandModel>> {
         
         const { data } = await axios.get<Message>(
             'https://ceseat.abconsult.ovh:8080/order',

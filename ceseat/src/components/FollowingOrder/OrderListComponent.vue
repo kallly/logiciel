@@ -9,7 +9,7 @@ import { Component, Prop, Vue } from "vue-property-decorator"
 import CommandModel from "../../models/CommandModel.vue"
 @Component
 export default class OrderCardComponent extends Vue {
-    @Prop() commandmodel!: commandModel;
+    //  @Prop() commandmodel!: commandModel;
     show = false;
 }
 </script>

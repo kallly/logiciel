@@ -41,7 +41,7 @@ export default class LivreurView extends Vue {
 
      async created(): Promise<void> {
     this.commandeService = new CommandService();
-    this.commandes = await this.commandeService.getAllOrder(this.$route.params.id);
+    this.commandes = await this.commandeService.getAllOrder();
     console.log(this.commandes);
   }
   async recup(id : string){
@@ -49,7 +49,7 @@ export default class LivreurView extends Vue {
     this.commandeService = new CommandService();
     await this.commandeService.update({_id:id, status:"récupéré"});
     this.commandeService = new CommandService();
-    this.commandes = await this.commandeService.getAllOrder(this.$route.params.id);
+    this.commandes = await this.commandeService.getAllOrder();
     console.log(this.commandes);
   }
   async arrive(id : string){
@@ -57,7 +57,7 @@ export default class LivreurView extends Vue {
     this.commandeService = new CommandService();
     await this.commandeService.update({_id:id, status:"arrivé"});
     this.commandeService = new CommandService();
-    this.commandes = await this.commandeService.getAllOrder(this.$route.params.id);
+    this.commandes = await this.commandeService.getAllOrder();
     console.log(this.commandes);
   }
   async livre(id : string){
@@ -65,7 +65,7 @@ export default class LivreurView extends Vue {
     this.commandeService = new CommandService();
     await this.commandeService.update({_id:id, status:"livré"});
     this.commandeService = new CommandService();
-    this.commandes = await this.commandeService.getAllOrder(this.$route.params.id);
+    this.commandes = await this.commandeService.getAllOrder();
     console.log(this.commandes);
   }
 }

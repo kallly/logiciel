@@ -34,7 +34,8 @@ export default class DeliveryStatusView extends Vue {
      public commandes: Array<CommandModel> = [];
      private commandeService!: CommandService;
      private decoded = JSON.parse(atob(localStorage.jwt.split('.')[1]));
-
+     private restaurantService = new RestaurantService()
+     private restaurant = await restaurantService.getRestaurant()
     //  async created(): Promise<void> {
     // this.commandeService = new CommandService();
     // this.commandes = await this.commandeService.getAllOrder(this.$route.params.id);
@@ -42,7 +43,7 @@ export default class DeliveryStatusView extends Vue {
     // }
     async created(): Promise<void>{
       this.commandeService = new CommandService();
-      this.commandes = await this.commandeService.getClientOrder(this.decoded.id);
+      this.commandes = await this.commandeService.getRestaurantOrder(this.restaurant._id);
       //console.log(this.commandes);
     }
   
