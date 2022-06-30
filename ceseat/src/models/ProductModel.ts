@@ -1,5 +1,5 @@
 export default interface ProductModel {
-    ID: number;
+    _id?: string;
     Restaurant : string;
     name: string;
     img: string;

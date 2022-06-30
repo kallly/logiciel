@@ -30,7 +30,7 @@
 <script lang="ts">
 import useRoute from "vue-router"
 import { Component, Prop, Vue } from "vue-property-decorator"
-import RestaurantModel from "../../models/RestaurantModel.vue"
+import RestaurantModel from "../../models/RestaurantModel"
 @Component
 export default class RestaurantCardComponent extends Vue {
     @Prop() restaurantModel!: RestaurantModel;

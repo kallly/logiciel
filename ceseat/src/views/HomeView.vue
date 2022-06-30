@@ -19,7 +19,7 @@
   //import ResizerComponent from '../components/Responsive/ResizerComponent.vue'
   import TopbarComponent from '../components/Navigation/TopbarComponent.vue'
 
-  import RestaurantModel from "@/models/RestaurantModel";
+  import RestaurantModel from "../models/RestaurantModel";
   import RestaurantListComponent from "../components/Navigation/RestaurantListComponent.vue";
   import RestaurantService from "../services/RestaurantService";
 

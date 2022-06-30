@@ -2,7 +2,7 @@
   <div>
     <v-container class="restaurantList">
       <v-row no-gutters>
-        <v-col v-for="restaurant in restaurants" :key="restaurant.id" cols="12" sm="4">
+        <v-col v-for="restaurant in restaurants" :key="restaurant._id" cols="12" sm="4">
           <RestaurantCardComponent
             :restaurantModel="restaurant"
           />
