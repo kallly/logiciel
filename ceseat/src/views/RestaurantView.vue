@@ -4,6 +4,7 @@
       <v-container>
         <TopbarComponent></TopbarComponent>
       </v-container>
+      <br>
       <v-container>
         Bienvenu chez {{$route.params.id}}
         <ProductListComponent :products="products"></ProductListComponent>
