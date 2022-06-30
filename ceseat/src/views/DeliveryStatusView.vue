@@ -6,7 +6,7 @@
       </v-container>
       <br>
       <v-container>
-        Votre commande est la commande numéro {{command.id}}
+      <OrderListComponent :orders="orders"></OrderListComponent>
         <!--ici visualisation de l'avencée-->
       </v-container>
     </div>
@@ -17,6 +17,9 @@
   import { Component, Vue } from "vue-property-decorator";
   import TopbarComponent from '../components/Navigation/TopbarComponent.vue';
   import CommandModel from '../models/CommandModel';
+
+  import OrderService from "../services/OrderService";
+
 
   import ProductService from '../services/ProductService'
   import ProductModel from '../models/ProductModel'
@@ -29,8 +32,14 @@
   @Component({
   components: { TopbarComponent },
 })
-export default class RestaurantView extends Vue {
-  command : CommandModel;
+export default class DeliveryStatusView extends Vue {
+  public orders !: CommandModel;
+  private orderService!: OrderService;
+
+  /*async created(): Promise<void> {
+    //this.orderService = new OrderService();
+    //this.orders = await this.orderService.getAllRestaurants();
+  }*/
   public get getValueOfCommand(){
     return 0;
   }

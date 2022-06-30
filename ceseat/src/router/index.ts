@@ -7,6 +7,7 @@ import SecureComponent from "../views/secure.vue"
 import RegisterComponent from "../views/RegisterView.vue"
 import EditComponent from "../views/EditProfilView.vue"
 import OrderView from "../views/OrderView.vue"
+import DeliveryStatusView from "../views/DeliveryStatusView.vue"
 Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
   
@@ -69,7 +70,11 @@ const routes: Array<RouteConfig> = [
   name: "order",
   component: OrderView
 },
-
+{
+  path: "/DeliveryStatus",
+  name: "DeliveryStatusView",
+  component: DeliveryStatusView
+},
   // pour les routes avec vues nommées, vous devez définir l'option `props` pour chaque vue nommée :
   
   /*
