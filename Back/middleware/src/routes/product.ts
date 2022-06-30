@@ -14,27 +14,29 @@ export const router = Router();
  *          properties:
  *              status:
  *                  type: string
- *              product: 
- *                  type: object
- *                  properties:
- *                      _id:
- *                          type: integer
- *                      restaurant:
- *                          type: string
- *                      name:
- *                          type: string
- *                      text:
- *                          type: string
- *                      price:
- *                          type: integer
+ *              message: 
+ *                  type: array
+ *                  items:
+ *                      type: object
+ *                      properties:
+ *                          _id:
+ *                              type: integer
+ *                          restaurant:
+ *                              type: string
+ *                          name:
+ *                              type: string
+ *                          text:
+ *                              type: string
+ *                          price:
+ *                              type: integer
  *          example:
  *              status: success
- *              product:
- *                  _id: 42
- *                  restaurant: test
- *                  name: test
- *                  text: test
- *                  price: 42
+ *              message:
+ *                  - _id: 42
+ *                    restaurant: test
+ *                    name: test
+ *                    text: test
+ *                    price: 42
  * /product:
  *  get:
  *      tags: 
@@ -249,7 +251,7 @@ router.put('/update/:id', auth, verif_user, (req:any, res:any) => {
  *          - in: path
  *            name: id
  *            schema:
- *              type: integer
+ *              type: string
  *            required: true
  *      responses:
  *          '200':

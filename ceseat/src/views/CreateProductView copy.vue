@@ -1,7 +1,7 @@
 <template>
     <v-app>
   <v-app-bar app>
-        <h1>Modifier produit</h1><br><br>
+        <h1>Créer produit</h1><br><br>
         </v-app-bar>
 
   <v-main>
@@ -11,7 +11,7 @@
             <v-text-field label = "Nom" name="name" v-model = "input.name" placeholder="Nom"></v-text-field>
             <v-text-field label = "Description" name="description" v-model = "input.text" placeholder="Description"></v-text-field>
             <v-text-field label = "Prix" name="price" v-model = "input.price" placeholder="Prix"></v-text-field> 
-             <br><br><button type="button" v-on:click="edit()">Modifier</button>
+             <br><br><button type="button" v-on:click="create()">Créer</button>
             <br><br>
         </v-form>
     </v-card>
@@ -23,11 +23,10 @@
 import ProductService from "../services/ProductService"
 import RestaurantService from '../services/RestaurantService'
     export default {
-        name: 'EditProduct',
+        name: 'CreateProduct',
        data() {
         return {
             input: {
-                    _id : 0,
                     restaurant : "",
                     name : "",
                     text : "",
@@ -39,14 +38,7 @@ import RestaurantService from '../services/RestaurantService'
             let restaurantService = new RestaurantService()
             let restaurant = await restaurantService.getRestaurant()
             console.log(restaurant)
-            let productService = new ProductService()
-            let product = await productService.getProduct(this.$route.params.id)
-            console.log(product)
-            this.input._id = product._id
             this.input.restaurant = restaurant.name
-            this.input.name = product.name
-            this.input.text = product.text
-            this.input.price = product.price
         },
         beforeCreate() {
             try{
@@ -64,9 +56,8 @@ import RestaurantService from '../services/RestaurantService'
             }
         },
         methods: {
-            async edit() {
+            create() {
                 let product = {
-                    _id : this.input._id,
                     restaurant : this.input.restaurant,
                     name : this.input.name,
                     text : this.input.text,
@@ -74,10 +65,7 @@ import RestaurantService from '../services/RestaurantService'
                 }
                 console.log(product)
                 let productService = new ProductService()
-                let res = await productService.updateProduct(product)
-                if(res){
-                    this.$router.replace({ name: "editProducts" });
-                }
+                productService.createProduct(product)
             }
         }
     }
