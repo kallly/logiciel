@@ -9,6 +9,7 @@ import EditComponent from "../views/EditProfilView.vue"
 import OrderView from "../views/OrderView.vue"
 import DeliveryStatusView from "../views/DeliveryStatusView.vue"
 import LivreurView from "../views/LivreurView.vue"
+import DeliveryRestaurationView from "../views/DeliveryRestaurationView.vue"
 Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
   
@@ -61,6 +62,17 @@ const routes: Array<RouteConfig> = [
   name: "register",
   component: RegisterComponent
 },
+
+{
+  path: "/commande/client",
+  name: "DeliveryStatusView",
+  component: DeliveryStatusView
+},
+{
+  path: "/commande/restaurant",
+  name: "DeliveryRestaurationView",
+  component: DeliveryRestaurationView
+},
 {
   path: "/edit",
   name: "edit",
@@ -71,11 +83,11 @@ const routes: Array<RouteConfig> = [
   name: "order",
   component: OrderView
 },
-{
-  path: "/DeliveryStatus",
-  name: "DeliveryStatusView",
-  component: DeliveryStatusView
-},
+// {
+//   path: "/DeliveryStatus",
+//   name: "DeliveryStatusView",
+//   component: DeliveryStatusView
+// },
 {
   path: "/livreur",
   name : "livreur",

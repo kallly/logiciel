@@ -15,10 +15,21 @@
        {{commande.status}}
      </v-card-text>
      <v-card-button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="button" v-on:click="recup(commande._id)">En cours de livraison</button> &nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="button" v-on:click="arrive(commande._id)">Arrivé</button> &nbsp;&nbsp;&nbsp;&nbsp;
+      
+        <v-chip color="purple" outlined>
+        <button type="button" v-on:click="recup(commande._id)">En cours de livraison</button> 
+        </v-chip>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+        <v-chip color="purple" outlined>
+        <button type="button" v-on:click="arrive(commande._id)">Arrivé</button> 
+        </v-chip>&nbsp;&nbsp;&nbsp;&nbsp;
+        
+        <v-chip color="purple" outlined>
         <button type="button" v-on:click="livre(commande._id)">Livré</button>
+        </v-chip>
+        <br><br>
      </v-card-button>
+     
    </v-card>
         </v-col>
       </v-container>

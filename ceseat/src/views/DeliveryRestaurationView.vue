@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app >
     <div>
       <v-container>
         <TopbarComponent></TopbarComponent>
@@ -26,24 +26,24 @@
   import ProductListComponent from '../components/Order/ProductListComponent.vue'
   import { Component, Vue } from "vue-property-decorator";
   import CommandService from "../services/CommandService";
+  import RestaurantService from "../services/RestaurantService";
   import CommandModel from '../models/CommandModel'
   @Component({
   components: { TopbarComponent },
 })
-export default class DeliveryStatusView extends Vue {
+export default class DeliveryRestaurationView extends Vue {
      public commandes: Array<CommandModel> = [];
      private commandeService!: CommandService;
-     private decoded = JSON.parse(atob(localStorage.jwt.split('.')[1]));
-     private restaurantService = new RestaurantService()
-     private restaurant = await restaurantService.getRestaurant()
-    //  async created(): Promise<void> {
-    // this.commandeService = new CommandService();
-    // this.commandes = await this.commandeService.getAllOrder(this.$route.params.id);
-    // console.log(this.commandes);
-    // }
+
     async created(): Promise<void>{
+      //decoded = JSON.parse(atob(localStorage.jwt.split('.')[1]));
+      let restaurantService = new RestaurantService()
+      let restaurant = await restaurantService.getRestaurant()
       this.commandeService = new CommandService();
-      this.commandes = await this.commandeService.getRestaurantOrder(this.restaurant._id);
+      if (restaurant._id !== undefined){
+        this.commandes = await this.commandeService.getRestaurantOrder(restaurant._id);
+      }
+      
       //console.log(this.commandes);
     }
   
