@@ -49,14 +49,15 @@ export default class StatisticView extends Vue {
     if(id == undefined){
       return;
     }
+    console.log(id)
     this.statisticsService = new StatisticsService();
     this.statistics = await this.statisticsService.getStatistics(id);
-
+    
     this.statistics.forEach(statistic => {
       this.dates.push(new Date(statistic.date));
       this.prices.push(statistic.price);
-      console.log('dzgez',statistic.products.length);
       this.numbers_by_date.push(statistic.products.length);
+      console.log('product',statistic.products)
     });
     let temp_products:Array<string> = [];
     let temp_numbers:Array<number> = [];

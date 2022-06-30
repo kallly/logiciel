@@ -78,18 +78,20 @@ import ProductCardComponent from '../Order/ProductCardComponent.vue'
 import ProductModel from '../../models/ProductModel'
 import CommandModel from "../../models/CommandModel"
 import OrderService from "../../services/OrderService"
+import Restaurant from "../../models/Restaurant";
 
 @Component({ components: { ProductCardComponent } })
 export default class ProductListComponent extends Vue {
   @Prop() products!: Array<ProductModel>;
+  @Prop() restaurant!: Restaurant;
   show = false;
   dialog = false;
   public productPannier: Array<ProductModel> = [];
   public PannierList: Array<string> = [];
   public count = 0;
   public cartlist: string = "";
-  NewCommand !: CommandModel;
-  TOTALPRICE: number = 0;
+  public NewCommand !: CommandModel;
+  public TOTALPRICE: number = 0;
   public RebootPannier(): void {
     this.productPannier.splice(0, this.productPannier.length);
     this.count = 0;
@@ -103,17 +105,20 @@ export default class ProductListComponent extends Vue {
   public sendOrder() {
     this.stringList();
     console.log("send order");
-    let Order = {
+    let order = {
       user: JSON.parse(atob(localStorage.jwt.split('.')[1])).id,
       restaurant: this.$route.params.id,
       products: this.PannierList
     };
     let orderservice = new OrderService();
+    orderservice.sendOrder(order)
   }
   public stringList() {
     this.PannierList = [];
     this.productPannier.forEach((product: ProductModel) => {
-      this.PannierList.push(product.name);
+      if(product._id != undefined){
+        this.PannierList.push(product._id);
+      }
     });
   }
   //fonction qui permet de supprimer 1 element de la liste

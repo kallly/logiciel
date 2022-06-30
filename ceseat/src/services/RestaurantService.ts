@@ -17,8 +17,34 @@ export default class RestaurantService {
         console.log(data);
         return data.message;
     }
+    async getRestaurants(): Promise<Array<Restaurant>> {
+        const { data } = await axios.get<Message>(
+            'https://ceseat.abconsult.ovh:8080/restaurant',
+            {
+                headers: {
+                    Accept: 'application/json',
+                },
+            },
+        );
+        console.log(data);
+        return data.message;
+    } async getRestaurantById(id:string): Promise<Restaurant> {
+        const { data } = await axios.post<Message>(
+            'https://ceseat.abconsult.ovh:8080/restaurant',
+            {_id: id}
+            ,
+            {
+                headers: {
+                    Accept: 'application/json',
+                },
+            },
+        );
+        console.log('getRestaurantById',data);
+        return data.message;
+    }
     async getRestaurant(): Promise<Restaurant> {
         let decoded = JSON.parse(atob(localStorage.jwt.split('.')[1]));
+        console.log(decoded.id)
         const { data } = await axios.post<Message>(
             'https://ceseat.abconsult.ovh:8080/restaurant',
             {user: decoded.id}
@@ -29,7 +55,7 @@ export default class RestaurantService {
                 },
             },
         );
-        console.log(data);
+        console.log('getRestaurant',data);
         return data.message;
     }
     async createRestaurant(restaurant : Restaurant): Promise<boolean> {

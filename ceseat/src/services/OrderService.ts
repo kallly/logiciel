@@ -1,8 +1,8 @@
 import Message from "@/models/Message";
 import axios from "axios"
-import CommandModel from "@/models/CommandModel"
+import Order from "@/models/CommandModel";
 export default class OrderService {
-    async sendOrder(Order:CommandModel): Promise<boolean> {
+    async sendOrder(Order:Order): Promise<boolean> {
         console.log(Order)
         const { data } = await axios.put(
             'https://ceseat.abconsult.ovh:8080/order/create',

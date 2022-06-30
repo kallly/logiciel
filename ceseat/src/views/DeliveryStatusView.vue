@@ -5,7 +5,7 @@
         <TopbarComponent></TopbarComponent>
       </v-container>
       <v-container  style="display:flex; flex-direction: row; flex-wrap:wrap;"> 
-        <v-col v-for="commande in commandes" :key="commande.date" cols="12" sm="4">
+        <v-col v-for="(commande,index) in commandes" :key="index" cols="12" sm="4">
 
     <v-card class="mt-4">
      <v-card-title> {{ commande.restaurant }} </v-card-title>
@@ -23,7 +23,6 @@
 
 <script lang="ts">
   import TopbarComponent from '../components/Navigation/TopbarComponent.vue'
-  import ProductListComponent from '../components/Order/ProductListComponent.vue'
   import { Component, Vue } from "vue-property-decorator";
   import CommandService from "../services/CommandService";
   import CommandModel from '../models/CommandModel'
@@ -35,15 +34,10 @@ export default class DeliveryStatusView extends Vue {
      private commandeService!: CommandService;
      private decoded = JSON.parse(atob(localStorage.jwt.split('.')[1]));
 
-    //  async created(): Promise<void> {
-    // this.commandeService = new CommandService();
-    // this.commandes = await this.commandeService.getAllOrder(this.$route.params.id);
-    // console.log(this.commandes);
-    // }
     async created(): Promise<void>{
       this.commandeService = new CommandService();
       this.commandes = await this.commandeService.getClientOrder(this.decoded.id);
-      //console.log(this.commandes);
+      console.log(this.commandes);
     }
   
 }

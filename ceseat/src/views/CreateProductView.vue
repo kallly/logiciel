@@ -7,7 +7,7 @@
   <v-main>
       <v-card class="formulaire">
         <v-form> 
-            <v-text-field label = "Restaurant" name="restaurant" v-model = "input.restaurant" placeholder="restaurant" disabled></v-text-field>
+            <v-text-field label = "Restaurant" name="restaurant" v-model = "input.restaurant_name" placeholder="restaurant" disabled></v-text-field>
             <v-text-field label = "Nom" name="name" v-model = "input.name" placeholder="Nom"></v-text-field>
             <v-text-field label = "Description" name="description" v-model = "input.text" placeholder="Description"></v-text-field>
             <v-text-field label = "Prix" name="price" v-model = "input.price" placeholder="Prix"></v-text-field> 
@@ -28,6 +28,7 @@ import RestaurantService from '../services/RestaurantService'
         return {
             input: {
                     restaurant : "",
+                    restaurant_name : "",
                     name : "",
                     text : "",
                     price : 0
@@ -38,7 +39,8 @@ import RestaurantService from '../services/RestaurantService'
             let restaurantService = new RestaurantService()
             let restaurant = await restaurantService.getRestaurant()
             console.log(restaurant)
-            this.input.restaurant = restaurant.name
+            this.input.restaurant = restaurant._id;
+            this.input.restaurant_name = restaurant.name;
         },
         beforeCreate() {
             try{

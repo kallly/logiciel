@@ -47,8 +47,6 @@
 </template>
 
 <script>
-import ProductListComponent from "../Order/ProductListComponent.vue"
-
 export default {
   
      

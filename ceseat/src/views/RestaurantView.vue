@@ -6,61 +6,38 @@
       </v-container>
       <br>
       <v-container>
-        Bienvenu chez {{$route.params.id}}
-        <ProductListComponent :products="products"></ProductListComponent>
+        Bienvenu chez {{ restaurant_name }}
+        <ProductListComponent :products="products" :restaurant="restaurant"></ProductListComponent>
       </v-container>
     </div>
   </v-app>
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from "vue-property-decorator";
-  import ResizerComponent from '../components/Responsive/ResizerComponent.vue'
-  import TopbarComponent from '../components/Navigation/TopbarComponent.vue'
-  import ProductCardComponent from '../components/Order/ProductCardComponent.vue'
-  import ProductListComponent from '../components/Order/ProductListComponent.vue'
-  import RestaurantCardComponent from '../components/Navigation/RestaurantCardComponent.vue'
-  import RestaurantListComponent from '../components/Navigation/RestaurantListComponent.vue'
-  import RestaurantModel from '../models/RestaurantModel'
-  import ProductService from '../services/ProductService'
-  import ProductModel from '../models/ProductModel'
+import { Component, Vue } from "vue-property-decorator";
+import TopbarComponent from '../components/Navigation/TopbarComponent.vue'
+import ProductListComponent from '../components/Order/ProductListComponent.vue'
+import ProductService from '../services/ProductService'
+import ProductModel from '../models/ProductModel'
+import RestaurantService from "../services/RestaurantService";
+import Restaurant from "../models/Restaurant";
 
-  const RestaurantV = 
-  {
-    template: '<div>RestaurantView {{ $route.params.name}}</div>',
-  }
-
-  @Component({
-  components: { ProductListComponent,TopbarComponent },
+@Component({
+  components: { ProductListComponent, TopbarComponent },
 })
 export default class RestaurantView extends Vue {
   public products: Array<ProductModel> = [];
-
-  private productService!: ProductService;
+  public restaurant!: Restaurant;
+  public restaurant_name: string = '';
 
   // Cycle de vie d'un composant vue
   async created(): Promise<void> {
-    this.productService = new ProductService();
-    this.products = await this.productService.getAllProducts(this.$route.params.id);
+    let restaurantService = new RestaurantService();
+    this.restaurant = await restaurantService.getRestaurantById(this.$route.params.id);
+    this.restaurant_name = this.restaurant.name;
+    let productService = new ProductService();
+    this.products = await productService.getAllProducts(this.$route.params.id);
     console.log(this.products);
   }
-  mounted(): void {
-    // TODO
-  }
-
-  destroyed(): void {
-    // TODO
-  }
 }
- /* 
-  export default Vue.extend({
-    public restaurants: Array<RestaurantModel> = [];
-    private restaurantService!: RestaurantService;
-
-    name: 'RestaurantView',
-    components: {
-      TopbarComponent, ResizerComponent, ProductCardComponent
-    },
-  })
-  */
 </script>

@@ -15,7 +15,7 @@ export default class CommandService {
                 },
             },
         );
-       console.log(data)
+       console.log('getClientOrder',data)
         return data.message;
 
     }
@@ -31,7 +31,7 @@ export default class CommandService {
                 },
             },
         );
-       console.log(data)
+       console.log('getRestaurantOrder',data)
         return data.message;
 
     }
@@ -50,19 +50,6 @@ export default class CommandService {
        console.log(data)
         return data.message;
 
-    }
-    async getProduct(id:string): Promise<CommandModel> {
-        const { data } = await axios.post<Message>(
-            'https://ceseat.abconsult.ovh:8080/order',
-            { _id: id},
-            {
-                headers: {
-                    Accept: 'application/json',
-                },
-            },
-        );
-        console.log('getProduct',data)
-        return data.message[0];
     }
     async update(order:any): Promise<string> {
         const { data } = await axios.put<Message>(

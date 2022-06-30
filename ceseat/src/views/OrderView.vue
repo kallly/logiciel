@@ -2,7 +2,7 @@
 <template>
     <div class="OrderView">
         <v-container>
-            <v-col v-for="product in choosenProductList" :key="product.id" cols="12" sm="4">
+            <v-col v-for="(product,index) in choosenProductList" :key="index" cols="12" sm="4">
           <ProductListComponent
             :productModel="product"
             @ProductTranspher="GetProductTranspher($event)"
@@ -15,11 +15,7 @@
 
 <script lang="ts">
   import { Component, Vue, Prop } from "vue-property-decorator"
-  //import ResizerComponent from '../components/Responsive/ResizerComponent.vue'
-  import ProductListComponent from "../components/Order/ProductListComponent.vue"
-  import RestaurantModel from "@/models/RestaurantModel"
   import RestaurantListComponent from "../components/Navigation/RestaurantListComponent.vue"
-  import RestaurantService from "../services/RestaurantService"
   import ProductModel from "../models/ProductModel"
 
 @Component({

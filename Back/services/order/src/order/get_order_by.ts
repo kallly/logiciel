@@ -3,6 +3,6 @@ import { IOrder, Order } from '../models/order';
 
 export function get_order_by(order:IOrder): Promise<any> | never{
     return mongoConnect().then(() => {
-        return Order.findOne(order).catch((e) => {throw e;})
+        return Order.find(order).catch((e) => {throw e;})
     }).catch((e) => {throw e;})
 }

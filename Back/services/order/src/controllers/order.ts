@@ -42,9 +42,13 @@ export default class OrderController {
             let price: number = 0;
             try{
                 JSON.parse(result.message).forEach((product:IProduct) => {
-                    if(product._id != undefined && order.products != undefined)
-                        if(order.products.includes(product._id))
-                            price += product.price;
+                    if(product._id != undefined && order.products != undefined){
+                        order.products.forEach((tproduct) => {
+                            if(tproduct === product._id){
+                                price += product.price;
+                            }
+                        })
+                    }
                 });
             }catch(e){throw e;}
             order.price = price;

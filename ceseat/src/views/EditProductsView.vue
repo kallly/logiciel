@@ -1,11 +1,9 @@
 <template>
   <v-app>
+    <v-container>
+    <TopbarComponent></TopbarComponent>
+  </v-container>
     <div class="RestaurantView">
-      <v-container>
-        <TopbarComponent></TopbarComponent>
-      </v-container>
-      <v-container>
-        Bienvenu chez {{$route.params.id}}<div>
         <v-container class="grey lighten-5">
         <v-row no-gutters>
         <v-col v-for="product in products" :key="product.id" cols="12" sm="4">
@@ -27,8 +25,6 @@
              </v-card>
         </v-col>
       </v-row>
-    </v-container>
-  </div>
       </v-container>
     </div>
   </v-app>
@@ -37,7 +33,10 @@
 <script>
 import ProductService from "../services/ProductService"
 import RestaurantService from '../services/RestaurantService'
+import TopbarComponent from '../components/Navigation/TopbarComponent.vue'
+
     export default {
+        components: {TopbarComponent},
         name: 'EditProducts',
        data() {
         return {
@@ -49,7 +48,7 @@ import RestaurantService from '../services/RestaurantService'
             let restaurant = await restaurantService.getRestaurant()
             console.log(restaurant)
             let productService = new ProductService()
-            this.products = await productService.getAllProducts(restaurant.name)
+            this.products = await productService.getAllProducts(restaurant._id)
             console.log(this.products)
         },
         beforeCreate() {
@@ -77,12 +76,11 @@ import RestaurantService from '../services/RestaurantService'
                 productService.deleteProduct(id)
 
 
-                /*let restaurantService = new RestaurantService()
+                let restaurantService = new RestaurantService()
                 let restaurant = await restaurantService.getRestaurant()
                 console.log(restaurant)
-                this.products = await productService.getAllProducts(restaurant.name)
+                this.products = await productService.getAllProducts(restaurant._id)
                 console.log(this.products)
-                productService.createProduct(products[0].description)*/
             }
         }
     }
