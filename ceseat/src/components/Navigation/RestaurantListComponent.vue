@@ -1,8 +1,7 @@
 <template>
   <div>
-    <v-container class="grey lighten-5">
+    <v-container class="restaurantList">
       <v-row no-gutters>
-      
         <v-col v-for="restaurant in restaurants" :key="restaurant.id" cols="12" sm="4">
           <RestaurantCardComponent
             :restaurantModel="restaurant"

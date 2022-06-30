@@ -2,7 +2,7 @@
   <v-container>
     <div class = "TopbarComponent">
       <v-app-bar absolute color="white" elevate-on-scroll elevation="4">
-        <v-toolbar-title><router-link to="/" tag="button">CESEAT</router-link></v-toolbar-title>
+        <v-toolbar-title><router-link to="/home" tag="button">CESEAT</router-link></v-toolbar-title>
         <v-spacer></v-spacer>
 
         <v-text-field

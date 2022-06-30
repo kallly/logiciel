@@ -43,6 +43,7 @@ export default Vue.extend({
     body {
         background-image: url(../src/assets/Images/image_fond.jpg);
         background-size: 100%;
+        background-repeat: repeat;
         margin: auto;
         display: flex;
         flex-wrap: wrap;
