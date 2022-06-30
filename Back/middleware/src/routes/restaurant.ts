@@ -14,27 +14,35 @@ export const router = Router();
  *          properties:
  *              status:
  *                  type: string
- *              restaurant: 
- *                  type: object
- *                  properties:
- *                      _id:
- *                          type: integer
- *                      restaurant:
- *                          type: string
- *                      name:
- *                          type: string
- *                      text:
- *                          type: string
- *                      price:
- *                          type: integer
+ *              message: 
+ *                  type: array
+ *                  items:
+ *                      type: object
+ *                      properties:
+ *                          _id:
+ *                              type: integer
+ *                          name:
+ *                              type: string
+ *                          img:
+ *                              type: string
+ *                          description:
+ *                              type: string
+ *                          location:
+ *                              type: string
+ *                          type:
+ *                              type: string
+ *                          user:
+ *                              type: integer
  *          example:
  *              status: success
  *              restaurant:
- *                  _id: 42
- *                  restaurant: test
- *                  name: test
- *                  text: test
- *                  price: 42
+ *                  - _id: 42
+ *                    name: test
+ *                    img: test
+ *                    description: test
+ *                    location: test
+ *                    type: test
+ *                    user: 49
  * /restaurant:
  *  get:
  *      tags: 
@@ -67,7 +75,7 @@ router.get('/', (req:any, res:any) => {
  *  schemas:
  *      request_get_restaurant:
  *          properties:
- *              restaurant:
+ *              name:
  *                  type: string
  *              img:
  *                  type: string
@@ -78,7 +86,7 @@ router.get('/', (req:any, res:any) => {
  *              type:
  *                  type: string
  *          example:
- *              restaurant: test
+ *              name: test
  *              img: test
  *              description: test
  *              location: test
@@ -121,7 +129,7 @@ router.post('/', (req:any, res:any) => {
  *  schemas:
  *      create_restaurant:
  *          properties:
- *              restaurant:
+ *              name:
  *                  type: string
  *              img:
  *                  type: string
@@ -132,13 +140,13 @@ router.post('/', (req:any, res:any) => {
  *              type:
  *                  type: string
  *          require:
- *              - restaurant
+ *              - name
  *              - img
  *              - description
  *              - location
  *              - type
  *          example:
- *              restaurant: test
+ *              name: test
  *              img: test
  *              description: test
  *              location: test
@@ -189,7 +197,7 @@ router.put('/create', auth, verif_user, (req:any, res:any) => {
  *          properties:
  *              user:
  *                  type: integer
- *              restaurant:
+ *              name:
  *                  type: string
  *              img:
  *                  type: string
@@ -203,7 +211,7 @@ router.put('/create', auth, verif_user, (req:any, res:any) => {
  *              - user
  *          example:
  *              user: 1
- *              restaurant: test
+ *              name: test
  *              img: test
  *              description: test
  *              location: test

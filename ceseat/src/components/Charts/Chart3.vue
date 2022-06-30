@@ -1,6 +1,9 @@
 <template>
     <div id="chart3">
+      <v-card>
         <apexchart width="500" :options="options" :series="options.series"></apexchart>
+      Prix par command
+      </v-card>
       </div>
 </template>
 

@@ -8,6 +8,7 @@ import { create_order } from '../order/create_order';
 import { delete_order_by_id } from '../order/delete_order_by_id';
 import { get_product } from '../product/get_product';
 import { get_statistics } from '../order/get_statistics';
+import { update_order } from '../order/update_order';
 import { IOrder } from '../models/order';
 import { IProduct } from '../models/product';
   
@@ -54,6 +55,13 @@ export default class OrderController {
                 }).catch((e) => {throw e;})
             }).catch((e) => {throw e;})
         }).catch((e) => {throw e;});
+    }
+    public updateOrder(order:IOrder): Promise<IResponse> | never {
+        return mongoConnect().then(() => {
+            return update_order(order).then((result) => {
+                return {code:200,header:{'Content-Type': 'application/json'},message:JSON.stringify({status:'success',message:result})};
+            }).catch((e) => {throw e;})
+        }).catch((e) => {throw e;})
     }
     public deleteOrderById(id:string): Promise<IResponse> | never {
         return mongoConnect().then(async() => {

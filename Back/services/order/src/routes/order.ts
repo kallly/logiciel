@@ -32,6 +32,19 @@ router.put('/create', auth,verif_user,(req:any, res:any) => {
     });
 });
 
+router.put('/update', auth,verif_user,(req:any, res:any) => {
+    const log: Logger = new Logger({ name: "put:order/update", requestId:req.headers['x-request-id'] });
+    log.info("start");
+    const controller = new OrderController();
+    controller.updateOrder(req.body).then((response) => {
+        log.info('Send response');
+        res.send(response.message);
+    }).catch((e) => {
+        log.error(e);
+        res.send({status:'error'});
+    });
+});
+
 router.post('/', auth,verif_user,(req:any, res:any) => {
     const log: Logger = new Logger({ name: "post:order", requestId:req.headers['x-request-id'] });
     log.info("start");

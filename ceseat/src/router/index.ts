@@ -53,6 +53,21 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/EditRestaurantView.vue')
   },
   {
+    path: "/create/product",
+    name: "createProduct",
+    component: () => import('../views/CreateProductView.vue')
+  },
+  {
+    path: "/edit/products",
+    name: "editProducts",
+    component: () => import('../views/EditProductsView.vue')
+  },
+  {
+    path: "/edit/product/:id",
+    name: "editProduct",
+    component: () => import('../views/EditProductView.vue')
+  },
+  {
     path: "/secure",
     name: "secure",
     component: SecureComponent

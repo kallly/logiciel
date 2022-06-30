@@ -45,7 +45,11 @@ export default class RestaurantService {
             },
         );
         console.log(data);
-        return true;
+        if (data.status == "success"){
+            return true
+        }else {
+            return false
+        }
     }
     async editRestaurant(restaurant : Restaurant): Promise<boolean> {
         console.log(restaurant)

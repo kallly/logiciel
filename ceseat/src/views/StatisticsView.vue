@@ -4,7 +4,7 @@
   <v-container>
      <v-row>
     <v-col>
-      <Chart3 :dates="dates" :numbers="numbers_by_date"/>
+        <Chart3 :dates="dates" :numbers="numbers_by_date"/>
     </v-col>
     <v-col>
       <Chart1 :dates="dates" :prices="prices"/>

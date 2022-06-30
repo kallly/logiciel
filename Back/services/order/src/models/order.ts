@@ -1,6 +1,7 @@
 import { Schema, model, ObjectId } from 'mongoose';
 
 export interface IOrder {
+    _id?: ObjectId
     date?: Date;
     user: number;
     restaurant: ObjectId;
