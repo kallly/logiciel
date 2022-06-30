@@ -5,7 +5,7 @@ import Restaurant from "@/models/Restaurant";
 import axios from "axios";
 
 export default class RestaurantService {
-    async getAllRestaurants(): Promise<Array<RestaurantModel>> {
+    async getAllRestaurants(): Promise<Array<Restaurant>> {
         const { data } = await axios.get<Message>(
             'https://ceseat.abconsult.ovh:8080/restaurant',
             {

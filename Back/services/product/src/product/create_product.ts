@@ -7,6 +7,7 @@ export function create_product(data:IProduct): Promise<any> | never{
         const product = new Product({
             restaurant: data.restaurant,
             name: data.name,
+            img: data.img,
             text: data.text,
             price: data.price,
         });

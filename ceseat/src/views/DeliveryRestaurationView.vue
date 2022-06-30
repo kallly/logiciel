@@ -7,12 +7,7 @@
       <v-container style="display:flex; flex-direction: row; flex-wrap:wrap;">
         <v-col v-for="commande in commandes" :key="commande._id" cols="12" sm="4">
           <v-card class="mt-4">
-            <v-card-title> {{ commande.restaurant }} </v-card-title>
-            <v-card-text>
-              {{ commande.price }} €
-              <br><br>
-              {{ commande.status }}
-            </v-card-text>
+           <OrderMinCardComponent :order="commande"></OrderMinCardComponent>
           </v-card>
         </v-col>
       </v-container>
@@ -26,8 +21,9 @@ import { Component, Vue } from "vue-property-decorator";
 import CommandService from "../services/CommandService";
 import RestaurantService from "../services/RestaurantService";
 import CommandModel from '../models/CommandModel'
+import OrderMinCardComponent from '../components/FollowingOrder/OrderMinCardComponent.vue'
 @Component({
-  components: { TopbarComponent },
+  components: { TopbarComponent, OrderMinCardComponent },
 })
 export default class DeliveryRestaurationView extends Vue {
   public commandes: Array<CommandModel> = [];

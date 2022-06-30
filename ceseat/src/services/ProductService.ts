@@ -1,10 +1,9 @@
 import Message from "@/models/Message";
 import Product from "@/models/Product";
-import ProductModel from "@/models/ProductModel";
 import axios from "axios"
 
 export default class ProductService {
-    async getAllProducts(RestaurantName : string): Promise<Array<ProductModel>> {
+    async getAllProducts(RestaurantName : string): Promise<Array<Product>> {
         
         const { data } = await axios.post<Message>(
             'https://ceseat.abconsult.ovh:8080/product',
@@ -21,7 +20,7 @@ export default class ProductService {
         return data.message;
 
     }
-    async getProduct(id:string): Promise<ProductModel> {
+    async getProduct(id:string): Promise<Product> {
         const { data } = await axios.post<Message>(
             'https://ceseat.abconsult.ovh:8080/product',
             { _id: id},

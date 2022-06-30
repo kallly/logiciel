@@ -8,6 +8,7 @@ export interface IOrder {
     products: Array<ObjectId>;
     price?: number;
     status?: string;
+    address?: string;
     prepared_date?: Date;
     delivered_date?: Date;
 }
@@ -19,6 +20,7 @@ const orderSchema = new Schema<IOrder>({
     products: { type: [], required: true },
     price: { type: Number, required: true },
     status: { type: String, required: true },
+    address: { type: String, required: false },
     prepared_date: { type: Date, required: false },
     delivered_date: { type: Date, required: false },
 });

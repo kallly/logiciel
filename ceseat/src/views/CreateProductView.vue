@@ -9,6 +9,7 @@
         <v-form> 
             <v-text-field label = "Restaurant" name="restaurant" v-model = "input.restaurant_name" placeholder="restaurant" disabled></v-text-field>
             <v-text-field label = "Nom" name="name" v-model = "input.name" placeholder="Nom"></v-text-field>
+            <v-text-field label = "Image" name="image" v-model = "input.img" placeholder="Image"></v-text-field>
             <v-text-field label = "Description" name="description" v-model = "input.text" placeholder="Description"></v-text-field>
             <v-text-field label = "Prix" name="price" v-model = "input.price" placeholder="Prix"></v-text-field> 
              <br><br><button type="button" v-on:click="create()">Créer</button>
@@ -29,6 +30,7 @@ import RestaurantService from '../services/RestaurantService'
             input: {
                     restaurant : "",
                     restaurant_name : "",
+                    img : "",
                     name : "",
                     text : "",
                     price : 0
@@ -62,6 +64,7 @@ import RestaurantService from '../services/RestaurantService'
                 let product = {
                     restaurant : this.input.restaurant,
                     name : this.input.name,
+                    img : this.input.img,
                     text : this.input.text,
                     price : this.input.price
                 }

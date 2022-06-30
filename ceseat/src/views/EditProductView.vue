@@ -9,6 +9,7 @@
         <v-form> 
             <v-text-field label = "Restaurant" name="restaurant" v-model = "input.restaurant" placeholder="restaurant" disabled></v-text-field>
             <v-text-field label = "Nom" name="name" v-model = "input.name" placeholder="Nom"></v-text-field>
+            <v-text-field label = "Image" name="image" v-model = "input.img" placeholder="Image"></v-text-field>
             <v-text-field label = "Description" name="description" v-model = "input.text" placeholder="Description"></v-text-field>
             <v-text-field label = "Prix" name="price" v-model = "input.price" placeholder="Prix"></v-text-field> 
              <br><br><button type="button" v-on:click="edit()">Modifier</button>
@@ -30,6 +31,7 @@ import RestaurantService from '../services/RestaurantService'
                     _id : 0,
                     restaurant : "",
                     name : "",
+                    img : "",
                     text : "",
                     price : 0
                 }
@@ -43,8 +45,10 @@ import RestaurantService from '../services/RestaurantService'
             let product = await productService.getProduct(this.$route.params.id)
             console.log(product)
             this.input._id = product._id
+            this.input.restaurant_id = restaurant._id
             this.input.restaurant = restaurant.name
             this.input.name = product.name
+            this.input.img = product.img
             this.input.text = product.text
             this.input.price = product.price
         },
@@ -67,8 +71,9 @@ import RestaurantService from '../services/RestaurantService'
             async edit() {
                 let product = {
                     _id : this.input._id,
-                    restaurant : this.input.restaurant,
+                    restaurant : this.input.restaurant_id,
                     name : this.input.name,
+                    img : this.input.img,
                     text : this.input.text,
                     price : this.input.price
                 }

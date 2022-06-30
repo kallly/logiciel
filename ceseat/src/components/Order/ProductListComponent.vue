@@ -39,7 +39,7 @@
       </div>
       <v-row no-gutters>
         <v-col v-for="product in products" :key="product._id" cols="12" sm="4">
-          <ProductCardComponent :productModel="product" @productAdded="onProductAdded($event)"
+          <ProductCardComponent :product="product" @productAdded="onProductAdded($event)"
             @addProducts="addProducts($event)" />
         </v-col>
       </v-row>
@@ -75,18 +75,18 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import ProductCardComponent from '../Order/ProductCardComponent.vue'
-import ProductModel from '../../models/ProductModel'
 import CommandModel from "../../models/CommandModel"
 import OrderService from "../../services/OrderService"
 import Restaurant from "../../models/Restaurant";
+import Product from "../../models/Product";
 
 @Component({ components: { ProductCardComponent } })
 export default class ProductListComponent extends Vue {
-  @Prop() products!: Array<ProductModel>;
+  @Prop() products!: Array<Product>;
   @Prop() restaurant!: Restaurant;
   show = false;
   dialog = false;
-  public productPannier: Array<ProductModel> = [];
+  public productPannier: Array<Product> = [];
   public PannierList: Array<string> = [];
   public count = 0;
   public cartlist: string = "";
@@ -106,10 +106,12 @@ export default class ProductListComponent extends Vue {
     if (typeof (this.$route.query.id) == 'string') {
       this.stringList();
       console.log("send order");
+      let decoded = JSON.parse(atob(localStorage.jwt.split('.')[1]));
       let order = {
-        user: JSON.parse(atob(localStorage.jwt.split('.')[1])).id,
+        user: decoded.id,
         restaurant: this.$route.query.id,
-        products: this.PannierList
+        products: this.PannierList,
+        address: decoded.address
       };
       let orderservice = new OrderService();
       orderservice.sendOrder(order)
@@ -117,7 +119,7 @@ export default class ProductListComponent extends Vue {
   }
   public stringList() {
     this.PannierList = [];
-    this.productPannier.forEach((product: ProductModel) => {
+    this.productPannier.forEach((product: Product) => {
       if (product._id != undefined) {
         this.PannierList.push(product._id);
       }
@@ -127,7 +129,7 @@ export default class ProductListComponent extends Vue {
   public deleteItem(Item: string): void {
     let a = 0;
     let b = 0;
-    this.productPannier.forEach((product: ProductModel) => {
+    this.productPannier.forEach((product: Product) => {
       a = a + 1;
       if (product.name == Item) {
         b = a;
@@ -143,12 +145,12 @@ export default class ProductListComponent extends Vue {
   //fonction qui va caculer ce que doit le client avec sa commande
   get getTotalPrice() {
     this.TOTALPRICE = 0;
-    this.productPannier.forEach((product: ProductModel) => {
+    this.productPannier.forEach((product: Product) => {
       this.TOTALPRICE = this.TOTALPRICE + product.price;
     });
     return this.TOTALPRICE;
   }
-  public addProducts(product: ProductModel): void {
+  public addProducts(product: Product): void {
     this.productPannier.push(product); //ajout de notre produit (nom/id)
     console.log("productName", product.name, " was hadded to cart");
   }

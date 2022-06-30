@@ -18,15 +18,15 @@ import { Component, Vue } from "vue-property-decorator";
 import TopbarComponent from '../components/Navigation/TopbarComponent.vue'
 import ProductListComponent from '../components/Order/ProductListComponent.vue'
 import ProductService from '../services/ProductService'
-import ProductModel from '../models/ProductModel'
 import RestaurantService from "../services/RestaurantService";
 import Restaurant from "../models/Restaurant";
+import Product from "../models/Product";
 
 @Component({
   components: { ProductListComponent, TopbarComponent },
 })
 export default class RestaurantView extends Vue {
-  public products: Array<ProductModel> = [];
+  public products: Array<Product> = [];
   public restaurant!: Restaurant;
   public restaurant_name: string = '';
 

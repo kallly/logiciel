@@ -8,12 +8,7 @@
         <v-col v-for="(commande,index) in commandes" :key="index" cols="12" sm="4">
 
     <v-card class="mt-4">
-     <v-card-title> {{ commande.restaurant }} </v-card-title>
-     <v-card-text>
-       {{commande.price}} €
-       <br><br>
-       {{commande.status}}
-     </v-card-text>
+           <OrderMinCardComponent :order="commande"></OrderMinCardComponent>
    </v-card>
         </v-col>
       </v-container>

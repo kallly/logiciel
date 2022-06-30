@@ -9,15 +9,15 @@
 <script lang="ts">
   import { Component, Vue } from "vue-property-decorator";
   
-  import RestaurantModel from "@/models/RestaurantModel";
   import RestaurantListComponent from "../components/Navigation/RestaurantListComponent.vue";
+import Restaurant from "../models/Restaurant";
   import RestaurantService from "../services/RestaurantService";
 
 @Component({
   components: { RestaurantListComponent },
 })
 export default class HomeView extends Vue {
-  public restaurants: Array<RestaurantModel> = [];
+  public restaurants: Array<Restaurant> = [];
 
   private restaurantService!: RestaurantService;
 
@@ -26,19 +26,5 @@ export default class HomeView extends Vue {
     this.restaurantService = new RestaurantService();
     this.restaurants = await this.restaurantService.getAllRestaurants();
   }
-  mounted(): void {
-    // TODO
-  }
-
-  destroyed(): void {
-    // TODO
-  }
 }
-</script>
-
-
-<script>
-//affichage command ID & 
-//affichage avec le prix
-//calcul du prix total
 </script>

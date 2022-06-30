@@ -2,16 +2,17 @@
 <v-hover>
   <template v-slot:default="{ hover }">
     <v-card class="mt-4" width="300">
-     <v-card-title> {{ productModel.name }} </v-card-title>
+    <v-img :src="product.img" height="200px"></v-img>
+     <v-card-title> {{ product.name }} </v-card-title>
      <v-card-text>
-       {{productModel.price}} €
+       {{product.price}} €
      </v-card-text>
 
       <v-expand-transition>
         <div v-show="show">
           <v-divider></v-divider>
           <v-card-text>
-            {{ productModel.description }}
+            {{ product.text }}
           </v-card-text>
        </div>
      </v-expand-transition>
@@ -34,17 +35,17 @@
 <script lang="ts">
   import useRoute from "vue-router"
   import { Component, Prop, Vue } from "vue-property-decorator"
-  import ProductModel from "../../models/ProductModel.vue"
+  import Product from "../../models/Product"
   @Component
   export default class RestaurantCardComponent extends Vue {
-    @Prop() productModel!: ProductModel;
+    @Prop() product!: Product;
     show = false;
     newProduct = false;
     public addProduct(): void {
     this.$emit("productAdded", true);
   }
   public addproduct(): void {
-    this.$emit("addProducts", this.productModel);
+    this.$emit("addProducts", this.product);
   }
 }
 </script>

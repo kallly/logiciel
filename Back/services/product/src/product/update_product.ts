@@ -8,6 +8,7 @@ export function update_product(id:string,data:IProduct): Promise<any> | never{
             _id: id,
             restaurant: data.restaurant,
             name: data.name,
+            img: data.img,
             text: data.text,
         });
         return Product.findOneAndUpdate({'_id': id},product,{upsert:false,new:true});

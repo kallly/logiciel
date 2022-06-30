@@ -4,6 +4,7 @@ export interface IProduct {
     _id?:       ObjectId;
     restaurant: string;
     name:       string;
+    img:       string;
     text:       string;
     price:      number;
 }
@@ -11,6 +12,7 @@ export interface IProduct {
 const productSchema = new Schema<IProduct>({
     restaurant: { type: String, required: true },
     name:       { type: String, required: true },
+    img:        { type: String, required: true },
     text:       { type: String, required: true },
     price:      { type: Number, required: true },
 });

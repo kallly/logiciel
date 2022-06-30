@@ -1,9 +1,9 @@
 import Message from "@/models/Message";
-import CommandModel from "@/models/CommandModel";
 import axios from "axios"
+import Order from "@/models/CommandModel";
 
 export default class CommandService {
-    async getClientOrder(userId : number): Promise<Array<CommandModel>> {
+    async getClientOrder(userId : number): Promise<Array<Order>> {
         
         const { data } = await axios.post<Message>(
             'https://ceseat.abconsult.ovh:8080/order',
@@ -19,7 +19,7 @@ export default class CommandService {
         return data.message;
 
     }
-    async getRestaurantOrder(RestaurantID : string): Promise<Array<CommandModel>> {
+    async getRestaurantOrder(RestaurantID : string): Promise<Array<Order>> {
         
         const { data } = await axios.post<Message>(
             'https://ceseat.abconsult.ovh:8080/order',
@@ -35,7 +35,7 @@ export default class CommandService {
         return data.message;
 
     }
-    async getAllOrder(): Promise<Array<CommandModel>> {
+    async getAllOrder(): Promise<Array<Order>> {
         
         const { data } = await axios.get<Message>(
             'https://ceseat.abconsult.ovh:8080/order',
