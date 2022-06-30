@@ -6,7 +6,7 @@
     <v-card-title> {{ restaurant.name }} </v-card-title>
     <v-card-actions>
       <v-chip color="purple" outlined>
-        <router-link :to="`/restaurant/${restaurant._id}`" tag="button" color="deep-purple lighten-2">
+        <router-link :to="`/restaurant/${restaurant.name}?id=${restaurant._id}`" tag="button" color="deep-purple lighten-2">
           Passer commande
         </router-link>
       </v-chip>

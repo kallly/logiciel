@@ -32,12 +32,14 @@ export default class RestaurantView extends Vue {
 
   // Cycle de vie d'un composant vue
   async created(): Promise<void> {
-    let restaurantService = new RestaurantService();
-    this.restaurant = await restaurantService.getRestaurantById(this.$route.params.id);
-    this.restaurant_name = this.restaurant.name;
-    let productService = new ProductService();
-    this.products = await productService.getAllProducts(this.$route.params.id);
-    console.log(this.products);
+    this.restaurant_name = this.$route.params.id;
+    if(typeof(this.$route.query.id) == 'string'){
+      let restaurantService = new RestaurantService();
+      this.restaurant = await restaurantService.getRestaurantById(this.$route.query.id);
+      let productService = new ProductService();
+      this.products = await productService.getAllProducts(this.$route.query.id);
+      console.log(this.products);
+    } 
   }
 }
 </script>

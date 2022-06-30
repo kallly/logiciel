@@ -5,6 +5,7 @@
   </v-container>
     <div class="RestaurantView">
         <v-container class="grey lighten-5">
+        <router-link to="/create/product">Creer produit</router-link>
         <v-row no-gutters>
         <v-col v-for="product in products" :key="product.id" cols="12" sm="4">
             <v-card class="mt-4" width="300">

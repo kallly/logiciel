@@ -14,7 +14,7 @@
             <v-divider></v-divider>
             <v-card-text>
               <ul id="list of product">
-                <li v-for="(product,index) in productPannier" :key="index">
+                <li v-for="(product, index) in productPannier" :key="index">
                   {{ product.name }} : {{ product.price }} €
                   <v-chip color="red" outlined @click="deleteItem(product.name)">
                     <label>
@@ -103,20 +103,22 @@ export default class ProductListComponent extends Vue {
 
   //fonction qui permet de supprimer 1 element de la liste
   public sendOrder() {
-    this.stringList();
-    console.log("send order");
-    let order = {
-      user: JSON.parse(atob(localStorage.jwt.split('.')[1])).id,
-      restaurant: this.$route.params.id,
-      products: this.PannierList
-    };
-    let orderservice = new OrderService();
-    orderservice.sendOrder(order)
+    if (typeof (this.$route.query.id) == 'string') {
+      this.stringList();
+      console.log("send order");
+      let order = {
+        user: JSON.parse(atob(localStorage.jwt.split('.')[1])).id,
+        restaurant: this.$route.query.id,
+        products: this.PannierList
+      };
+      let orderservice = new OrderService();
+      orderservice.sendOrder(order)
+    }
   }
   public stringList() {
     this.PannierList = [];
     this.productPannier.forEach((product: ProductModel) => {
-      if(product._id != undefined){
+      if (product._id != undefined) {
         this.PannierList.push(product._id);
       }
     });

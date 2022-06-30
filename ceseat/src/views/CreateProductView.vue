@@ -58,7 +58,7 @@ import RestaurantService from '../services/RestaurantService'
             }
         },
         methods: {
-            create() {
+            async create() {
                 let product = {
                     restaurant : this.input.restaurant,
                     name : this.input.name,
@@ -67,7 +67,9 @@ import RestaurantService from '../services/RestaurantService'
                 }
                 console.log(product)
                 let productService = new ProductService()
-                productService.createProduct(product)
+                if(await productService.createProduct(product)){
+                    this.$router.replace({ name: "editProducts" });
+                }
             }
         }
     }

@@ -66,7 +66,7 @@ import RestaurantService from "../services/RestaurantService"
             this.input.type = restaurant.type
         },
         methods: {
-            edit() {
+            async edit() {
                 let restaurant = {
                     name : this.input.name,
                     img : this.input.img,
@@ -76,7 +76,10 @@ import RestaurantService from "../services/RestaurantService"
                 }
                 console.log(restaurant)
                 let restaurantService = new RestaurantService()
-                restaurantService.editRestaurant(restaurant)
+                
+                if(await restaurantService.editRestaurant(restaurant)){
+                    this.$router.replace({ name: "home" });
+                }
             }
         }
     }
