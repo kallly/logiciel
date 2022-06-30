@@ -8,7 +8,7 @@
     
       <v-card class="formulaire">
         <v-btn icon class="retour">
-          <router-link to="/login" tag="button">Retour</router-link>
+          <router-link to="/home" tag="button">Retour</router-link>
         </v-btn><br><br>
         <v-form> 
         <v-text-field label = "Nom" name="nom" v-model = "input.last_name" placeholder="Nom"></v-text-field>
@@ -62,6 +62,7 @@ import Utilisateur from "../models/Utilisateur"
                 console.log(user)
                 let userService = new UserService()
                 userService.editUser(user)
+                this.$router.replace({ name: "home" });
             },
             suppr() {
                 let userService = new UserService()

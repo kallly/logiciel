@@ -1,10 +1,11 @@
-export default interface CommandModel {
-    ID: number;
-    Date : string; // a voir si modification
-    Restaurant : string;
-    RestaurantAdress : string;
-    ClientID : number;
-    ClientAdressDelivery : string;
-    Command : Array<string>;
-    Amount : number;
+export default interface Order {
+    _id: string;
+    date: Date;
+    user: number;
+    restaurant: string;
+    products: Array<string>;
+    price: number;
+    status: string;
+    prepared_date: Date;
+    delivered_date: Date;
 }
