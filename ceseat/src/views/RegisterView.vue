@@ -62,7 +62,7 @@ import Utilisateur from "../models/Utilisateur"
         }
        },
         methods: {
-            register() {
+            async register() {
                 let user = {
                     last_name : this.input.last_name,
                     first_name : this.input.first_name,
@@ -74,7 +74,9 @@ import Utilisateur from "../models/Utilisateur"
                 }
                 console.log(user)
                 let userService = new UserService()
-                userService.registerUser(user)
+                if( await userService.registerUser(user)){
+                  this.$router.replace({ name: "login" });
+                }
             }
         }
     }

@@ -45,7 +45,11 @@ export default class UserService {
             },
         );
         console.log(data)
-        return true;
+        if (data.status == "success"){
+            return true
+        }else {
+            return false
+        }
     }
     async registerUser(User : Utilisateur): Promise<boolean> {
         const { data } = await axios.put<Message>(
@@ -58,6 +62,10 @@ export default class UserService {
             },
         );
         console.log(data)
-        return true;
+        if (data.status == "success"){
+            return true
+        }else {
+            return false
+        }
     }
 }

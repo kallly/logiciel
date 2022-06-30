@@ -34,7 +34,7 @@ import RestaurantService from "../services/RestaurantService"
                  }
          }
         },
-        beforeCreate() {
+        async beforeCreate() {
             try{
                 if(localStorage.authentificated != 'true'){
                     this.$router.replace({ name: "login" });
@@ -47,6 +47,12 @@ import RestaurantService from "../services/RestaurantService"
                 }
             }catch(e){
                 this.$router.replace({ name: "login" });
+            }
+
+            let restaurantService = new RestaurantService()
+            let restaurant = await restaurantService.getRestaurant()
+            if(restaurant == undefined){
+                this.$router.replace({ name: "createRestaurant" });
             }
         },
         async mounted() {
