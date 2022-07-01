@@ -18,14 +18,15 @@
 
 <script lang="ts">
   import TopbarComponent from '../components/Navigation/TopbarComponent.vue'
+  import OrderMinCardComponent from '../components/FollowingOrder/OrderMinCardComponent.vue'
   import { Component, Vue } from "vue-property-decorator";
   import CommandService from "../services/CommandService";
-  import CommandModel from '../models/CommandModel'
+import Order from '../models/CommandModel';
   @Component({
-  components: { TopbarComponent },
+  components: { TopbarComponent, OrderMinCardComponent },
 })
 export default class DeliveryStatusView extends Vue {
-     public commandes: Array<CommandModel> = [];
+     public commandes: Array<Order> = [];
      private commandeService!: CommandService;
      private decoded = JSON.parse(atob(localStorage.jwt.split('.')[1]));
 

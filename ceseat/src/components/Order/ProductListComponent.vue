@@ -60,7 +60,7 @@
             Close
           </v-btn>
           <v-btn color="green darken-1" text @click="dialog = false">
-            <router-link :to="`/DeliveryStatus/${userid}`" tag="button" color="deep-purple lighten-2">
+            <router-link :to="`/commande/client`" tag="button" color="deep-purple lighten-2">
               voir l'état de ma commande
             </router-link>
           </v-btn>
